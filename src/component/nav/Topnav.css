@@ -1,0 +1,117 @@
+.top-nav {
+    font-family: 'Poppins';
+    position: fixed;
+    top: 0;
+    left: 245px; 
+    right: 0;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   
+  }
+  
+
+  .profile-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 15px;
+  }
+  
+  .dropdown-icon {
+    margin-left: 5px;
+  }
+  
+  
+  .dropdown-menu button:hover {
+    background-color: #f5f5f5;
+    border-radius: 12px;
+  padding-bottom: 10px;
+  }
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 190px;
+    z-index: 1000;
+    margin-top: 5px;
+   
+  }
+  
+  .user-info {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .large-profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .user-info h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+  }
+  
+ .dropdown-menu button {
+    display: flex;
+    align-items: center; /* Aligne l'icône et le texte verticalement */
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-top: 1px solid #ccc;
+   padding-top: 1rem;
+  }
+  
+  .dropdown-menu button span {
+    position: relative;
+    top: 1px; /* Déplace le texte légèrement vers le haut */
+  }
+  
+  .logout-icon {
+    color: #1976B4;
+    height: 30px;
+    width: 20px;
+    margin-right: 10px;
+  }
+
+  .large-profile-photo {
+    width: 100px; 
+    height: 100px; 
+    border-radius: 50%; 
+    margin-bottom: 10px; 
+    border: 3px solid #1976B4; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    object-fit: cover; 
+  }
+  .profile-photo{
+    width: 40px; 
+    height: 40px;
+    border-radius: 50%;  
+    margin-right: 15px;
+  }
+  @media (max-width: 768px) {
+.top-nav{
+    left: 200px; 
+    right: 0;
+
+}
+
+  }
