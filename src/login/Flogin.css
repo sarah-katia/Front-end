@@ -84,6 +84,7 @@ gap: 75px;}
   /* Bouton de connexion */
   .connect-button,
   .google-connect-button {
+    
     width: 100%;
     padding: 10px;
     height: 2.7rem;
@@ -96,6 +97,7 @@ gap: 75px;}
   }
   
   .connect-button {
+    margin-left: 0;
     background-color: #249CF4;
     color: white;
     font-weight: 550;
@@ -106,6 +108,7 @@ gap: 75px;}
   }
   
   .google-connect-button {
+   
     background-color: white;
     color: #000000;
     font-weight: 500;

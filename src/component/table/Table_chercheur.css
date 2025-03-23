@@ -1,76 +1,98 @@
 .chercheurs-container {
-    margin-top: 4rem;
+  
+    margin-top: 6rem;
     display: flex;
-    height: calc(100vh - 4rem); /* Prend toute la hauteur de la page */
+   
+   
   }
   
   .chercheurs-content {
-    margin-left: 260px;
+    
+    margin-left: 270px;
     padding: 20px;
-    width: 100%;
+    width: 75rem;
     display: flex;
     flex-direction: column;
+    
   }
   
   .filters {
+    
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-    align-items: center; /* Aligne les éléments verticalement */
+    gap: 30px;
+    margin-bottom: 35px;
+    align-items: center; 
   }
   
   
   .search-bar {
+    
+    background-color: white;
+    width: 330px;
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    flex: 1; /* Prend toute la largeur disponible */
+    border-radius: 12px;
+    padding: 7px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    padding-left: 15px;
+   
   }
   
   .search-bar input {
+    background-color: white;
+    font-family: "Poppins";
+    font-size: 15px;
+    font-weight: 510;
     border: none;
     outline: none;
-    padding: 5px;
-    width: 100%; /* Prend toute la largeur disponible */
+    margin-left: 10px;
+    width: 100%; 
   }
   
   select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc; /* Ajoute une bordure */
-    background-color: white; /* Fond blanc */
+    text-align: center;
+    font-size: 17px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc; 
+    background-color: #299cf4; 
     cursor: pointer;
+    color: white;
   }
   
   select:hover {
-    border-color: #007bff; /* Change la couleur de la bordure au survol */
-  }
+scale: 1.001;  }
   
   button {
-    display: flex;
-    align-items: center;
-    gap: 5px; /* Espace entre l'icône et le texte */
-    background-color: #007bff; /* Couleur de fond */
-    color: white; /* Couleur du texte */
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
+    margin-left: 230px;
+    font-size: 19px;
+    padding: 9px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc; 
+    background-color: #1976b4; 
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Animation au survol */
+    color: white;
+    transition: background-color 0.3s ease; 
+  }
+  .filtree{
+    font-size: 16px;
   }
   
   button:hover {
-    background-color: #0056b3; /* Couleur de fond au survol */
+    background-color: #299cf4; 
+    scale: 1.015;
   }
   
   .btn-profile {
-    background-color: #007bff;
+    margin-left: 10px;
+    font-size: 17px;
+    padding: 8px 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc; 
+    background-color: #299cf4; 
+    cursor: pointer;
     color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
     cursor: pointer;
   }
   
@@ -78,33 +100,37 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    object-fit: cover; /* Assure que la photo couvre toute la zone sans déformation */
+    object-fit: cover; 
   }
   
-  /* Styles pour le tableau */
+ 
   .table-container {
-    flex: 1; /* Prend toute la place disponible */
-    overflow: auto; /* Ajoute un scroll si nécessaire */
+  position: relative;
+  z-index: 1;
+    overflow: auto; 
+    
   }
   
-  /* Styles pour les lignes du tableau */
+  
   .table-row {
     display: flex;
     justify-content: space-between;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+   
+    
   }
   
-  /* Styles pour les cellules du tableau */
+  
   .table-cell {
-    flex: 1;
+    font-size: 16px;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
-  /* Styles pour la pagination */
+
   .pagination {
     display: flex;
     justify-content: flex-end;
@@ -125,3 +151,25 @@
     background-color: #007bff;
     color: white;
   }
+  .logo-recherche{
+    color: #565656;
+    font-size: 21px;
+  }
+
+  select:focus {
+    background-color: #a1f7b9;
+}
+
+select option {
+  background-color: white; 
+  color: #565656; 
+  padding: 15px;
+  border: none; 
+}
+
+
+
+
+
+
+
