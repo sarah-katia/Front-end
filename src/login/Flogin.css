@@ -1,215 +1,176 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 /* Style global */
 body {
-    margin: 0; /* Supprime les marges par défaut du body */
+    margin: 0;
     font-family: 'Poppins', sans-serif;
     display: flex;
-    height: 100vh; /* Hauteur totale de la fenêtre */
+    height: 100vh;
     background-color: #fafafa;
-  }
-  
-  /* Conteneur principal */
-  .login-container {
- 
-    width: 105%; /* Largeur ajustable */
-    max-width: 1500px; /* Limite maximale de largeur */
-    height: 99vh; /* Hauteur ajustable */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Conteneur principal */
+.login-container {
+    width: 80%;
+    max-width: 1200px;
+    height: 80vh;
     display: flex;
-    box-shadow: 0 4px 6px rgba(0, 0, 0.1, 0.1);
-    border-radius: 38px; /* Bordures arrondies globales */
-    position: relative; /* Assure un positionnement correct */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
     background: white;
-    margin-top: -30px;
-    margin-left: -35px;
-    margin-bottom: -2rem;
-gap: 75px;}
-  
-  .left-side {
+    overflow: hidden;
+}
+
+.left-side {
     width: 50%;
-    margin-top: -25px;
-    padding: 0px 60px;
-    background: white;
+    padding: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .right-side {
-    width: 75%;
-    overflow: hidden;
-  }
-  
-  /* Logo */
-  .logo {
-
-    display: block;
-    margin: 0 auto;
-    width: 135px;
-    height: auto;
-    min-width: 50px;
-    margin-top: -2.5rem;
-  }
-  
-  /* Titre */
-  .login-form h2 {
-    margin-top: -30px;
-    text-align: center;
-    margin-bottom: 65px;
-    color: #000000;
-    font-size: 29px;
-    font-weight: bold;
-  }
-  
-  /* Formulaire */
-  .login-form {
-    margin-top: 50px;
-    margin-left: 0.7rem;
-    padding: 70px 50px;
+    justify-content: center;
+    align-items: center;
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow spécifique pour le formulaire */
-  }
-  
-  .login-form input {
-    width: 90%;
-    height: 0.8rem;
-    padding: 15px;
+}
+
+.right-side {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+}
+
+
+.logo {
+    display: block;
+    margin-right: 15px;
+    width: 120px;
+    height: auto;
+    margin-left: 7rem !important ;
+}
+
+/* Titre */
+.login-form h2 {
+    text-align: center;
+    color: #000000;
+    font-size: 24px;
+    font-weight: bold;
     margin-bottom: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 15px;
-    font-size: 13px;
-    outline: none;
-  }
-  
-  /* Bouton de connexion */
-  .connect-button,
-  .google-connect-button {
-    
+}
+
+/* Formulaire */
+.login-form {
     width: 100%;
-    padding: 10px;
-    height: 2.7rem;
+    max-width: 350px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* Boutons */
+.connect-button,
+.google-connect-button {
+  
+  margin-left: 0;
+    width: 100%;
+    padding: 12px;
     margin-bottom: 10px;
     border: none;
-    border-radius: 15px;   
-     font-size: 15px;
+    border-radius: 10px;
+    font-size: 15px;
     cursor: pointer;
     transition: all 0.3s ease;
-  }
-  
-  .connect-button {
-    margin-left: 0;
+}
+
+.connect-button {
+  margin-top: 0.7rem;
     background-color: #249CF4;
     color: white;
-    font-weight: 550;
-  }
-  
-  .connect-button:hover {
+    font-weight: 600;
+}
+
+.connect-button:hover {
     background-color: #218bd6;
-  }
-  
-  .google-connect-button {
-   
+}
+
+.google-connect-button {
     background-color: white;
     color: #000000;
     font-weight: 500;
     border: 1px solid #e0e0e0;
-  }
-  
-  .google-connect-button:hover {
+}
+
+.google-connect-button:hover {
     border-color: #bcbcbc;
-  }
-  
-  .google-icon {
-    .google-icon {
-        width: 20px; 
-        height: 20px;
-        vertical-align: middle; 
-        margin-right: 20px; /* Espace entre l'icône et le texte */
-      }
-  }
-  
-  /* Message d'erreur */
-  .error-message {
-    color: red;
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 14px;
-  }
-  
-  /* Lien mot de passe oublié */
-  .forgot-password {
+}
+
+.forgot-password {
     display: block;
     text-align: right;
     color: #747474;
-    text-decoration: none;
     font-size: 14px;
-    margin-top: -1.1rem;
-    margin-bottom: 2.1rem;
-    
-  }
-  
-  .forgot-password:hover {
-    text-decoration: underline;
-  }
-  
-  /* Bouton retour à la page d'accueil */
-  .back-to-home {
-    display: flex;
-    height: 2.5rem;
-    width: 60%;
-    align-items: center;
-    padding: 12px 20px;
-    background-color: #1976B4;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-bottom: 1rem;
-  }
-  
-  .back-to-home:hover {
-    background-color: #176da5;
-  }
-  
-  .back-icon {
-    width: 20px;
-    vertical-align: middle;
-    margin-right: 10px;
-  }
-  
-  /* Image du bâtiment */
-  .building-image {
-   
-    margin-left: 4rem;
-    width: 90%;
-    height:99vh;
-    object-fit: cover;
-    border-radius: 12px 12px 12px 12px;
-  }
+    margin-top: -10px;
+}
 
-  
-  /* Responsivité */
-  @media (max-width: 768px) {
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.back-to-home {
+  display: flex;
+  height: 2.5rem;
+  width: 60%;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: #1976B4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.back-to-home:hover {
+  background-color: #176da5;
+}
+
+.back-icon {
+  width: 20px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.building-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
     .login-container {
-      flex-direction: column;
-      height: auto; /* Hauteur ajustée pour les petits écrans */
+        flex-direction: column;
+        width: 90%;
+        height: auto;
     }
-  
     .left-side {
-      width: 100%;
-      
-    }
-  
-    .left-side {
-      padding: 40px;
+        width: 100%;
+        padding: 20px;
     }
     .right-side {
-      display: none; /* Cache l'image */
-  }
-  
-    .right-side {
-      border-radius: 0 0 12px 12px;
+        width: 100%;
+        height: 200px;
     }
-  }
+    .building-image {
+        height: 100%;
+    }
+}

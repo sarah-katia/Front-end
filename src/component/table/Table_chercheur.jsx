@@ -12,22 +12,8 @@ const fakeData = [
   { id: 2, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", qualite: "Professeur", equipe: "CoDesign" },
   { id: 3, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", qualite: "Chercheur", equipe: "IMAGE" },
   { id: 4, photo: "../../assets/Koudil.png", nom: "Sofiane Djelloul", qualite: "Doctorant", equipe: "OPI" },
-  { id: 1, photo: "https://via.placeholder.com/50", nom: "Kermi Adel", qualite: "Professeur", equipe: "TIIMA" },
-  { id: 2, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", qualite: "Professeur", equipe: "CoDesign" },
-  { id: 3, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", qualite: "Chercheur", equipe: "IMAGE" },
-  { id: 4, photo: "", nom: "Sofiane Djelloul", qualite: "Doctorant", equipe: "OPI" },
-  { id: 1, photo: "https://via.placeholder.com/50", nom: "Kermi Adel", qualite: "Professeur", equipe: "TIIMA" },
-  { id: 2, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", qualite: "Professeur", equipe: "CoDesign" },
-  { id: 3, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", qualite: "Chercheur", equipe: "IMAGE" },
-  { id: 4, photo: "", nom: "Sofiane Djelloul", qualite: "Doctorant", equipe: "OPI" },
-  { id: 1, photo: "https://via.placeholder.com/50", nom: "Kermi Adel", qualite: "Professeur", equipe: "TIIMA" },
-  { id: 2, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", qualite: "Professeur", equipe: "CoDesign" },
-  { id: 3, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", qualite: "Chercheur", equipe: "IMAGE" },
-  { id: 4, photo: "", nom: "Sofiane Djelloul", qualite: "Doctorant", equipe: "OPI" },
-  { id: 1, photo: "https://via.placeholder.com/50", nom: "Kermi Adel", qualite: "Professeur", equipe: "TIIMA" },
-  { id: 2, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", qualite: "Professeur", equipe: "CoDesign" },
-  { id: 3, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", qualite: "Chercheur", equipe: "IMAGE" },
-  { id: 4, photo: "", nom: "Sofiane Djelloul", qualite: "Doctorant", equipe: "OPI" },
+  { id: 5, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", qualite: "Chercheur", equipe: "IMAGE" },
+  { id: 6, photo: "../../assets/Koudil.png", nom: "Sofiane Djelloul", qualite: "Doctorant", equipe: "OPI" },
 
 ];
 
@@ -47,12 +33,15 @@ const Table_chercheur = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   const handleSearch = (event) => {
+    event.preventDefault();
     setSearch(event.target.value);
   };
 
   const handleFilterQualite = (event) => {
     setFilterQualite(event.target.value);
   };
+
+
 
   const handleFilterEquipe = (event) => {
     setFilterEquipe(event.target.value);
