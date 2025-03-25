@@ -6,6 +6,8 @@ import Mdpoublier from './login/Mdpoublier';
 import Nvmdp from './login/Nvmdp';
 import Accueil from './component/Accueil/accueil';
 import Table_chercheur from './component/table/Table_chercheur';
+import Filtre from './component/table/filtre';
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -18,6 +20,8 @@ function App() {
         <Route path="/Mdpoublier" element={<Mdpoublier/>} />
         <Route path="/Table_chercheur" element={<Table_chercheur />} />
         <Route path="/Accueil" element={<Accueil />} />
+        <Route path="/Filtre" element={<Filtre />} />
+
       </Routes>
     </Router>
   )
