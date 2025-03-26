@@ -16,7 +16,7 @@
   }
   
   .filters {
-    
+    margin-left: 230px;
     display: flex;
     gap: 30px;
     margin-bottom: 35px;
@@ -165,6 +165,7 @@ select option {
   padding: 15px;
   border: none; 
 }
+
 
 
 

@@ -43,14 +43,14 @@ body {
 
 
 .logo {
-    display: block;
-    margin-right: 15px;
+   
+    margin-right: 5px;
     width: 120px;
     height: auto;
-    margin-left: 7rem !important ;
+  
+   
 }
 
-/* Titre */
 .login-form h2 {
     text-align: center;
     color: #000000;
@@ -137,7 +137,8 @@ body {
   font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-bottom: 1rem;
+ margin-top: 1rem ;
+  margin-left: -9rem;
 }
 
 .back-to-home:hover {
