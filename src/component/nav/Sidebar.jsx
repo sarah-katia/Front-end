@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaSearch, FaUser, FaBook } from "react-icons/fa";
 import logo from "../../assets/LMCSblanc.png";
-import "./Sidebar.module.css";
+import "./Sidebar.css";
 
 const Sidebar = () => {
   return (
