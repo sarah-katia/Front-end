@@ -31,7 +31,7 @@
 }
 
 /* Onglet actif */
-.activeTab {
+.tabs .activeTab {
     font-weight: bold;
     background-color: #1976B4;
     color: white;

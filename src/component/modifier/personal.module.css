@@ -4,7 +4,7 @@
     height: 100vh;
     width: 900px;
     padding-left: 350px; /* Pour éviter le chevauchement avec la sidebar */
-    padding-top: 190px; /* Ajuste en fonction de la navbar */
+    padding-top: 300px; /* Ajuste en fonction de la navbar */
     justify-content: center;
     align-items: center;
 }
