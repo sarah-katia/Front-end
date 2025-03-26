@@ -1,28 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-/* Style global */
+
 body {
-    margin: 0; /* Supprime les marges par défaut du body */
+    margin: 0; 
     font-family: 'Poppins', sans-serif;
     display: flex;
-    height: 100vh; /* Hauteur totale de la fenêtre */
+    height: 100vh; 
     background-color: #fafafa;
   }
   
-  /* Conteneur principal */
+  
   .login-container {
  
-    width: 105%; /* Largeur ajustable */
-    max-width: 1500px; /* Limite maximale de largeur */
-    height: 99vh; /* Hauteur ajustable */
+    width: 105%;
+    max-width: 1500px; 
+    height: 99vh; 
     display: flex;
     box-shadow: 0 4px 6px rgba(0, 0, 0.1, 0.1);
-    border-radius: 38px; /* Bordures arrondies globales */
-    position: relative; /* Assure un positionnement correct */
+    border-radius: 38px; 
+    position: relative; 
     background: white;
     margin-top: -30px;
     margin-left: -35px;
     margin-bottom: -2rem;
-gap: 75px;}
+ gap: 75px;}
   
   .left-side {
     width: 50%;
@@ -60,7 +60,7 @@ gap: 75px;}
     font-weight: bold;
   }
   
-  /* Formulaire */
+  
   .login-form {
     margin-top: 50px;
     margin-left: 0.7rem;

@@ -2,13 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaSearch, FaUser, FaBook } from "react-icons/fa";
 import logo from "../../assets/LMCSblanc.png";
-import "./Sidebar.css";
+import "./Sidebar.module.css";
 
 const Sidebar = () => {
   return (
     <div className="navbar">
       <div className="logo-container">
-        <img src={logo} alt="LMCS Logo" className="logo" />
+        <img src={logo} alt="LMCS Logo" className="logo1" />
       </div>
       <ul className="nav-links">
         <li className={location.pathname === "/Accueil" ? "active" : ""}>

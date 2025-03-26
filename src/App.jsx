@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'
 import Flogin from './login/Flogin'
 import Mdpoublier from './login/Mdpoublier';
 import Nvmdp from './login/Nvmdp';
