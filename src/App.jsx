@@ -8,7 +8,7 @@ import Table_chercheur from './component/table/Table_chercheur';
 import Filtre from './component/table/filtre';
 import ProfilePage from './component/Mon profile/PageProfile';
 import ModifierPage from './component/modifier/PageModifier';
-
+import Sidebar from './component/nav/Sidebar';
 import koudilpic from './assets/koudil.png';
 
 function App() {
@@ -37,7 +37,6 @@ function App() {
   return (
     <Router>   
       <Routes>
-     
       <Route path="/Flogin" element={<Flogin />} />
         <Route path="/Nvmdp" element={<Nvmdp />} />
         <Route path="/Mdpoublier" element={<Mdpoublier/>} />
