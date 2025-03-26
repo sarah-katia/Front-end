@@ -1,0 +1,8 @@
+.pageProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 260px;
+    padding-left: 260px;
+    gap: 40px;
+}

@@ -1,4 +1,4 @@
-.about-card {
+.aboutCard {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -9,12 +9,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 40px;
-    margin-left: 330px;
     z-index: 1;
 }
 
-.about-header {
+.aboutHeader {
     background-color: #1976B4;
     color: white;
     padding: 10px 110px;
@@ -28,10 +26,10 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.about-content {
+.aboutContent {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px; /* Espacement entre les colonnes */
+    gap: 20px;
     width: 100%;
     font-size: 14px;
     color: black;
@@ -40,47 +38,44 @@
     padding-top: 12px;
 }
 
-.about-left, .about-right {
+.aboutLeft, .aboutRight {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.about-content p {
-    margin: 4px 0; /* Réduit encore l’espace entre les lignes */
-    line-height: 2; /* Ajuste la hauteur de ligne */
+.aboutContent p {
+    margin: 4px 0;
+    line-height: 2;
 }
 
-.about-content strong {
+.aboutContent strong {
     color: #1976B4;
     font-weight: 500;
 }
 
-/* Icônes */
-.about-card .icon {
+.icon {
     color: #1976B4;
     font-size: 16px;
     margin-right: 5px;
 }
 
-/* Pour les deux derniers éléments en pleine largeur */
-.full-width {
-    grid-column: span 2; /* Occupe les deux colonnes */
-    margin: 0 !important;  /* Supprime les marges */
+.fullWidth {
+    grid-column: span 2;
+    margin: 0 !important;
     padding: 0;
-    line-height: 1 !important;  /* Force un espacement plus compact */
-    text-align: left ; /* Aligne le texte à gauche */
-    display: flex; /* Active le mode flexbox */
+    line-height: 1 !important;
+    text-align: left;
+    display: flex;
     justify-content: flex-start;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-    .about-content {
-        grid-template-columns: 1fr; /* Une seule colonne en mobile */
+    .aboutContent {
+        grid-template-columns: 1fr;
     }
 
-    .full-width {
-        grid-column: span 1; /* Reste en pleine largeur même en mobile */
+    .fullWidth {
+        grid-column: span 1;
     }
 }
