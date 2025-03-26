@@ -15,12 +15,12 @@ const MdpOublier = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="left-side">
+    <div className="login-container2">
+      <div className="left-side2">
         <div className="login-form">
           <img src={logo} alt="Logo" className="logo" />
           <h2>Mot de passe oublié ?</h2>
-          <p>Un email vous sera envoyé sur votre boîte email.<br/>Veuillez vérifier votre boîte mail.</p>
+          <p className="p" > Un email vous sera envoyé sur votre boîte email.<br/>Veuillez vérifier votre boîte mail.</p>
           <form onSubmit={handleSubmit}>
             <input
               type="email"
@@ -34,15 +34,15 @@ const MdpOublier = () => {
             </button>
            
           </form>
-          <Link to="/" className="back-button">
+          <Link to="/" className="back-button1">
             <FaArrowLeft className="back-icon" /> Retour
           </Link>
         </div>
-        <button className="back-to-home">
+        <button className="back-to-home2">
                 <FaArrowLeft className="back-icon" />          Revenir à la page d'accueil
                 </button>
       </div>
-      <div className="right-side">
+      <div className="right-side2">
         <img src={audito} alt="Building" className="building-image" />
       </div>
     </div>

@@ -48,7 +48,7 @@ const Flogin = () => {
 
   return (
     <div className="login-container">
-      <div className="left-side">
+      <div className="left-side1">
         <div className="login-form">
           <img src={logo} alt="Logo" className="logo" />
           <h2>Welcome back</h2>
