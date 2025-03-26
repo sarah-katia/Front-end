@@ -1,0 +1,199 @@
+/* Conteneur principal */
+.profile-edit-container {
+    display: flex;
+    height: 100vh;
+    width: 900px;
+    padding-left: 350px; /* Pour éviter le chevauchement avec la sidebar */
+    padding-top: 190px; /* Ajuste en fonction de la navbar */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenu principal */
+.profile-edit-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-width: 900px;
+}
+
+/* Formulaire */
+.profile-edit-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+    max-width: 700px;
+}
+
+/* Photo de profil */
+.profile-photo-section {
+    grid-column: span 2 ;
+    display: flex;
+    align-items: center; /* Centre verticalement */
+    justify-content: center; /* Centre horizontalement */
+    gap: 40px; /* Espacement entre les éléments */
+    text-align: center;
+    margin-bottom: 15px;
+    width: 100%; /* S'assurer que le conteneur prend toute la largeur disponible */
+}
+
+.buttons-container {
+    display: flex;
+    gap: 10px; /* Espacement entre les boutons */
+}
+
+
+.profile-photo-section img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.5px solid #ccc;
+}
+
+.profile-photo-section img:hover {
+    transform: scale(1.05);
+}
+
+.profile-photo-section button {
+    align-items: center;
+    display: flex;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    max-width: 200px; 
+    text-align: center;
+}
+
+.profile-photo-section button:first-of-type {
+    background-color: #1976B4;
+    color: white;
+}
+
+.profile-photo-section button:last-of-type {
+    
+    background-color: #1976b454;
+    color: #1976B4;
+}
+
+/* Champs du formulaire */
+.profile-edit-content .input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-edit-content .input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.profile-edit-content .input-group label span {
+    color: #dd0c0c;
+}
+
+.profile-edit-content .input-group input {
+    padding: 8px;
+    border: 1.5px solid #1976B4;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 90%;
+}
+
+/* Radio boutons */
+.radio-container {
+    display: flex;
+    gap: 10px; /* Espacement entre les boîtes */
+}
+
+.radio-box {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacement entre la boule et le texte */
+    padding: 5.5px 10px;
+    border: 1.5px solid #1976B4;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Style de la boule de sélection */
+.radio-box input {
+    display: none; /* Cache le bouton radio par défaut */
+}
+
+.radio-circle {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #666;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+}
+
+/* Effet quand l'option est sélectionnée */
+.radio-box input:checked + .radio-circle {
+    border-color: #1976B4;
+}
+
+.radio-box input:checked + .radio-circle::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #1976B4;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Bouton de sauvegarde */
+.save-button-container {
+    grid-column: 2 ; /* Placer le bouton dans la deuxième colonne */
+    display: flex;
+    justify-content: flex-end; /* Aligner à droite */
+    margin-top: 20px; /* Espacement avec le formulaire */
+    width: 100%;
+}
+
+.save-button {
+    background-color: #1976B4;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.save-button:hover {
+    background-color: #1a7fc3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-edit-container {
+        padding-left: 0;
+        padding-top: 100px; /* Ajuste pour la navbar */
+    }
+
+    .profile-edit-form {
+        grid-template-columns: 1fr;
+    }
+
+    .save-button {
+        grid-column: span 1;
+    }
+}
