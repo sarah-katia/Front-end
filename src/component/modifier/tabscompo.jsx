@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
 import Personnel from "./personal";
 import Securite from "./securite";
-import styles from "./tabscompo.module.css"; // Import du module CSS
+import style from "./tabscompo.module.css"; // Import du module CSS
 
 export default function TabsComponent({ chercheur }) {
   const location = useLocation();
@@ -9,15 +9,15 @@ export default function TabsComponent({ chercheur }) {
 
   return (
     <div>
-      <div className={styles.tabs}>
+      <div className={style.tabss}>
         <button
-          className={location.pathname === "/component/modifier/personal" ? styles.activeTab : ""}
+          className={location.pathname === "/component/modifier/personal" ? style.activeTab : ""}
           onClick={() => navigate("/component/modifier/personal")}
         >
           Personnel
         </button>
         <button
-          className={location.pathname === "/component/modifier/securite" ? styles.activeTab : ""}
+          className={location.pathname === "/component/modifier/securite" ? style.activeTab : ""}
           onClick={() => navigate("/component/modifier/securite")}
         >
           Sécurité

@@ -6,9 +6,9 @@ import AboutCard from './Aboutcard';
 
 export default function ProfilePage({ chercheur }) {
   return (
-    <div className="app-container">
+    <div >
       <Sidebar />  
-      <div className="main-content">
+      <div >
         <Topnav />  
         <div className={pageStyle.pageProfile}>
           <ProfileCard 

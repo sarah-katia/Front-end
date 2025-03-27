@@ -1,10 +1,10 @@
 .container {
     display: flex;
-    height: 99vh;
+    height: 98vh;
     justify-content: center;
     align-items: center;
-    padding-left: 350px; 
-    padding-top: 5px;
+    padding-left: 140px; 
+    padding-top: 9px;
 }
 
 .passwordContainer {
@@ -20,7 +20,7 @@
 
 .passwordContainer input {
     flex: 1;
-    padding-right: 40px;
+    padding-right: 0px;
 }
 
 .togglePassword {
@@ -29,8 +29,14 @@
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     color: #1976B4;
+    display: flex; /* Ensure it only takes the size of the SVG */
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Remove extra padding */
+    width: 25px; /* Adjust width */
+    height: 25px; /* Adjust height */
 }
 
 .errorMessage {
@@ -42,7 +48,7 @@
     text-align: left;
 }
 
-.content {
+.container .content {
     flex: 1;
     min-width: 700px;
     padding: 20px;
@@ -81,7 +87,7 @@
     border: 1.5px solid #1976B4;
     border-radius: 5px;
     font-size: 14px;
-    width: 95%;
+    width: 100%;
 }
 
 .saveButtonContainer {

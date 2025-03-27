@@ -1,6 +1,6 @@
-.tabs {
+.tabss {
     position: absolute;
-    top: 70px;
+    top: 80px;
     left: 360px;
     width: 59%;
     display: flex;
@@ -11,27 +11,29 @@
 }
 
 /* Style des boutons */
-.tabs button {
+.tabss button {
+    gap: 10px;
     background: white;
     border: none;
     border-radius: 8px 8px 0 0;
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 5px;
     color: black;
-    min-width: 100px;
+    width: 20%;
     text-align: center;
+    margin: 0;
 }
 
 /* Effet hover */
-.tabs button:hover {
+.tabss button:hover {
     background-color: #1976b454;
     color: white;
 }
 
 /* Onglet actif */
-.tabs .activeTab {
+.tabss .activeTab {
     font-weight: bold;
     background-color: #1976B4;
     color: white;

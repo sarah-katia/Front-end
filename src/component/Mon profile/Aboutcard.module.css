@@ -31,7 +31,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     width: 100%;
-    font-size: 14px;
     color: black;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
@@ -46,6 +45,7 @@
 
 .aboutContent p {
     margin: 4px 0;
+    font-size: 14px;
     line-height: 2;
 }
 
