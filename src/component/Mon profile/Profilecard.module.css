@@ -1,12 +1,6 @@
-.profile-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre les cartes */
-    padding-top: 70px; /* Ajoute un espace sous la navbar */
-    padding-left: 260px; /* Ajuste pour éviter le chevauchement avec Sidebar */
-}
 
-.profile-card {
+
+.profileCard {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -18,12 +12,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 100px;
-    margin-left: 330px;
     z-index: 1;
 }
 
-.profile-title {
+.profileTitle {
     background-color: #1976B4;
     color: white;
     padding: 10px 100px;
@@ -37,7 +29,7 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.profile-header {
+.profileHeader {
     display: flex;
     align-items: center;
     gap: 30px;
@@ -45,7 +37,7 @@
     justify-content: flex-start;
 }
 
-.profile-image {
+.profileImage {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -53,33 +45,31 @@
     border: 1px solid #ddd;
 }
 
-.profile-image:hover {
+.profileImage:hover {
     transform: scale(1.05);
-  }
+}
 
-.profile-info {
+.profileInfo {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 16px;
     color: black; 
-
 }
 
-.profile-info strong {
+.profileInfo strong {
     color: #1976B4;
     font-weight: 600 ;
 }
 
-.profile-info p {
+.profileInfo p {
     margin: 8px 0;
+    font-size: 16px;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     color: black; 
-
 }
 
-.edit-button {
+.editButton {
     background: #A1F7B9;
     color: white;
     font-size: 16px;
@@ -99,11 +89,11 @@
     right: 30px;
 }
 
-.edit-button:hover {
+.editButton:hover {
     background: #71ef95;
 }
 
-.edit-button img {
+.editButton img {
     width: 35px;
     height: 35px;
 }
