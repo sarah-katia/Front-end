@@ -133,7 +133,7 @@ const Personal = ({ chercheur }) => {
 
         </form>
 
-            {/* Carte d'approbation */}
+           
             <ApprovalCard isVisible={showApproval} onClose={() => setShowApproval(false)} />
 
       </div>
