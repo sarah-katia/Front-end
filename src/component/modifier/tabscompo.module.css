@@ -1,0 +1,42 @@
+.tabss {
+    position: absolute;
+    top: 80px;
+    left: 360px;
+    width: 59%;
+    display: flex;
+    gap: 5px;
+    border-bottom: 2px solid #1976B4;
+    padding-bottom: 0px;
+    justify-content: flex-start;
+}
+
+/* Style des boutons */
+.tabss button {
+    gap: 10px;
+    background: white;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    padding: 5px;
+    color: black;
+    width: 20%;
+    text-align: center;
+    margin: 0;
+}
+
+/* Effet hover */
+.tabss button:hover {
+    background-color: #1976b454;
+    color: white;
+}
+
+/* Onglet actif */
+.tabss .activeTab {
+    font-weight: bold;
+    background-color: #1976B4;
+    color: white;
+    border-bottom: 0.2px solid white;
+    pointer-events: none;
+}

@@ -1,16 +1,16 @@
 /* Conteneur principal */
-.profile-edit-container {
+.profileEditContainer {
     display: flex;
     height: 100vh;
     width: 900px;
-    padding-left: 350px; /* Pour éviter le chevauchement avec la sidebar */
-    padding-top: 190px; /* Ajuste en fonction de la navbar */
+    padding-left: 320px; /* Pour éviter le chevauchement avec la sidebar */
+    padding-top: 380px; /* Ajuste en fonction de la navbar */
     justify-content: center;
     align-items: center;
 }
 
 /* Contenu principal */
-.profile-edit-content {
+.profileEditContent {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
@@ -18,7 +18,7 @@
 }
 
 /* Formulaire */
-.profile-edit-form {
+.profileEditForm {
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -31,24 +31,24 @@
 }
 
 /* Photo de profil */
-.profile-photo-section {
+.profilePhotoSection {
     grid-column: span 2 ;
     display: flex;
     align-items: center; /* Centre verticalement */
-    justify-content: center; /* Centre horizontalement */
+    justify-content: center;
     gap: 40px; /* Espacement entre les éléments */
     text-align: center;
     margin-bottom: 15px;
     width: 100%; /* S'assurer que le conteneur prend toute la largeur disponible */
 }
 
-.buttons-container {
-    display: flex;
-    gap: 10px; /* Espacement entre les boutons */
+.buttonsContainer {
+    display: flex ;
+    gap: 20px; /* Espacement entre les boutons */
 }
 
 
-.profile-photo-section img {
+.profilePhotoSection img {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -56,12 +56,14 @@
     border: 0.5px solid #ccc;
 }
 
-.profile-photo-section img:hover {
+.profilePhotoSection img:hover {
     transform: scale(1.05);
 }
 
-.profile-photo-section button {
+.profilePhotoSection button {
     align-items: center;
+    justify-content: center;
+    text-align: center;
     display: flex;
     padding: 10px 20px;
     border: none;
@@ -70,38 +72,37 @@
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     font-weight: 600;
-    max-width: 200px; 
-    text-align: center;
+    margin: 0;
 }
 
-.profile-photo-section button:first-of-type {
+.profilePhotoSection button:first-of-type {
     background-color: #1976B4;
     color: white;
 }
 
-.profile-photo-section button:last-of-type {
+.profilePhotoSection button:last-of-type {
     
     background-color: #1976b454;
     color: #1976B4;
 }
 
 /* Champs du formulaire */
-.profile-edit-content .input-group {
+.profileEditContent .inputGroup {
     display: flex;
     flex-direction: column;
 }
 
-.profile-edit-content .input-group label {
+.profileEditContent .inputGroup label {
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 5px;
 }
 
-.profile-edit-content .input-group label span {
+.profileEditContent .inputGroup label span {
     color: #dd0c0c;
 }
 
-.profile-edit-content .input-group input {
+.profileEditContent .inputGroup input {
     padding: 8px;
     border: 1.5px solid #1976B4;
     border-radius: 5px;
@@ -110,12 +111,12 @@
 }
 
 /* Radio boutons */
-.radio-container {
+.radioContainer {
     display: flex;
     gap: 10px; /* Espacement entre les boîtes */
 }
 
-.radio-box {
+.radioBox {
     display: flex;
     align-items: center;
     gap: 8px; /* Espacement entre la boule et le texte */
@@ -128,11 +129,11 @@
 }
 
 /* Style de la boule de sélection */
-.radio-box input {
+.radioBox input {
     display: none; /* Cache le bouton radio par défaut */
 }
 
-.radio-circle {
+.radioCircle {
     width: 16px;
     height: 16px;
     border: 2px solid #666;
@@ -142,11 +143,11 @@
 }
 
 /* Effet quand l'option est sélectionnée */
-.radio-box input:checked + .radio-circle {
+.radioBox input:checked + .radioCircle {
     border-color: #1976B4;
 }
 
-.radio-box input:checked + .radio-circle::after {
+.radioBox input:checked + .radioCircle::after {
     content: "";
     width: 10px;
     height: 10px;
@@ -160,7 +161,7 @@
 
 
 /* Bouton de sauvegarde */
-.save-button-container {
+.saveButtonContainer {
     grid-column: 2 ; /* Placer le bouton dans la deuxième colonne */
     display: flex;
     justify-content: flex-end; /* Aligner à droite */
@@ -168,7 +169,7 @@
     width: 100%;
 }
 
-.save-button {
+.saveButton {
     background-color: #1976B4;
     color: white;
     padding: 10px 30px;
@@ -178,7 +179,7 @@
     font-size: 16px;
 }
 
-.save-button:hover {
+.saveButton:hover {
     background-color: #1a7fc3;
 }
 

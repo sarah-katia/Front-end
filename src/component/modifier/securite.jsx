@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../nav/Sidebar";
 import Topnav from "../nav/Topnav";
 import ApprovalCard from "../cartes/approvalcard";
-import "./securite.css";  
+import pageStyle from "./securite.module.css";  
 
 const Security = () => {
   const navigate = useNavigate(); 
@@ -20,13 +20,16 @@ const Security = () => {
     confirmPassword: "",
   });
 
-  const [showoldPassword, setShowoldPassword] = useState(false);
-  const [shownewPassword, setShownewPassword] = useState(false);
-  const [showconfirmPassword, setShowconfirmPassword] = useState(false);
-  const [showApproval, setShowApproval] = useState(false);
-  const [attemptedSubmit, setAttemptedSubmit] = useState(false); // 🔹 Ajout pour contrôler l'affichage des erreurs
+  const [showPassword, setShowPassword] = useState({
+    old: false,
+    new: false,
+    confirm: false,
+  });
 
-  const storedPassword = "Mdpsofia"; // 🔹 Simule un mot de passe stocké en base de données
+  const [showApproval, setShowApproval] = useState(false);
+  const [attemptedSubmit, setAttemptedSubmit] = useState(false);
+
+  const storedPassword = "Mdpsofia";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,12 +46,10 @@ const Security = () => {
   const validateForm = (updatedPasswords) => {
     let errors = { oldPassword: "", confirmPassword: "" };
 
-    // Vérification de l'ancien mot de passe SEULEMENT si l'utilisateur a tenté d'enregistrer
     if (updatedPasswords.oldPassword && updatedPasswords.oldPassword !== storedPassword) {
       errors.oldPassword = "Ancien mot de passe incorrect !";
     }
 
-    // Vérification des nouveaux mots de passe
     if (updatedPasswords.newPassword !== updatedPasswords.confirmPassword) {
       errors.confirmPassword = "Les nouveaux mots de passe ne correspondent pas !";
     }
@@ -59,17 +60,17 @@ const Security = () => {
 
   const handleSaveClick = (e) => {
     e.preventDefault();
-    setAttemptedSubmit(true); // 🔹 L'utilisateur a essayé d'enregistrer
+    setAttemptedSubmit(true);
 
     if (!passwords.oldPassword || !passwords.newPassword || !passwords.confirmPassword) {
-      return; // 🔹 Ne fait rien si les champs ne sont pas remplis
+      return;
     }
 
     if (!validateForm(passwords)) {
-      return; // 🔹 Ne fait rien s'il y a des erreurs
+      return;
     }
 
-    setShowApproval(true); // 🔹 Affiche la carte de confirmation
+    setShowApproval(true);
   };
 
   const confirmSave = () => {
@@ -78,66 +79,34 @@ const Security = () => {
   };
 
   return (
-    <div className="security-edit-container">
+    <div className={pageStyle.container}>
       <Sidebar />
-      <div className="security-edit-content">
+      <div className={pageStyle.content}>
         <Topnav />
-        <form className="security-edit-form">
-          <div className="input-group">
-            <label>Ancien mot de passe <span>*</span></label>
-            <div className="password-container">
-              <input 
-                type={showoldPassword ? "text" : "password"} 
-                name="oldPassword" 
-                value={passwords.oldPassword} 
-                onChange={handleChange}
-                placeholder="Ancien mot de passe" 
-                required 
-              />
-              <button type="button" className="toggle-password" onClick={() => setShowoldPassword(!showoldPassword)}>
-                {showoldPassword ? <FaEye /> : <FaEyeSlash />}
-              </button>
+        <form className={pageStyle.form}>
+          {["oldPassword", "newPassword", "confirmPassword"].map((field, index) => (
+            <div key={index} className={pageStyle.inputGroup}>
+              <label>
+                {field === "oldPassword" ? "Ancien" : field === "newPassword" ? "Nouveau" : "Confirmer"} mot de passe <span>*</span>
+              </label>
+              <div className={pageStyle.passwordContainer}>
+                <input 
+                  type={showPassword[field] ? "text" : "password"} 
+                  name={field} 
+                  value={passwords[field]} 
+                  onChange={handleChange}
+                  placeholder={field === "oldPassword" ? "Ancien mot de passe" : field === "newPassword" ? "Nouveau mot de passe" : "Confirmer le mot de passe"} 
+                  required 
+                />
+                <button type="button" className={pageStyle.togglePassword} onClick={() => setShowPassword(prev => ({ ...prev, [field]: !prev[field] }))}>
+                  {showPassword[field] ? <FaEye /> : <FaEyeSlash />}
+                </button>
+              </div>
+              {attemptedSubmit && errorMessage[field] && <p className={pageStyle.errorMessage}>{errorMessage[field]}</p>}
             </div>
-            {attemptedSubmit && errorMessage.oldPassword && <p className="error-message">{errorMessage.oldPassword}</p>}
-          </div>
-
-          <div className="input-group">
-            <label>Nouveau mot de passe <span>*</span></label>
-            <div className="password-container">
-              <input 
-                type={shownewPassword ? "text" : "password"} 
-                name="newPassword" 
-                value={passwords.newPassword} 
-                onChange={handleChange}
-                placeholder="Nouveau mot de passe" 
-                required 
-              />
-              <button type="button" className="toggle-password" onClick={() => setShownewPassword(!shownewPassword)}>
-                {shownewPassword ? <FaEye /> : <FaEyeSlash />}
-              </button>
-            </div>
-          </div>
-
-          <div className="input-group">
-            <label>Confirmer le mot de passe <span>*</span></label>
-            <div className="password-container">
-              <input 
-                type={showconfirmPassword ? "text" : "password"} 
-                name="confirmPassword" 
-                value={passwords.confirmPassword} 
-                onChange={handleChange}
-                placeholder="Confirmer le mot de passe" 
-                required 
-              />
-              <button type="button" className="toggle-password" onClick={() => setShowconfirmPassword(!showconfirmPassword)}>
-                {showconfirmPassword ? <FaEye /> : <FaEyeSlash />}
-              </button>
-            </div>
-            {attemptedSubmit && errorMessage.confirmPassword && <p className="error-message">{errorMessage.confirmPassword}</p>}
-          </div>
-
-          <div className="save-button-container">
-            <button type="button" className="save-button" onClick={handleSaveClick}>Sauvegarder</button>
+          ))}
+          <div className={pageStyle.saveButtonContainer}>
+            <button type="button" className={pageStyle.saveButton} onClick={handleSaveClick}>Sauvegarder</button>
           </div>
         </form>
       </div>

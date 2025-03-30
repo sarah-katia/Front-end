@@ -4,9 +4,9 @@ import TabsComponent from './tabscompo';
 
 const ModifierPage = ({chercheur}) => {
   return (
-    <div className="app-container">
+    <div >
       <Sidebar />  
-      <div className="main-content">
+      <div>
         <Topnav />  
         <TabsComponent chercheur={chercheur} /> 
       </div>

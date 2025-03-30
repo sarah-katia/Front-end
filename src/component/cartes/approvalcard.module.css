@@ -21,25 +21,32 @@
   
   .card p {
     font-weight: bold;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: large;
     margin-bottom: 20px;
   }
   
   .buttons {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Center the buttons */
+    gap: 60px ; /* Reduce gap between buttons */
   }
   
   .oui, .non {
     display: flex;
+    margin: 0;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 10px 20px;
+    padding: 8px 12px; /* Slightly reduce padding */
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    min-width: 150px;
+    font-family: 'Poppins', sans-serif;
+    width: 100px; /* Slightly reduce width */
+    font-size: 14px;
   }
   
   .oui {
@@ -51,17 +58,17 @@
     background-color: #1976b454;
     color: #1976B4;
   }
-
-/* Empêcher tout changement de style au survol et au clic */
-.oui:hover, .oui:active, .oui:focus {
-  background-color: #1976B4;  /* Garde la couleur de base */
-  color: white;
-  outline: none;
-}
-
-.non:hover, .non:active, .non:focus{
+  
+  /* Empêcher tout changement de style au survol et au clic */
+  .oui:hover, .oui:active, .oui:focus {
+    background-color: #1976B4;  /* Garde la couleur de base */
+    color: white;
+    outline: none;
+  }
+  
+  .non:hover, .non:active, .non:focus {
     background-color: #1976b454; /* Garde la couleur de base */
     color: #1976B4;
     outline: none;
-}
+  }
   
