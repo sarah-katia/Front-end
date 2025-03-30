@@ -92,11 +92,8 @@ const Table_chercheur = () => {
             pagination
             className="table"
             customStyles={{
-              table: { style: { width: '100%', minHeight: '750px', backgroundColor: "#fafafa", zIndex: "-1" } ,  responsiveWrapper: {
-                style: {
-                  marginLeft: "0",
-                }
-              } },
+              table: { style: { width: '100%', minHeight: '750px',backgroundColor: "#fafafa",   zIndex: "-1" } },
+               
               rows: { style: { minHeight: '70px', borderRadius: "10px", marginTop: "14px", fontSize : '15px', padding :'3px', backgroundColor: "#fafafa", border: "1px solid #ccc" } },
               headCells: { style: { fontSize: "18px", fontWeight: "bold", textAlign: "center", paddingLeft: "40px", backgroundColor: "#fafafa" } },
               cells: { style: { backgroundColor: "#fafafa", paddingLeft: "40px", paddingRight: "20px" } },
@@ -106,7 +103,15 @@ const Table_chercheur = () => {
                 activePageStyle: { backgroundColor: "#1976b4", color: "white" },
                 nextButtonStyle: { borderRadius: "5px" },
                 previousButtonStyle: { borderRadius: "5px" }
-              },
+              },responsiveWrapper: {
+                style: {
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  overflowX: "auto",
+                  minWidth: "100%",
+                  maxWidth: "100%",
+                } },
             }}
             
           />
