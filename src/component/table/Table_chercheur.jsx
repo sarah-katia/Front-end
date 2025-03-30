@@ -111,7 +111,7 @@ const Table_chercheur = () => {
             
           />
 
-          {/* Overlay des filtres */}
+        
           {showFilters && (
             <div className="filter-overlay">
               <div className="filter-modal">
