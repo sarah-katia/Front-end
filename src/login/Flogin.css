@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-/* Style global */
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -11,7 +11,7 @@ body {
     align-items: center;
 }
 
-/* Conteneur principal */
+
 .login-container {
     width: 80%;
     max-width: 200rem;
@@ -100,8 +100,9 @@ body {
 
 .google-connect-button {
     background-color: white;
-    color: #000000;
-    font-weight: 500;
+    color: #747474;
+    font-weight: 600;
+    height: 2.8rem;
     border: 1px solid #e0e0e0;
 }
 
@@ -124,7 +125,6 @@ body {
 .back-to-home {
   display: flex;
   height: 2.5rem;
-  width: 60%;
   align-items: center;
   padding: 12px 20px;
   background-color: #1976B4;
@@ -171,4 +171,9 @@ body {
         height: 100%;
     }
 }
+@media screen and (max-height: 750px) {
+    .login-form {
+      padding: 10px 40px;
+    }
+  }
 

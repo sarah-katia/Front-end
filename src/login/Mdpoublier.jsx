@@ -32,9 +32,9 @@ const MdpOublier = () => {
             <button type="submit" className="connect-button">
               Envoyer l'email
             </button>
-           
+            
           </form>
-          <Link to="/" className="back-button1">
+         <Link to="/Flogin" className="back-button12">
             <FaArrowLeft className="back-icon" /> Retour
           </Link>
         </div>
