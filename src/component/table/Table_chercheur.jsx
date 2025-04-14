@@ -51,10 +51,12 @@ const Table_chercheur = () => {
 
   return ( 
     <>
+    <div className="general">
       <NavBar />
+      <div className="right">
+
       <Topnav />
       <div className="chercheurs-container">
-        <div className="chercheurs-content">
           <div className="filters">
             <div className="search-bar">
               <FaSearch className="logo-recherche" />
@@ -85,6 +87,7 @@ const Table_chercheur = () => {
               <FaFilter className="filtree" /> Plus de filtres
             </button>
           </div>
+        <div className="chercheurs-content">
 
           <DataTable
             columns={columns}
@@ -127,7 +130,10 @@ const Table_chercheur = () => {
           )}
         </div>
       </div>
+      </div>
+    </div>
     </>
+      
   );
 };
 
