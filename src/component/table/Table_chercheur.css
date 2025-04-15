@@ -104,23 +104,59 @@ button {
 
 .table-container {
   overflow-x: auto;
-  max-width: 100%; /* Empêche le débordement */
+  max-width: 100%; 
+}
+.filter-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; 
+}
+
+.filter-modal {
+  margin-top: 3%;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-height: 79%;
+  overflow-y: auto;
+  width: 50%;
+  max-width: 90%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 /* -------------------- RESPONSIVE -------------------- */
 
 @media screen and (max-width: 1350px) {
   .chercheurs-container {
-    margin-top: 26rem !important; /* ✅ marge plus adaptée aux petits écrans */
+    margin-top: 26rem !important; 
     margin-left: 14rem;
     flex-direction: column;
-    align-items: center; /* ✅ centre le contenu */
+    align-items: center; 
   }
 
   .chercheurs-content {
-    width: 59rem ;           /* ✅ plus de largeur fixe */
-    margin-left: 0;        /* ✅ enlève le décalage horizontal */
-    padding: 10px;         /* ✅ espace réduit */
+    width: 59rem ;           
+    margin-left: 0;        
+    padding: 10px;         
   }
 
   .filters {

@@ -38,7 +38,7 @@ const Topnav = () => {
       case "/Accueil":
         return "Accueil";
       case "/Mon profile":
-        return user.nom; 
+        return "Mon profile"; 
       case "/Publications":
         return "Mes publications";
       default:

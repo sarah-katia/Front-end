@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Flogin from './login/Flogin'
 import Mdpoublier from './login/Mdpoublier';
 import Nvmdp from './login/Nvmdp';
-import Accueil from './component/Accueil/accueil';
+import Accueil from './component/Accueil/Accueil';
 import Table_chercheur from './component/table/Table_chercheur';
 import Filtre from './component/table/filtre';
 import ProfilePage from './component/Mon profile/PageProfile';
