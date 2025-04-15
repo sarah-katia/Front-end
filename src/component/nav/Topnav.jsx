@@ -37,8 +37,8 @@ const Topnav = () => {
         return "Liste des chercheurs";
       case "/Accueil":
         return "Accueil";
-      case "/Profil":
-        return user.nom; // Affiche le nom de l'utilisateur
+      case "/Mon profile":
+        return user.nom; 
       case "/Publications":
         return "Mes publications";
       default:

@@ -35,7 +35,7 @@ const Nvmdp = () => {
                 placeholder="Nouveau mot de passe"
                 required
               />
-              <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+              <span onClick={() => setShowPassword(!showPassword)} className="eye-icon">
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
@@ -46,9 +46,8 @@ const Nvmdp = () => {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirmer le mot de passe"
                 required
-                
               />
-              <span className="eye-icon" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+              <span onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="eye-icon">
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
@@ -60,7 +59,7 @@ const Nvmdp = () => {
             <FaArrowLeft /> Retour
           </Link>
         </div>
-        <Link to="/" className="back-to-home">
+        <Link to="/" className="back-to-home4">
           <FaArrowLeft className="back-icon" /> Revenir à la page d'accueil
         </Link>
       </div>

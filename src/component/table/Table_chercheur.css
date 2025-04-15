@@ -40,8 +40,9 @@ margin-top: 23rem;
 }
 
 .search-bar {
+  margin-right: 7rem;
   background-color: white;
-  width: 30%;
+  width: 40%;
   display: flex;
   align-items: center;
   border: 1px solid #ccc;
@@ -69,9 +70,11 @@ select {
   color: white;
   cursor: pointer;
   min-width: 130px;
+
 }
 
 button {
+  
   font-size: 16px;
   padding: 8px 12px;
   border-radius: 10px;
@@ -79,6 +82,8 @@ button {
   background-color: #1976b4;
   color: white;
   cursor: pointer;
+  width: 20%;
+ 
 }
 
 .btn-profile {
@@ -118,11 +123,11 @@ button {
     padding: 10px;         /* ✅ espace réduit */
   }
 
-  /* .filters {
- 
+  .filters {
+ margin-left: -18%;
     gap: 10px; 
     margin-bottom: 20px;
-  } */
+  }
 
   
 

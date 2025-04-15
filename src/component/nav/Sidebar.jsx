@@ -12,17 +12,17 @@ const Sidebar = () => {
       </div>
       <ul className="nav-links">
         <li className={location.pathname === "/Accueil" ? "active" : ""}>
-          <Link to="/" className="nav-item">
+          <Link to="/Accueil" className="nav-item">
             <FaHome className="icon" /><span className="text">Accueil</span> 
           </Link>
         </li>
         <li className={location.pathname === "/Table_chercheur" ? "active" : ""}>
-          <Link to="/" className="nav-item">
+          <Link to="/Table_chercheur" className="nav-item">
             <FaSearch className="icon" /> <span className="text">Recherche</span> 
           </Link>
         </li>
         <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/" className="nav-item">
+          <Link to="/Mon profile" className="nav-item">
             <FaUser className="icon" /> <span className="text">Mon profile</span> 
           </Link>
         </li>
