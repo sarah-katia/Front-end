@@ -25,20 +25,20 @@ const Filtre = ({ onApply }) => {
   };
 
   return (
-    <div className="filters-container">
+    <div className="filters-container2">
       <h3>Plus de filtre</h3>
-      <div className="filters-grid">
+      <div className="filters-grid1">
         {/* H-index */}
-        <div className="filter-group">
+        <div className="filter-group1">
           <label>H-index</label>
-          <div className="h-index-inputs">
+          <div className="h-index-inputs1">
             <input type="number" name="hIndexMin" placeholder="Min" value={filters.hIndexMin} onChange={handleChange} />
             <input type="number" name="hIndexMax" placeholder="Max" value={filters.hIndexMax} onChange={handleChange} />
           </div>
         </div>
 
         {/* Établissement d'origine */}
-        <div className="filter-group">
+        <div className="filter-group1">
           <label>Établissement d’origine</label>
           <div>
             <input type="checkbox" name="etablissement" value="Esi" onChange={handleChange} /> Esi
@@ -49,7 +49,7 @@ const Filtre = ({ onApply }) => {
         </div>
 
         {/* Qualité */}
-        <div className="filter-group">
+        <div className="filter-group1">
           <label><strong>Qualité</strong></label>
           <div><input type="checkbox" name="qualite" value="Enseignant-Chercheur" onChange={handleChange} /> Enseignant-Chercheur</div>
           <div><input type="checkbox" name="qualite" value="Chercheur" onChange={handleChange} /> Chercheur</div>
@@ -57,14 +57,14 @@ const Filtre = ({ onApply }) => {
         </div>
 
         {/* Statut du chercheur */}
-        <div className="filter-group">
+        <div className="filter-group1">
           <label>Statut du chercheur</label>
           <div><input type="checkbox" name="statut" value="Actif" onChange={handleChange} /> Actif</div>
           <div><input type="checkbox" name="statut" value="Non actif" onChange={handleChange} /> Non actif</div>
         </div>
 
         {/* Équipe du laboratoire */}
-        <div className="filter-group">
+        <div className="filter-group1">
           <label>Équipe du laboratoire</label>
           {["CoDesign", "EIAH", "IMAGE", "MSI", "OPI", "SURES"].map((team) => (
             <div key={team}>
@@ -74,7 +74,7 @@ const Filtre = ({ onApply }) => {
         </div>
 
         {/* Diplôme du chercheur */}
-        <div className="filter-group">
+        <div className="filter-group1">
           <label>Diplôme du chercheur</label>
           {["Ing/Master", "Master", "Doctorat", "Doctorat d’état"].map((diplome) => (
             <div key={diplome}>
@@ -85,8 +85,8 @@ const Filtre = ({ onApply }) => {
       </div>
 
       {/* Bouton Appliquer */}
-      <div className="apply-btn-container">
-        <button className="apply-btn" onClick={() => onApply(filters)}>Appliquer</button>
+      <div className="apply-btn-container1">
+        <button className="apply-btn1" onClick={() => onApply(filters)}>Appliquer</button>
       </div>
     </div>
   );

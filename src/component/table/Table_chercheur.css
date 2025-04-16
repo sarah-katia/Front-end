@@ -15,7 +15,7 @@
   display: flex;
   flex-wrap: wrap;
  
-margin-top: 23rem;
+margin-top: 13rem;
   
 }
 
@@ -31,12 +31,12 @@ margin-top: 23rem;
 
 .filters {
   display: flex;
-  /* flex-wrap: wrap; */
+ 
   gap: 2.7rem;
-  margin-bottom: 25px;
+  
   align-items: center;
   justify-content: space-between;
-  margin-left: 20rem;
+  margin-left: 19rem;
 }
 
 .search-bar {

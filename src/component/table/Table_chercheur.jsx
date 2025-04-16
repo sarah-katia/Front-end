@@ -52,10 +52,10 @@ const Table_chercheur = () => {
   return ( 
     <>
     <div className="general">
-      <NavBar />
+    
       <div className="right">
 
-      <Topnav />
+     
       <div className="chercheurs-container">
           <div className="filters">
             <div className="search-bar">
