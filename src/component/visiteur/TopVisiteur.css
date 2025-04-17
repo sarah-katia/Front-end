@@ -1,0 +1,26 @@
+.top-navV {
+    font-family: 'Poppins';
+    position: fixed;
+    top: 0;
+    left: 245px; 
+    right: 0;
+    height: 60px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+
+
+  @media (max-width: 768px) {
+.top-nav{
+    left: 200px; 
+    right: 0;
+
+}
+
+  }

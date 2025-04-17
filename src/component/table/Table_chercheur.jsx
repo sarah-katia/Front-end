@@ -3,7 +3,9 @@ import DataTable from "react-data-table-component";
 import { FaSearch, FaFilter } from "react-icons/fa";
 import NavBar from "../nav/Sidebar";
 import Topnav from "../nav/Topnav";
-import Filtre from "./Filtre";
+
+import Filtre from "./filtre"
+
 import "./Table_chercheur.css"; 
 
 const fakeData = [
@@ -51,10 +53,12 @@ const Table_chercheur = () => {
 
   return ( 
     <>
-      <NavBar />
-      <Topnav />
+    <div className="general">
+    
+      <div className="right">
+
+     
       <div className="chercheurs-container">
-        <div className="chercheurs-content">
           <div className="filters">
             <div className="search-bar">
               <FaSearch className="logo-recherche" />
@@ -85,6 +89,7 @@ const Table_chercheur = () => {
               <FaFilter className="filtree" /> Plus de filtres
             </button>
           </div>
+        <div className="chercheurs-content">
 
           <DataTable
             columns={columns}
@@ -121,13 +126,16 @@ const Table_chercheur = () => {
             <div className="filter-overlay">
               <div className="filter-modal">
                 <button className="close-btn" onClick={() => setShowFilters(false)}>✖</button>
-                <Filters onApply={() => setShowFilters(false)} />
+                <Filtre onApply={() => setShowFilters(false)} />
               </div>
             </div>
           )}
         </div>
       </div>
+      </div>
+    </div>
     </>
+      
   );
 };
 

@@ -33,12 +33,16 @@ const Topnav = () => {
 
   const getTitle = () => {
     switch (location.pathname) {
-      case "/Table_chercheur":
+      case "/Page_recherche1":
         return "Liste des chercheurs";
+        case "/Page_recherche2":
+          return "Liste des publications";
       case "/Accueil":
         return "Accueil";
-      case "/PageProfile":
-        return "Mon profil"; // Affiche le nom de l'utilisateur
+
+      case "/Mon profile":
+        return "Mon profile"; 
+
       case "/Publications":
         return "Mes publications";
       case "/component/modifier/personal":

@@ -18,32 +18,22 @@ const Filtre = ({ onApply }) => {
   };
 
   return (
-    <div className="filters-container">
+    <div className="filters-container2">
       <h3>Plus de filtre</h3>
-      <div className="filters-grid">
+      <div className="filters-grid1">
         {/* H-index */}
-        <div className="filter-group">
+        <div className="filter-group1">
           <label>H-index</label>
-          <div className="h-index-inputs">
-            <input
-              type="number"
-              name="hIndexMin"
-              placeholder="Min"
-              value={filters.hIndexMin}
-              onChange={handleChange}
-            />
-            <input
-              type="number"
-              name="hIndexMax"
-              placeholder="Max"
-              value={filters.hIndexMax}
-              onChange={handleChange}
-            />
+
+          <div className="h-index-inputs1">
+            <input type="number" name="hIndexMin" placeholder="Min" value={filters.hIndexMin} onChange={handleChange} />
+            <input type="number" name="hIndexMax" placeholder="Max" value={filters.hIndexMax} onChange={handleChange} />
+
           </div>
         </div>
 
         {/* Établissement d'origine */}
-        <div className="filter-group">
+        <div className="filter-group1">
           <label>Établissement d’origine</label>
           <div>
             <input
@@ -68,24 +58,17 @@ const Filtre = ({ onApply }) => {
         </div>
 
         {/* Qualité */}
-        <div className="filter-group">
-          <label>Qualité</label>
-          {["Enseignant-Chercheur", "Chercheur", "Doctorant"].map((q) => (
-            <div key={q}>
-              <input
-                type="radio"
-                name="qualite"
-                value={q}
-                checked={filters.qualite === q}
-                onChange={handleChange}
-              />{" "}
-              {q}
-            </div>
-          ))}
+
+        <div className="filter-group1">
+          <label><strong>Qualité</strong></label>
+          <div><input type="checkbox" name="qualite" value="Enseignant-Chercheur" onChange={handleChange} /> Enseignant-Chercheur</div>
+          <div><input type="checkbox" name="qualite" value="Chercheur" onChange={handleChange} /> Chercheur</div>
+          <div><input type="checkbox" name="qualite" value="Doctorant" onChange={handleChange} /> Doctorant</div>
         </div>
 
-        {/* Statut */}
-        <div className="filter-group">
+        {/* Statut du chercheur */}
+        <div className="filter-group1">
+
           <label>Statut du chercheur</label>
           {["Actif", "Non actif"].map((s) => (
             <div key={s}>
@@ -101,25 +84,20 @@ const Filtre = ({ onApply }) => {
           ))}
         </div>
 
-        {/* Équipe */}
-        <div className="filter-group">
-          <label>Équipe</label>
-          {["CoDesign", "EIAH", "IMAGE", "MSI", "OPI", "SURES"].map((e) => (
-            <div key={e}>
-              <input
-                type="radio"
-                name="equipe"
-                value={e}
-                checked={filters.equipe === e}
-                onChange={handleChange}
-              />{" "}
-              {e}
+        {/* Équipe du laboratoire */}
+        <div className="filter-group1">
+          <label>Équipe du laboratoire</label>
+          {["CoDesign", "EIAH", "IMAGE", "MSI", "OPI", "SURES"].map((team) => (
+            <div key={team}>
+              <input type="checkbox" name="equipe" value={team} onChange={handleChange} /> {team}
+
             </div>
           ))}
         </div>
 
-        {/* Diplôme */}
-        <div className="filter-group">
+        {/* Diplôme du chercheur */}
+        <div className="filter-group1">
+
           <label>Diplôme du chercheur</label>
           {["Ing/Master", "Master", "Doctorat", "Doctorat d’état"].map((d) => (
             <div key={d}>
@@ -136,11 +114,11 @@ const Filtre = ({ onApply }) => {
         </div>
       </div>
 
-      {/* Appliquer */}
-      <div className="apply-btn-container">
-        <button className="apply-btn" onClick={() => onApply(filters)}>
-          Appliquer
-        </button>
+
+      {/* Bouton Appliquer */}
+      <div className="apply-btn-container1">
+        <button className="apply-btn1" onClick={() => onApply(filters)}>Appliquer</button>
+
       </div>
     </div>
   );

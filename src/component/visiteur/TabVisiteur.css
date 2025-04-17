@@ -1,0 +1,50 @@
+.tab-barV {
+    display: flex;
+    position: relative;
+    
+   
+  margin-top: 17.3rem;
+  margin-left: 8.5rem;
+width: 100%;
+    border-bottom: 1px solid #1976d2;
+  }
+  .tabV {
+    padding: 1% 2%;
+    font-size: 17px;
+    font-weight: 500;
+    color: black;
+    cursor: pointer;
+    transition: color 0.3s;
+   
+    text-decoration: none;
+  }
+  .tabV:hover{
+    color: #1976d2;
+     
+  }
+  
+  .tabV.active {
+    color: white;
+    font-weight: 600;
+    background-color: #1976d2;
+    border-radius: 1rem 1rem 0rem 0rem;
+  }
+  
+  .tab-indicatorV {
+    position: absolute;
+    bottom: -1px;
+    height: 2px;
+    background-color: #1976d2;
+    transition: all 0.3s;
+  }
+  
+  .tabV.active + .tab-indicatorV {
+    left: 0;
+    width: 120px;
+  }
+  
+  .tab:nth-child(2).active ~ .tab-indicator {
+    left: 120px;
+    width: 120px;
+  }
+  

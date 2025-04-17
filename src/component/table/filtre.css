@@ -1,6 +1,6 @@
 
+.filters-container2 {
 
-  .filters-container {
     background: white;
     padding: 30px;
     border-radius: 15px;
@@ -11,14 +11,14 @@
     overflow-y: auto;
   }
   
-  .filters-container h3 {
+  .filters-container1 h3 {
     font-family: "Poppins" ;
     margin-bottom: 20px;
     margin-top: -2px;
     color: #757575;
   }
   
-  .filters-grid {
+  .filters-grid1 {
   
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -26,31 +26,31 @@
     margin-left: 10px;
   }
   
-  .filter-group {
+  .filter-group1 {
   
     display: flex;
 
     flex-direction: column;
   }
   
-  .filter-group label {
+  .filter-group1 label {
   
     font-weight: bold;
     margin-bottom: 8px;
   }
   
-  .h-index-inputs {
+  .h-index-inputs1 {
     display: flex;
   }
   
-  .h-index-inputs input {
+  .h-index-inputs1 input {
     width: 140px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
   
-  .filter-group div {
+  .filter-group1 div {
   
     display: flex;
     align-items: center;
@@ -59,12 +59,12 @@
 
   
   
-  .apply-btn-container {
+  .apply-btn-container1 {
     text-align: right;
     margin-top: 20px;
   }
   
-  .apply-btn {
+  .apply-btn1 {
   font-family: "Poppins" ;
     background: #249CF4;
     color: white;

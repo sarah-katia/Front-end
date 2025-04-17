@@ -18,8 +18,10 @@ function Accueil() {
       </p>
       <div className="home-buttons">
         <Link to="/Table_chercheur" >  <button className="btn">Recherche d'un chercheur du laboratoire</button></Link>
-        <Link to="/PageProfile" ><button className="btn1">Voir mon profile</button></Link>
-        <Link  to="/" >  <button className="btn2">Voir mes publications</button></Link>
+
+        <Link to="/Mon profile" ><button className="btn1">Voir mon profile</button></Link>
+       <Link  to="/" >  <button className="btn2">Voir mes publications</button></Link>
+
       
       </div>
     </div>

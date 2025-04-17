@@ -78,9 +78,9 @@ const Flogin = () => {
           </form>
          
         </div>
-        <button className="back-to-home">
-        <FaArrowLeft className="back-icon" />          Revenir à la page d'accueil
-        </button>
+      <Link to="/" className="back-to-home1">
+                <FaArrowLeft className="back-icon" /> Revenir à la page d'accueil
+              </Link>
       </div>
       <div className="right-side">
         <img src={audito} alt="Building" className="building-image" />

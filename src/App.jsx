@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Flogin from './login/Flogin'
 import Mdpoublier from './login/Mdpoublier';
 import Nvmdp from './login/Nvmdp';
-import Accueil from './component/Accueil/accueil';
+import Accueil from './component/Accueil/Accueil';
 import Table_chercheur from './component/table/Table_chercheur';
 import Filtre from './component/table/Filtre';
 import ProfilePage from './component/Mon profile/PageProfile';
@@ -11,6 +11,10 @@ import ModifierPage from './component/modifier/PageModifier';
 import Cherch from './component/gestiondir/chercheur';
 import Pub from './component/gestiondir/publication';
 import koudilpic from './assets/koudil.png';
+import Page_recherche1 from './component/table/Page_recherche1';
+import Page_recherche2 from './component/table/Page_recherche2';
+import Page_visiteur1 from './component/visiteur/Page_visiteur1';
+import Page_visiteur2 from './component/visiteur/Page_visiteur2';
 
 
 function App() {
@@ -42,14 +46,20 @@ function App() {
         <Route path="/Flogin" element={<Flogin />} />
         <Route path="/Nvmdp" element={<Nvmdp />} />
         <Route path="/Mdpoublier" element={<Mdpoublier/>} />
-        <Route path="/Table_chercheur" element={<Table_chercheur />} />
         <Route path="/Accueil" element={<Accueil />} />
-        <Route path="/Filtre" element={<Filtre />} />
-        <Route path="/PageProfile" element={<ProfilePage chercheur={chercheurActif} />} />
-        <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
+
+
+       
         <Route path="/gestiondir/chercheur" element={<Cherch />} />
         <Route path="/gestiondir/publication" element={<Pub />} />
 
+
+        <Route path="/Mon profile" element={<ProfilePage chercheur={chercheurActif} />} />
+        <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
+        <Route path="/Page_recherche1" element={<Page_recherche1 />} />
+        <Route path="/Page_recherche2" element={<Page_recherche2 />} />
+        <Route path="/Page_visiteur1" element={<Page_visiteur1 />} />
+        <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
 
       </Routes>
     </Router>
