@@ -18,7 +18,6 @@ const Personal = ({ chercheur }) => {
     equipe: chercheur.team || "",
     chefEquipe: chercheur.isTeamLeader ? "oui" : "non",
     etablissement: chercheur.institution || "",
-    adresse: "", // Ajoute une valeur vide si elle n'existe pas
   });
 
   const [showApproval, setShowApproval] = useState(false);
@@ -120,11 +119,6 @@ const Personal = ({ chercheur }) => {
           <div className={stylesModule.inputGroup}>
             <label>Établissement d'origine</label>
             <input type="text" name="etablissement" value={formData.etablissement} onChange={handleChange} placeholder="établissement d'origine" />
-          </div>
-
-          <div className={stylesModule.inputGroup}>
-            <label>Adresse résidentielle</label>
-            <input type="text" name="adresse" value={formData.adresse} onChange={handleChange} placeholder="Adresse résidentielle" />
           </div>
 
           <div className={stylesModule.saveButtonContainer}>

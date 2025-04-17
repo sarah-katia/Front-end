@@ -3,7 +3,9 @@ import DataTable from "react-data-table-component";
 import { FaSearch, FaFilter } from "react-icons/fa";
 import NavBar from "../nav/Sidebar";
 import Topnav from "../nav/Topnav";
+
 import Filtre from "./filtre"
+
 import "./Table_chercheur.css"; 
 
 const fakeData = [

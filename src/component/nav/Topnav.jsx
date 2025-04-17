@@ -39,10 +39,18 @@ const Topnav = () => {
           return "Liste des publications";
       case "/Accueil":
         return "Accueil";
+
       case "/Mon profile":
         return "Mon profile"; 
+
       case "/Publications":
         return "Mes publications";
+      case "/component/modifier/personal":
+      case "/component/modifier/securite":
+        return "Modification";
+      case "/gestiondir/chercheur":
+      case "/gestiondir/publication":
+        return "Gestion";
       default:
         return "Page introuvable";
     }

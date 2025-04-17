@@ -35,8 +35,7 @@
   .navbar li {
     margin-left: 20px;
     padding-bottom: 15px;
-    
-    
+
   }
   
   .navbar a {
@@ -53,8 +52,9 @@
     margin-bottom: 7px;
     width: calc(100% - 40px);
   }
-  .active .nav-item  {
-    background-color: #A1F7B9; /* Fond de l'élément actif */
+
+  .active {
+    background-color: #A1F7B9 ; /* Fond de l'élément actif */
     border-radius: 12px;
     height: 21px;
     margin-bottom: 7px;
@@ -68,6 +68,7 @@
     transition: font-size 0.3s ease-in-out;
     margin-right: 6px;
 }
+
 .navbar ul li span {
     
     font-weight: 500 ;
