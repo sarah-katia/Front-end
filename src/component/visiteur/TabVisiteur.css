@@ -1,15 +1,14 @@
-.tab-bar {
+.tab-barV {
     display: flex;
     position: relative;
     
-    border-bottom: 1px solid #e0e0e0;
-  margin-top: 16rem;
-  margin-left: 18rem;
- 
+   
+  margin-top: 17.3rem;
+  margin-left: 8.5rem;
+width: 100%;
     border-bottom: 1px solid #1976d2;
   }
-  
-  .tab {
+  .tabV {
     padding: 1% 2%;
     font-size: 17px;
     font-weight: 500;
@@ -19,19 +18,19 @@
    
     text-decoration: none;
   }
-  .tab:hover{
+  .tabV:hover{
     color: #1976d2;
      
   }
   
-  .tab.active {
+  .tabV.active {
     color: white;
     font-weight: 600;
     background-color: #1976d2;
     border-radius: 1rem 1rem 0rem 0rem;
   }
   
-  .tab-indicator {
+  .tab-indicatorV {
     position: absolute;
     bottom: -1px;
     height: 2px;
@@ -39,7 +38,7 @@
     transition: all 0.3s;
   }
   
-  .tab.active + .tab-indicator {
+  .tabV.active + .tab-indicatorV {
     left: 0;
     width: 120px;
   }

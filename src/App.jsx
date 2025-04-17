@@ -12,6 +12,9 @@ import Sidebar from './component/nav/Sidebar';
 import koudilpic from './assets/koudil.png';
 import Page_recherche1 from './component/table/Page_recherche1';
 import Page_recherche2 from './component/table/Page_recherche2';
+import Page_visiteur1 from './component/visiteur/Page_visiteur1';
+import Page_visiteur2 from './component/visiteur/Page_visiteur2';
+
 function App() {
   const [count, setCount] = useState(0)
   const chercheurActif = {
@@ -46,6 +49,8 @@ function App() {
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
         <Route path="/Page_recherche1" element={<Page_recherche1 />} />
         <Route path="/Page_recherche2" element={<Page_recherche2 />} />
+        <Route path="/Page_visiteur1" element={<Page_visiteur1 />} />
+        <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
 
       </Routes>
     </Router>

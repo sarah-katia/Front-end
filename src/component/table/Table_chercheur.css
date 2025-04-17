@@ -147,7 +147,7 @@ button {
 
 @media screen and (max-width: 1350px) {
   .chercheurs-container {
-    margin-top: 26rem !important; 
+    margin-top: 14rem !important; 
     margin-left: 14rem;
     flex-direction: column;
     align-items: center; 
@@ -160,7 +160,7 @@ button {
   }
 
   .filters {
- margin-left: -18%;
+ margin-left: -5%;
     gap: 10px; 
     margin-bottom: 20px;
   }

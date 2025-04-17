@@ -111,31 +111,32 @@ const Table_pub = () => {
             table: {
               style: {
                 width: "100%",
-                minHeight: "auto", // Removed fixed height
+                minHeight: "36rem", 
                 backgroundColor: "#fafafa",
                 zIndex: "-1",
               },
             },
             rows: {
               style: {
-                minHeight: "60px", // Reduced from 70px
+                minHeight: "60px", 
                 borderRadius: "10px",
-                marginTop: "10px", // Reduced from 14px
+                marginTop: "10px",
                 fontSize: "15px",
-                padding: "2px", // Reduced from 3px
+                padding: "2px", 
                 backgroundColor: "#fafafa",
                 border: "1px solid #ccc",
               },
             },
             headCells: {
               style: {
-                fontSize: "16px", // Reduced from 18px
+                fontSize: "16px", 
                 fontWeight: "bold",
                 textAlign: "center",
                 paddingLeft: "40px",
                 backgroundColor: "#fafafa",
-                paddingTop: "8px", // Added
-                paddingBottom: "8px", // Added
+                paddingTop: "8px", 
+                paddingBottom: "8px", 
+              
               },
             },
             cells: {

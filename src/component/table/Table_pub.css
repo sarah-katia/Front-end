@@ -1,8 +1,13 @@
 .publications-container {
     width: 100%;
-    padding: 10px; /* Reduced from 20px */
+    padding: 10px; 
     margin-top: 2rem;
     margin-left: 8rem;
+    min-height: 43rem; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 66rem;
   }
   
   .filters2 {
@@ -16,7 +21,7 @@
   }
   
   .search-bar2 {
-   margin-left:4rem;
+   margin-left: 0.9rem;
     background-color: white;
     width: 30%;
     display: flex;
@@ -308,7 +313,7 @@
     }
   
     .filter-row {
-      flex-direction: column;
+      
       gap: 15px;
     }
   
