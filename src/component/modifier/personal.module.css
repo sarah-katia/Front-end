@@ -4,7 +4,7 @@
     height: 100vh;
     width: 900px;
     padding-left: 320px; /* Pour éviter le chevauchement avec la sidebar */
-    padding-top: 380px; /* Ajuste en fonction de la navbar */
+    padding-top: 300px; /* Ajuste en fonction de la navbar */
     justify-content: center;
     align-items: center;
 }
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center; /* Centre verticalement */
     justify-content: center;
-    gap: 40px; /* Espacement entre les éléments */
+    gap: 80px; /* Espacement entre les éléments */
     text-align: center;
     margin-bottom: 15px;
     width: 100%; /* S'assurer que le conteneur prend toute la largeur disponible */

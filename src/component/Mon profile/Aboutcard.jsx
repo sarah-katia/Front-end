@@ -26,6 +26,7 @@ const AboutCard = ({ researcher }) => {
 
         <p className={aboutStyles.fullWidth}><FaUniversity className={aboutStyles.icon} /> <strong>Établissement d'origine:</strong> {researcher.institution}</p>
         <p className={aboutStyles.fullWidth}><FaGoogle className={aboutStyles.icon} /> <strong>Lien Google Scholar:</strong> <a href={researcher.googleScholar} className={aboutStyles.link} target="_blank" rel="noopener noreferrer">{researcher.googleScholar}</a></p>
+        <p className={aboutStyles.fullWidth}><FaGoogle className={aboutStyles.icon} /> <strong>Lien DBLP:</strong> <a href={researcher.googleScholar} className={aboutStyles.link} target="_blank" rel="noopener noreferrer">{researcher.googleScholar}</a></p>
       </div>
     </div>
   );

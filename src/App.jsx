@@ -5,11 +5,13 @@ import Mdpoublier from './login/Mdpoublier';
 import Nvmdp from './login/Nvmdp';
 import Accueil from './component/Accueil/accueil';
 import Table_chercheur from './component/table/Table_chercheur';
-import Filtre from './component/table/filtre';
+import Filtre from './component/table/Filtre';
 import ProfilePage from './component/Mon profile/PageProfile';
 import ModifierPage from './component/modifier/PageModifier';
-import Sidebar from './component/nav/Sidebar';
+import Cherch from './component/gestiondir/chercheur';
+import Pub from './component/gestiondir/publication';
 import koudilpic from './assets/koudil.png';
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,14 +39,17 @@ function App() {
   return (
     <Router>   
       <Routes>
-      <Route path="/Flogin" element={<Flogin />} />
+        <Route path="/Flogin" element={<Flogin />} />
         <Route path="/Nvmdp" element={<Nvmdp />} />
         <Route path="/Mdpoublier" element={<Mdpoublier/>} />
         <Route path="/Table_chercheur" element={<Table_chercheur />} />
         <Route path="/Accueil" element={<Accueil />} />
         <Route path="/Filtre" element={<Filtre />} />
-        <Route path="/Mon profile" element={<ProfilePage chercheur={chercheurActif} />} />
+        <Route path="/PageProfile" element={<ProfilePage chercheur={chercheurActif} />} />
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
+        <Route path="/gestiondir/chercheur" element={<Cherch />} />
+        <Route path="/gestiondir/publication" element={<Pub />} />
+
 
       </Routes>
     </Router>

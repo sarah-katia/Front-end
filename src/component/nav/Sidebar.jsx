@@ -1,34 +1,53 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaSearch, FaUser, FaBook } from "react-icons/fa";
 import logo from "../../assets/LMCSblanc.png";
-import "./Sidebar.css";
+import prvstyle from "./Sidebar.module.css";
 
 const Sidebar = () => {
+
+  const location = useLocation(); 
+  const isActive = (paths) => paths.some((p) => location.pathname.startsWith(p));
+
+
   return (
-    <div className="navbar">
-      <div className="logo-container">
-        <img src={logo} alt="LMCS Logo" className="logo1" />
+    <div className={prvstyle.navbar}>
+      <div className={prvstyle.logocontainer}>
+        <img src={logo} alt="LMCS Logo" className={prvstyle.logo1} />
       </div>
-      <ul className="nav-links">
-        <li className={location.pathname === "/Accueil" ? "active" : ""}>
-          <Link to="/" className="nav-item">
-            <FaHome className="icon" /><span className="text">Accueil</span> 
+      <ul className={prvstyle.navlinks}>
+        <li>
+        <Link
+            to="/Accueil"
+            className={`${prvstyle.navitem} ${location.pathname === "/Accueil" ? prvstyle.active : ""}`}
+          >
+            <FaHome className={prvstyle.icon} /><span className={prvstyle.text}>Accueil</span> 
           </Link>
         </li>
-        <li className={location.pathname === "/Table_chercheur" ? "active" : ""}>
-          <Link to="/" className="nav-item">
-            <FaSearch className="icon" /> <span className="text">Recherche</span> 
+        <li>
+        <Link
+            to="/Table_chercheur"
+            className={`${prvstyle.navitem} ${location.pathname === "/Table_chercheur" ? prvstyle.active : ""}`}
+          >
+            <FaSearch className={prvstyle.icon} /> <span className={prvstyle.text}>Recherche</span> 
           </Link>
         </li>
-        <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/" className="nav-item">
-            <FaUser className="icon" /> <span className="text">Mon profile</span> 
+        <li>
+        <Link
+    to="/PageProfile"
+    className={`${prvstyle.navitem} ${
+      isActive(["/PageProfile", "/component/modifier", "/component/securite"]) ? prvstyle.active : ""
+    }`}
+  >
+            <FaUser className={prvstyle.icon} /> <span className={prvstyle.text}>Mon profil</span> 
           </Link>
         </li>
-        <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/" className="nav-item">
-            <FaBook className="icon" /> <span className="text">Mes publications</span> 
+        <li>
+        <Link
+            to="/"
+            className={`${prvstyle.navitem} ${location.pathname === "/" ? prvstyle.active : ""}`}
+          >
+            <FaBook className={prvstyle.icon} /> <span className={prvstyle.text}>Mes publications</span> 
           </Link>
         </li>
       </ul>

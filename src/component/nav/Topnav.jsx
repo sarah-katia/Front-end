@@ -37,10 +37,16 @@ const Topnav = () => {
         return "Liste des chercheurs";
       case "/Accueil":
         return "Accueil";
-      case "/Profil":
-        return user.nom; // Affiche le nom de l'utilisateur
+      case "/PageProfile":
+        return "Mon profil"; // Affiche le nom de l'utilisateur
       case "/Publications":
         return "Mes publications";
+      case "/component/modifier/personal":
+      case "/component/modifier/securite":
+        return "Modification";
+      case "/gestiondir/chercheur":
+      case "/gestiondir/publication":
+        return "Gestion";
       default:
         return "Page introuvable";
     }
