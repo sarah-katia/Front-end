@@ -47,4 +47,14 @@ width: 100%;
     left: 120px;
     width: 120px;
   }
+  @media screen and (max-width: 1350px) {
+    .tab-barV {
+      
+     
+    margin-top: 26rem;
+    margin-left: 20rem;
+    width: 56rem;
+      border-bottom: 1px solid #1976d2;
+    }
   
+  }

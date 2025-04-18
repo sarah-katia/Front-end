@@ -4,7 +4,7 @@
     margin-top: 2rem;
     margin-left: 8rem;
     min-height: 43rem; 
-  display: flex;
+  display: flex; 
   flex-direction: column;
   justify-content: space-between;
   min-width: 66rem;
@@ -340,5 +340,63 @@
     .rdt_TableCell {
       padding-left: 10px !important;
       padding-right: 10px !important;
+    }
+  }
+  @media screen and (max-width: 1350px) {
+    .publications-container {
+      margin-left: 10rem;
+      margin-top: 1rem;
+      
+    
+      align-items: center;
+      
+      min-width: auto;
+    }
+  
+    .filters2 {
+      gap: 10%;
+      margin-left: -15%;
+      margin-right: 0;
+      width: 70%;
+    }
+  
+    .search-bar2 {
+      width: 100%;
+      margin-left: 0;
+     
+    }
+  
+    .plus {
+       padding: 1% 1rem;
+  margin-left: 10rem;
+    }
+  
+    .btn-voir-plus {
+      width: 70%;
+    }
+
+    
+ 
+  }
+  
+  @media screen and (max-width: 600px) {
+    .search-bar2 input {
+      font-size: 12px;
+    }
+  
+    select, button, .apply-btn, .reset-btn {
+      font-size: 13px;
+    }
+  
+    .btn-voir-plus {
+      font-size: 13px;
+    }
+  
+    .publications-container {
+      padding: 5px;
+    }
+  
+    .filters2 {
+      gap: 0.5rem;
     }
   }
