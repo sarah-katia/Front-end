@@ -4,7 +4,7 @@ import { FaSearch, FaFilter } from "react-icons/fa";
 import NavBar from "../nav/Sidebar";
 import Topnav from "../nav/Topnav";
 
-import Filtre from "./filtre"
+import Filtre from "./Filtre"
 
 import "./Table_chercheur.css"; 
 

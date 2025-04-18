@@ -17,21 +17,30 @@ const Sidebar = () => {
       </div>
 
       <ul className="nav-links">
-        <li className={location.pathname === "/Accueil" ? "active" : ""}>
-          <Link to="/Accueil" className="nav-item">
+      <li>
+        <Link
+            to="/Accueil"
+            className={`${prvstyle.navitem} ${location.pathname === "/Accueil" ? prvstyle.active : ""}`}
+          >
             <FaHome className="icon" /><span className="text">Accueil</span> 
           </Link>
         </li>
-<li className={
-  location.pathname === "/Page_recherche1" || 
-  location.pathname === "/Page_recherche2" ? "active" : ""
-}>          <Link to="/Page_recherche1" className="nav-item">
+        <li>
+          <Link
+            to="/Page_recherche1"
+            className={`${prvstyle.navitem} ${isActive(["/Page_recherche1", "/Page_recherche2"]) ? prvstyle.active : ""}`}
+          >
             <FaSearch className="icon" /> <span className="text">Recherche</span> 
           </Link>
         </li>
-        <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/Mon profile" className="nav-item">
-            <FaUser className="icon" /> <span className="text">Mon profile</span> 
+        <li>
+        <Link
+    to="/PageProfile"
+    className={`${prvstyle.navitem} ${
+      isActive(["/PageProfile", "/component/modifier", "/component/securite"]) ? prvstyle.active : ""
+    }`}
+  >
+            <FaUser className="icon" /> <span className="text">Mon profil</span> 
 
           </Link>
         </li>

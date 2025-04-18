@@ -43,8 +43,11 @@ const Sidebar = () => {
           </Link>
         </li>
 
-        <li className={location.pathname === "/Table_chercheur" ? "active" : ""}>
-          <Link to="/Table_chercheur" className="nav-item">
+        <li className={
+          location.pathname === "/Page_recherche1" || 
+          location.pathname === "/Page_recherche2" ? prvstyle.active : ""}
+          >
+                      <Link to="/Page_recherche1" className="nav-item">
             <FaSearch className="icon" />
             <span className="text">Recherche</span>
           </Link>
