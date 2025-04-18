@@ -4,8 +4,6 @@ import Flogin from './login/Flogin'
 import Mdpoublier from './login/Mdpoublier';
 import Nvmdp from './login/Nvmdp';
 import Accueil from './component/Accueil/Accueil';
-import Table_chercheur from './component/table/Table_chercheur';
-import Filtre from './component/table/Filtre';
 import ProfilePage from './component/Mon profile/PageProfile';
 import ModifierPage from './component/modifier/PageModifier';
 import Cherch from './component/gestiondir/chercheur';
