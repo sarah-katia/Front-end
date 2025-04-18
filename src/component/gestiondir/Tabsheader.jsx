@@ -2,7 +2,7 @@ import {  useLocation, useNavigate } from "react-router-dom";
 
 import styles from "./Tabsheader.module.css";
 
-export default function TabsGestion() {
+export default function TabsGestion({ tabs }) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -11,18 +11,15 @@ export default function TabsGestion() {
 
       <div className={styles.header}>
         <div className={styles.tabsContainer}>
+        {tabs.map((tab) => (
           <button
-            className={location.pathname === "/gestiondir/chercheur" ? styles.activeTab : ""}
-            onClick={() => navigate("/gestiondir/chercheur")}
+            key={tab.path}
+            className={location.pathname === tab.path ? styles.activeTab : ""}
+            onClick={() => navigate(tab.path)}
           >
-            Chercheurs
+            {tab.label}
           </button>
-          <button
-            className={location.pathname === "/gestiondir/publication" ? styles.activeTab : ""}
-            onClick={() => navigate("/gestiondir/publication")}
-          >
-            Publications
-          </button>
+        ))}
         </div>
       </div>
 

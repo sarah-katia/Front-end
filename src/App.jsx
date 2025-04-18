@@ -52,7 +52,7 @@ function App() {
         <Route path="/gestiondir/publication" element={<Pub />} />
 
 
-        <Route path="/Mon profile" element={<ProfilePage chercheur={chercheurActif} />} />
+        <Route path="/PageProfile" element={<ProfilePage chercheur={chercheurActif} />} />
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
         <Route path="/Page_recherche1" element={<Page_recherche1 />} />
         <Route path="/Page_recherche2" element={<Page_recherche2 />} />

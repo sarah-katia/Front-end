@@ -79,7 +79,12 @@ const Cherch = () => {
     <>
       <NavBar />
       <Topnav />
-      <TabsHeader />
+      <TabsHeader   tabs={[
+    { label: "Chercheurs", path: "/gestiondir/chercheur" },
+    { label: "Publications", path: "/gestiondir/publication" },
+  ]} />
+
+  
       <div className={styling.chercheursContainer}>
         <div className={styling.chercheursContent}>
           <div className={styling.filtersHeader}>

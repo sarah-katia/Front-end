@@ -103,7 +103,11 @@ const Publications = () => {
     <>
       <NavBar />
       <Topnav />
-      <TabsHeader />
+      <TabsHeader   tabs={[
+    { label: "Chercheurs", path: "/gestiondir/chercheur" },
+    { label: "Publications", path: "/gestiondir/publication" },
+  ]} />
+  
       <div className={styling.publicationsContainer}>
         <div className={styling.publicationsContent}>
           <div className={styling.filtersHeader}>
