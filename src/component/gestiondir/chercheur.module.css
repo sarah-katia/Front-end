@@ -29,7 +29,7 @@
   .filtersHeader {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: normal;
     margin-bottom: 20px;
     gap: 20px;
   }
@@ -53,24 +53,30 @@
   }
   
   .addBtn {
+    all: unset;
     background-color: #1976b4;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding:5px 10px ;
+    min-width: 90px ;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
     transition: background-color 0.3s;
   }
 
-  .filterBtn {
+  .filteringBtn {
+    all: unset;
     background-color: #A1F7B9;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 5px 20px ;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
     transition: background-color 0.3s;
   }
   
@@ -95,6 +101,7 @@
   .actions {
     display: flex;
     gap: 10px;
+    align-items: center;
     justify-content: center;
     flex-wrap: wrap;
   }
@@ -105,9 +112,11 @@
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  padding: 8px 16px;
-  min-width: 60px; /* force une largeur minimale */
+  padding: 8px 14px;        /* Ajout de padding équilibré */
+  min-width: 90px;          /* Un peu plus large */
+  height: 30px;             /* Hauteur fixe pour l’alignement */
   font-size: 14px;
+  font-family: 'Poppins' , sans-serif ;
   border-radius: 6px;
   border: none;
   color: white;

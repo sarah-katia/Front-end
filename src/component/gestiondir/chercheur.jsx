@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import { FaTrash, FaSearch } from "react-icons/fa";
+import {  FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../nav/sidebardir";
 import Topnav from "../nav/Topnav";
@@ -13,7 +13,7 @@ const fakeData = [
   { id: 1, photo: "https://via.placeholder.com/50", nom: "Kermi Adel", email: "kermi.adel@example.com", qualite: "Professeur", equipe: "TIIMA" },
   { id: 2, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", email: "koudil.mouloud@example.com", qualite: "Professeur", equipe: "CoDesign" },
   { id: 3, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", email: "bensalem.ahmed@example.com", qualite: "Chercheur", equipe: "IMAGE" },
-  { id: 4, photo: "../../assets/Koudil.png", nom: "Sofiane Djelloul", email: "sofiane.djelloul@example.com", qualite: "Doctorant", equipe: "OPI" },
+  { id: 4, photo: "../../assets/Koudil.png", nom: "Toufik Djellal", email: "sofiane.djelloul@example.com", qualite: "Doctorant", equipe: "OPI" },
   { id: 5, photo: "https://via.placeholder.com/50", nom: "Imene Belkacem", email: "imene.belkacem@example.com", qualite: "Doctorante", equipe: "EIAH" },
 ];
 
@@ -67,7 +67,7 @@ const Cherch = () => {
         <div className={styling.actions}>
           <button className={styling.viewBtn}>Voir Profil</button>
           <button className={styling.deleteBtn} onClick={() => handleDelete(row.id)}>
-            <FaTrash />
+            Supprimer
           </button>
         </div>
       ),
@@ -97,7 +97,8 @@ const Cherch = () => {
                 onChange={handleSearch}
               />
             </div>
-            <button className={styling.filterBtn} onClick={() => setShowFilters(true)}>
+            
+            <button className={styling.filteringBtn} onClick={() => setShowFilters(true)}>
               Filtrer
             </button>
             <button className={styling.addBtn} onClick={() => navigate("/ajouter-chercheur")}>

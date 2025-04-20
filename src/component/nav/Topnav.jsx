@@ -35,22 +35,32 @@ const Topnav = () => {
     switch (location.pathname) {
       case "/Page_recherche1":
         return "Liste des chercheurs";
-        case "/Page_recherche2":
-          return "Liste des publications";
+        
+      case "/Page_recherche2":
+        return "Liste des publications";
+
       case "/Accueil":
         return "Accueil";
 
       case "/PageProfile":
+      case "/profilAss":
         return "Mon profil"; 
 
       case "/Publications":
         return "Mes publications";
+
       case "/component/modifier/personal":
       case "/component/modifier/securite":
+      case "/editassi":
         return "Modification";
+
       case "/gestiondir/chercheur":
       case "/gestiondir/publication":
         return "Gestion";
+
+      case "/ajouter-chercheur":
+        return "Ajouter chercheur";
+
       default:
         return "Page introuvable";
     }

@@ -11,7 +11,7 @@ const ApprovalCard = ({ isVisible, onClose }) => {
       <div className={approvalCardStyles.card}>
         <p>Voulez-vous vraiment enregistrer les modifications?</p>
         <div className={approvalCardStyles.buttons}>
-          <button className={approvalCardStyles.oui} onClick={() => navigate("/Mon profile")}>OUI</button>
+          <button className={approvalCardStyles.oui} onClick={() => navigate("/PageProfile")}>OUI</button>
           <button className={approvalCardStyles.non} onClick={onClose}>NON</button>
         </div>
       </div>

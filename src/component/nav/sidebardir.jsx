@@ -14,11 +14,21 @@ import "./sidebardir.css";
 
 const Sidebar = () => {
   const location = useLocation();
+  const chercheurPaths = [
+    "/gestiondir/chercheur",
+    "/ajouter-chercheur"
+  ];
+  
+  const publicationPaths = [
+    "/gestiondir/publication",
+    "/ajouter-publication"
+  ];
+  
+  const isChercheurActive = chercheurPaths.includes(location.pathname);
+  const isPublicationActive = publicationPaths.includes(location.pathname);
 
-  // ✅ Nouveau : détecter si un sous-menu de Gestion est actif
-  const isSubGestionActive =
-    location.pathname === "/gestiondir/chercheur" ||
-    location.pathname === "/gestiondir/publication";
+    // ✅ Nouveau : détecter si un sous-menu de Gestion est actif
+  const isSubGestionActive = isChercheurActive || isPublicationActive;
 
   // ✅ Modification : ouvrir Gestion par défaut si un sous-item est actif
   const [isGestionOpen, setIsGestionOpen] = useState(isSubGestionActive);
@@ -43,18 +53,9 @@ const Sidebar = () => {
           </Link>
         </li>
 
-        <li className={
-          location.pathname === "/Page_recherche1" || 
-          location.pathname === "/Page_recherche2" ? prvstyle.active : ""}
-          >
-                      <Link to="/Page_recherche1" className="nav-item">
-            <FaSearch className="icon" />
-            <span className="text">Recherche</span>
-          </Link>
-        </li>
 
-        <li className={location.pathname === "/PageProfile" ? "active" : ""}>
-          <Link to="/PageProfile" className="nav-item">
+        <li className={  ["/profilAss", "/editassi"].includes(location.pathname) ? "active" : ""}>
+          <Link to="/profilAss" className="nav-item">
             <FaUser className="icon" />
             <span className="text">Mon profil</span>
           </Link>
@@ -79,27 +80,22 @@ const Sidebar = () => {
         {/* ✅ Sous-menus de Gestion */}
         {isGestionOpen && (
           <>
-            <li className={location.pathname === "/gestiondir/chercheur" ? "active" : ""}>
-              <Link to="/gestiondir/chercheur" className="nav-item sub-item">
-                <FaUser className="icon" />
-                <span className="text">Chercheurs</span>
-              </Link>
-            </li>
-            <li className={location.pathname === "/gestiondir/publication" ? "active" : ""}>
-              <Link to="/gestiondir/publication" className="nav-item sub-item">
-                <FaBook className="icon" />
-                <span className="text">Publications</span>
-              </Link>
-            </li>
+<li className={isChercheurActive ? "active" : ""}>
+  <Link to="/gestiondir/chercheur" className="nav-item sub-item">
+    <FaUser className="icon" />
+    <span className="text">Chercheurs</span>
+  </Link>
+</li>
+
+<li className={isPublicationActive ? "active" : ""}>
+  <Link to="/gestiondir/publication" className="nav-item sub-item">
+    <FaBook className="icon" />
+    <span className="text">Publications</span>
+  </Link>
+</li>
           </>
         )}
 
-        <li className={location.pathname === "/Dashboard" ? "active" : ""}>
-          <Link to="/Dashboard" className="nav-item">
-            <FaTable className="icon" />
-            <span className="text">Dashboard</span>
-          </Link>
-        </li>
       </ul>
     </div>
   );

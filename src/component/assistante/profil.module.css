@@ -1,21 +1,31 @@
-
-
-.profileCard {
+.pageProfile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0px;
+    padding-left: 260px;
+    padding-bottom: 30px;
+    gap: 40px;
+  }
+  
+  .profileCard {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: -10px;
     padding: 30px;
+    padding-bottom: 50px;
     max-width: 800px;
     min-width: 800px;
     width: 100%;
-    position: relative; /* Permet de positionner l'étiquette */
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     z-index: 1;
-}
-
-.profileTitle {
+  }
+  
+  .profileTitle {
     background-color: #1976B4;
     color: white;
     padding: 10px 100px;
@@ -24,52 +34,58 @@
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     position: absolute;
-    top: -30px; /* Légèrement au-dessus de la carte */
-    right: 30px; /* Aligné à droite */
+    top: -30px;
+    right: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.profileHeader {
+  }
+  
+  .profileHeader {
     display: flex;
     align-items: center;
     gap: 30px;
     width: 100%;
     justify-content: flex-start;
-}
+  }
 
-.profileImage {
+  .profileInfo {
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+    width: 100%;
+    margin-top: 0px;
+  }
+  
+  .infoColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    max-width: 300px;
+    flex: 1;
+  }
+  
+  .infoItem {
+    margin: 10px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: black;
+  }
+  
+  .infoItem strong {
+    color: #1976B4;
+    font-weight: 600;
+  }
+  
+  
+  .profileImage {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid #ddd;
-}
-
-.profileImage:hover {
-    transform: scale(1.05);
-}
-
-.profileInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    color: black; 
-}
-
-.profileInfo strong {
-    color: #1976B4;
-    font-weight: 600 ;
-}
-
-.profileInfo p {
-    margin: 8px 0;
-    font-size: 16px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    color: black; 
-}
-
-.editButton {
+  }
+  
+  .editButton {
     background: #A1F7B9;
     color: white;
     font-size: 16px;

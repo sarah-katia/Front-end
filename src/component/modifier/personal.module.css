@@ -2,18 +2,19 @@
 .profileEditContainer {
     display: flex;
     height: 100vh;
-    width: 900px;
-
-    padding-left: 90px; /* Pour éviter le chevauchement avec la sidebar */
+    width: 950px;
+    padding-left: 310px; /* Pour éviter le chevauchement avec la sidebar */
     padding-top: 380px; /* Ajuste en fonction de la navbar */
-   justify-content: center;
+    justify-content: center;
     align-items: center;
+    
 }
 
 /* Contenu principal */
 .profileEditContent {
     flex: 1;
     padding: 20px;
+    overflow: visible;
     overflow-y: auto;
     max-width: 900px;
 }
@@ -28,7 +29,7 @@
     grid-template-columns: 1fr 1fr;
     gap: 15px;
     width: 100%;
-    max-width: 800px;
+    max-width: 700px;
 }
 
 /* Photo de profil */
@@ -40,15 +41,12 @@
     gap: 80px; /* Espacement entre les éléments */
     text-align: center;
     margin-bottom: 15px;
-    margin-left: 180px ;
     width: 100%; /* S'assurer que le conteneur prend toute la largeur disponible */
 }
 
 .buttonsContainer {
     display: flex ;
     gap: 20px; /* Espacement entre les boutons */
-    min-width: 600px;
-    margin-left: 40px;
 }
 
 
@@ -70,13 +68,15 @@
     text-align: center;
     display: flex;
     padding: 10px 20px;
+    min-width: 150px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 600;
     margin: 0;
+    white-space: nowrap;
 }
 
 .profilePhotoSection button:first-of-type {
@@ -99,6 +99,7 @@
 .profileEditContent .inputGroup label {
     font-size: 14px;
     font-weight: 500;
+    font-family: 'Poppins', sans-serif;
     margin-bottom: 5px;
 }
 
@@ -130,6 +131,7 @@
     background: white;
     cursor: pointer;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Style de la boule de sélection */
@@ -166,18 +168,17 @@
 
 /* Bouton de sauvegarde */
 .saveButtonContainer {
-    grid-column: 2 ; /* Placer le bouton dans la deuxième colonne */
+    grid-column: span 2 ; /* Placer le bouton dans la deuxième colonne */
     display: flex;
     justify-content: flex-end; /* Aligner à droite */
     margin-top: 20px; /* Espacement avec le formulaire */
     width: 100%;
-
 }
 
 .saveButton {
     background-color: #1976B4;
     color: white;
-    padding: 10px 30px;
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -187,6 +188,11 @@
 .saveButton:hover {
     background-color: #1a7fc3;
 }
+
+.fullWidth {
+    grid-column: span 2;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
