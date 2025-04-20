@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import { FaSearch, FaFilter } from "react-icons/fa";
-import NavBar from "../nav/Sidebar";
-import Topnav from "../nav/Topnav";
+
 
 import Filtre from "./Filtre"
 

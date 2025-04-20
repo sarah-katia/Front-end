@@ -78,11 +78,12 @@
     justify-content: center;
     flex-wrap: wrap;
   }
-
+ 
   /* Boutons */
   .viewBtn,
   .deleteBtn {
-    padding: 6px 12px;
+    padding: 8px 1px;        
+    min-width: 70px;       
     font-size: 14px;
     border-radius: 6px;
     border: none;

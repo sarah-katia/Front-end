@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../nav/Sidebar";
-import Topnav from "../nav/Topnav";
 import ApprovalCard from "../cartes/approvalcard";
 import pageStyle from "./securite.module.css";  
 
@@ -80,9 +78,7 @@ const Security = () => {
 
   return (
     <div className={pageStyle.container}>
-      <Sidebar />
       <div className={pageStyle.content}>
-        <Topnav />
         <form className={pageStyle.form}>
           {["oldPassword", "newPassword", "confirmPassword"].map((field, index) => (
             <div key={index} className={pageStyle.inputGroup}>

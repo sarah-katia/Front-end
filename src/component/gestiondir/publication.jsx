@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DataTable from "react-data-table-component";
-import { FaTrash , FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../nav/sidebardir";
 import Topnav from "../nav/Topnav";
@@ -91,7 +91,7 @@ const Publications = () => {
         <div className={styling.actions}>
           <button className={styling.viewBtn}>Voir plus</button>
           <button className={styling.deleteBtn} onClick={() => handleDelete(row.id)}>
-           <FaTrash />
+           Supprimer
           </button>
         </div>
       ),
@@ -107,7 +107,7 @@ const Publications = () => {
     { label: "Chercheurs", path: "/gestiondir/chercheur" },
     { label: "Publications", path: "/gestiondir/publication" },
   ]} />
-  
+
       <div className={styling.publicationsContainer}>
         <div className={styling.publicationsContent}>
           <div className={styling.filtersHeader}>

@@ -8,6 +8,9 @@ import ProfilePage from './component/Mon profile/PageProfile';
 import ModifierPage from './component/modifier/PageModifier';
 import Cherch from './component/gestiondir/chercheur';
 import Pub from './component/gestiondir/publication';
+import Add from './component/gestiondir/ajouter-chercheur';
+import Prrofil from './component/assistante/profilAss';
+import EditAssistantProfile from './component/assistante/editassi';
 import koudilpic from './assets/koudil.png';
 import Page_recherche1 from './component/table/Page_recherche1';
 import Page_recherche2 from './component/table/Page_recherche2';
@@ -50,10 +53,21 @@ function App() {
        
         <Route path="/gestiondir/chercheur" element={<Cherch />} />
         <Route path="/gestiondir/publication" element={<Pub />} />
+        <Route path="/ajouter-chercheur" element={< Add />} />
+        <Route path="/profilAss" element={< Prrofil chercheur={chercheurActif} />} />
+        <Route path="/editassi" element={< EditAssistantProfile assistant={{
+                                                                            nom: "Sarah",
+                                                                            prenom: "Katia",
+                                                                            email: "assistante@esi.dz",
+                                                                            telephone: "0654545258",
+                                                                            role: "Assistante"
+                                                                            }} />} />
 
-
+        {/*profil chercheur */}
         <Route path="/PageProfile" element={<ProfilePage chercheur={chercheurActif} />} />
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
+
+        {/*visiteur */}
         <Route path="/Page_recherche1" element={<Page_recherche1 />} />
         <Route path="/Page_recherche2" element={<Page_recherche2 />} />
         <Route path="/Page_visiteur1" element={<Page_visiteur1 />} />
