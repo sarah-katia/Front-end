@@ -40,6 +40,7 @@ const Topnav = () => {
         return "Liste des publications";
 
       case "/Accueil":
+        case "/AccueilA":
         return "Accueil";
 
       case "/PageProfile":

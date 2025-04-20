@@ -46,8 +46,8 @@ const Sidebar = () => {
         <img src={logo} alt="LMCS Logo" className="logo1" />
       </div>
       <ul className="nav-links">
-        <li className={location.pathname === "/Accueil" ? "active" : ""}>
-          <Link to="/Accueil" className="nav-item">
+        <li className={location.pathname === "/AccueilA" ? "active" : ""}>
+          <Link to="/AccueilA" className="nav-item">
             <FaHome className="icon" />
             <span className="text">Accueil</span>
           </Link>

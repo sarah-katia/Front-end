@@ -16,7 +16,7 @@ import Page_recherche1 from './component/table/Page_recherche1';
 import Page_recherche2 from './component/table/Page_recherche2';
 import Page_visiteur1 from './component/visiteur/Page_visiteur1';
 import Page_visiteur2 from './component/visiteur/Page_visiteur2';
-
+import AccueilA from './component/assistante/AccueilA';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -55,6 +55,8 @@ function App() {
         <Route path="/gestiondir/publication" element={<Pub />} />
         <Route path="/ajouter-chercheur" element={< Add />} />
         <Route path="/profilAss" element={< Prrofil chercheur={chercheurActif} />} />
+        <Route path="/AccueilA" element={<AccueilA />} />
+
         <Route path="/editassi" element={< EditAssistantProfile assistant={{
                                                                             nom: "Sarah",
                                                                             prenom: "Katia",

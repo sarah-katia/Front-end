@@ -1,0 +1,90 @@
+.home-containerA {
+    text-align: center;
+    margin-top: -5rem;
+    max-width: 1200px;
+    margin-left: 12rem;
+  }
+  
+  .home-logoA {
+    width: 225px;
+  }
+  
+  .home-containerA h1 {
+    margin-top: -25px;
+    font-size: 35px;
+    font-weight: bold;
+    font-family: "Poppins";
+  }
+  
+  .home-containerA p {
+    font-size: 21px;
+    color: #555;
+    margin-bottom: 60px;
+    font-family: "Poppins";
+  }
+  
+  .home-buttonsA {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .button-rowA {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+  
+
+  
+  .btnA:hover {
+    background-color: #1d8bd9;
+  }
+  
+  /* Styles responsives */
+  @media screen and (max-width: 1400px) {
+    .home-containerA {
+      margin-left: 14rem;
+      max-width: 90%;
+    }
+  
+    .home-logoA {
+      width: 180px;
+    }
+  
+    .home-containerA h1 {
+      font-size: 27px;
+    }
+  
+    .home-containerA p {
+      font-size: 18px;
+      margin-bottom: 50px;
+    }
+  
+    .btnA {
+        width: 75%;
+    }
+  }
+  
+  @media screen and (max-width: 1100px) {
+    .button-rowA {
+      flex-wrap: wrap;
+    }
+    
+    .btnA {
+      width: 45%;
+    }
+  }
+  
+  @media screen and (max-width: 900px) {
+    .home-containerA {
+      margin-left: 2rem;
+    }
+  
+    .btnA {
+      width: 90%;
+      font-size: 16px;
+    }
+  }
