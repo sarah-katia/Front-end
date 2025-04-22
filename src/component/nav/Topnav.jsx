@@ -49,6 +49,8 @@ const Topnav = () => {
 
       case "/Publications":
         return "Mes publications";
+        case "/ChercheurA":
+        return "Liste des utilisateurs";
 
       case "/component/modifier/personal":
       case "/component/modifier/securite":

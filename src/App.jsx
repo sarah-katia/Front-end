@@ -17,6 +17,7 @@ import Page_recherche2 from './component/table/Page_recherche2';
 import Page_visiteur1 from './component/visiteur/Page_visiteur1';
 import Page_visiteur2 from './component/visiteur/Page_visiteur2';
 import AccueilA from './component/assistante/AccueilA';
+import ChercheurA from './admine/ChercheurA';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -74,6 +75,7 @@ function App() {
         <Route path="/Page_recherche2" element={<Page_recherche2 />} />
         <Route path="/Page_visiteur1" element={<Page_visiteur1 />} />
         <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
+        <Route path="/ChercheurA" element={<ChercheurA />} />
 
       </Routes>
     </Router>
