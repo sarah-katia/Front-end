@@ -31,7 +31,7 @@ modifier leurs comptes et ajouter de nouveaux profils, ainsi que faire la mise Ã
             <div className="button-rowA">
               <Link to="/AccueilDi"><button className="btn">Faire la mise Ã  jour</button></Link>
               <Link to="/AccueilDi"><button className="btn">Ajouter une publication</button></Link>
-              <Link to="/AccueilDi"><button className="btn">Modifier un profile chercheur/publication</button></Link>
+              <Link to="/AccueilDi"><button className="btn">Modifier un profil chercheur/publication</button></Link>
             </div>
           </div>
         </div>

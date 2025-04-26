@@ -25,7 +25,7 @@ modifier leurs comptes et ajouter de nouveaux profils.
            
             <div className="button-rowA">
               <Link to="/gestiondir/chercheur"><button className="btn">Recherche d'un chercheur du laboratoire</button></Link>
-              <Link to="/profilAss"><button className="btn">Voir mon profile</button></Link>
+              <Link to="/profilAss"><button className="btn">Voir mon profil</button></Link>
               <Link to="/ajouter-chercheur"><button className="btn">Ajouter un chercheur</button></Link>
             </div>
             
@@ -33,7 +33,7 @@ modifier leurs comptes et ajouter de nouveaux profils.
             <div className="button-rowA">
               <Link to="/gestiondir/publication"><button className="btn">Rechercher une publication</button></Link>
               <Link to="/AccueilA"><button className="btn">Ajouter une publication</button></Link>
-              <Link to="/AccueilA"><button className="btn">Modifier un profile chercheur/publication</button></Link>
+              <Link to="/AccueilA"><button className="btn">Modifier un profil chercheur/publication</button></Link>
             </div>
           </div>
         </div>

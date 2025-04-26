@@ -46,7 +46,7 @@ function Confirmation() {
           <button className="btn-refuse" onClick={() => handleRefuser(row.id)}>Refuser</button>
         </div>
       ),
-      width: "25%" 
+      width: "15%" 
     },
   ];
 
@@ -54,9 +54,9 @@ function Confirmation() {
     <>
       <SidebarA />
       <Topnav />
-      <div className="confirmation" style={{ width: "92rem", height: "100vh", padding: "0", margin: "0", backgroundColor: "#fafafa" }}>
+      <div className="confirmation" style={{ width: "70rem", height: "100vh", padding: "0", margin: "0", backgroundColor: "#fafafa" }}>
         <div className="right" style={{ width: "100%", height: "100%" }}>
-          <div className="chercheurs-container" style={{ width: "100%", height: "100%", padding: "1%" }}>
+          <div className="chercheurs-container3" style={{ width: "100%", height: "100%", padding: "1%" }}>
             <div className="chercheurs-content" style={{ width: "100%", height: "100%" }}>
               <DataTable
                 columns={columns}

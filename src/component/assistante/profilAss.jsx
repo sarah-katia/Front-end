@@ -17,7 +17,7 @@ export default function ProfilAss({ chercheur }) {
         <Topnav />
         <div className={styles.pageProfile}>
           <div className={styles.profileCard}>
-            <div className={styles.profileTitle}>Mon Profile</div>
+            <div className={styles.profileTitle}>Mon Profil</div>
 
             <div className={styles.profileHeader}>
               <img src={chercheur.photo} alt="Profil" className={styles.profileImage} />
