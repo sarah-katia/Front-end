@@ -21,20 +21,20 @@ const SidebarA = () => {
         <li className={location.pathname === "/ChercheurA" ? "active" : ""}>
           <Link to="/ChercheurA" className="nav-item">
             <FaUser className="icon" />
-            <span className="text">Chercheurs</span>
+            <span className="text">Utilisateurs</span>
           </Link>
         </li>
 
-        <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/AccueilA" className="nav-item">
+        <li className={location.pathname === "/Confirmation" ? "active" : ""}>
+          <Link to="/Confirmation" className="nav-item">
             <FaCog className="icon" />
             <span className="text">Confirmation</span>
           </Link>
         </li>
  
 
-        <li className={location.pathname === "/" ? "active" : ""}>
-          <Link to="/AccueilA" className="nav-item">
+        <li className={location.pathname === "/ProfilDi" ? "active" : ""}>
+          <Link to="/ProfilDi" className="nav-item">
             <FaUser className="icon" />
             <span className="text">Mon profile</span>
           </Link>

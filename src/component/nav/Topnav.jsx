@@ -45,7 +45,12 @@ const Topnav = () => {
 
       case "/PageProfile":
       case "/profilAss":
+        case "/ProfilDi":
+
         return "Mon profil"; 
+
+        case "/Confirmation":
+        return "Confirmation"; 
 
       case "/Publications":
         return "Mes publications";
