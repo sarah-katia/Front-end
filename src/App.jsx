@@ -19,6 +19,7 @@ import Page_visiteur2 from './component/visiteur/Page_visiteur2';
 import AccueilA from './component/assistante/AccueilA';
 import ChercheurA from './admine/ChercheurA';
 import Confirmation from './admine/Confimation';
+import AccueilDi from './component/Accueil/AccueilDi';
 function App() {
   const [count, setCount] = useState(0)
   const chercheurActif = {
@@ -79,6 +80,11 @@ function App() {
       
         <Route path="/ChercheurA" element={<ChercheurA />} />
         <Route path="/Confirmation" element={<Confirmation />} />
+
+
+
+        <Route path="/AccueilDi" element={<AccueilDi />} />
+
 
       </Routes>
     </Router>

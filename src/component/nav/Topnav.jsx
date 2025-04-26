@@ -41,6 +41,7 @@ const Topnav = () => {
 
       case "/Accueil":
         case "/AccueilA":
+          case "/AccueilDi":
         return "Accueil";
 
       case "/PageProfile":
