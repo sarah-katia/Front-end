@@ -70,12 +70,50 @@
     justify-content: flex-start;
 }
 
-@media (max-width: 768px) {
-    .aboutContent {
-        grid-template-columns: 1fr;
+
+/* Tablette */
+@media screen and (max-width: 900px) {
+     .aboutLeft .aboutRight .aboutContent .aboutCard {
+        width: 80%;
+    }
+
+    .aboutContent p {
+        font-size: 10px ;
+    }
+
+    .aboutHeader {
+        font-size: 22px;
+        padding: 8px 60px;
+        top: -20px;
+        right: 20px;
     }
 
     .fullWidth {
         grid-column: span 1;
+    }
+
+
+
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .aboutHeader {
+        font-size: 18px;
+        padding: 6px 30px;
+        top: -18px;
+        right: 10px;
+    }
+
+    .aboutCard {
+        padding: 20px;
+    }
+
+    .aboutContent p {
+        font-size: 13px;
+    }
+
+    .icon {
+        font-size: 14px;
     }
 }

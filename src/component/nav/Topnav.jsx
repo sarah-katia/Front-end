@@ -38,6 +38,9 @@ const Topnav = () => {
         
       case "/Page_recherche2":
         return "Liste des publications";
+      
+      case "/dashboard":
+        return "Dashboard";
 
       case "/Accueil":
         case "/AccueilA":

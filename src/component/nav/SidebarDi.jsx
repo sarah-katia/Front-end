@@ -107,8 +107,8 @@ const SidebarDi = () => {
 
           </>
         )}
-<li className={  ["/profilAss", "/editassi"].includes(location.pathname) ? "active" : ""}>
-          <Link to="/Dashboard" className="nav-item">
+    <li className={location.pathname === "/dashboard" ? "active" : ""}>
+        <Link to="/dashboard" className="nav-item">
             <MdDashboard className="icon" />
             <span className="text">Dashboard</span>
           </Link>

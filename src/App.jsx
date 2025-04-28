@@ -20,6 +20,7 @@ import AccueilA from './component/assistante/AccueilA';
 import ChercheurA from './admine/ChercheurA';
 import Confirmation from './admine/Confimation';
 import AccueilDi from './component/Accueil/AccueilDi';
+import Dashboard from './component/Dashboard/dashboard';
 function App() {
   const [count, setCount] = useState(0)
   const chercheurActif = {
@@ -58,6 +59,7 @@ function App() {
         <Route path="/ajouter-chercheur" element={< Add />} />
         <Route path="/profilAss" element={< Prrofil chercheur={chercheurActif} />} />
         <Route path="/AccueilA" element={<AccueilA />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/editassi" element={< EditAssistantProfile assistant={{
                                                                             nom: "Sarah",

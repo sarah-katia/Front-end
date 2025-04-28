@@ -44,7 +44,7 @@ const Security = () => {
   const validateForm = (updatedPasswords) => {
     let errors = { oldPassword: "", confirmPassword: "" };
 
-    if (updatedPasswords.oldPassword && updatedPasswords.oldPassword !== storedPassword) {
+    if (updatedPasswords.oldPassword !== storedPassword) {
       errors.oldPassword = "Ancien mot de passe incorrect !";
     }
 
