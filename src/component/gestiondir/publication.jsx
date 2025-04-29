@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../nav/sidebardir";
+import NavBar from "../nav/sidebarAssi";
 import Topnav from "../nav/Topnav";
 import TabsHeader from "./Tabsheader";
-import Filters from "../table/Filtre";
+import Filters from "../table/filtrepub";
 import styling from "./publication.module.css";
 import DeleteConfirmationCard from "../cartes/deletecard";
 

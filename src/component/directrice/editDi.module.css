@@ -1,0 +1,155 @@
+/* editassi.module.css */
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+    gap: 0px;
+    padding-bottom: 0px;
+  }
+  
+  .mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    margin-bottom: 0%;
+    background-color: #f9f9f9;
+  }
+  
+  .cardsWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0px;
+    margin-top: 500px;
+    overflow: hidden;
+  }
+
+  .title{
+    background-color: #1976B4;
+    color: white;
+    padding: 10px 50px;
+    border-radius: 10px;
+    font-size: 26px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    position: absolute;
+    top: 70px;
+    right: 180px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .title2{
+    background-color: #1976B4;
+    color: white;
+    padding: 10px 40px;
+    border-radius: 10px;
+    font-size: 26px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    position: absolute;
+    top: 500px;
+    right: 180px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    padding-bottom: 40px;
+    margin-left: 185px;
+    width: 100%;
+    min-width: 735px;
+    max-width: 735px;
+    flex: 1;
+  }
+   
+  .securityy {
+    margin-top: -60px;
+  }
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  /* Grille deux colonnes */
+  .inputGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  
+  .inputGroup {
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inputGroup label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 0px;
+    color: #000;
+  }
+  
+  .inputGroup label span {
+    color: red;
+  }
+  
+  .inputGroup input {
+    border: 1.5px solid #007bba;
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 16px;
+    outline: none;
+    background-color: white;
+    transition: border-color 0.3s ease;
+  }
+  
+  .inputGroup input:focus {
+    border-color: #005f91;
+  }
+  
+  .disabledInput {
+    background-color: #f0f0f0;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .saveButton {
+    background-color: #1976B4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+  }
+  
+  .saveButton:hover {
+    background-color: #005f91;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 768px) {
+    .cardsWrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .card {
+      width: 90%;
+    }
+  }
+  

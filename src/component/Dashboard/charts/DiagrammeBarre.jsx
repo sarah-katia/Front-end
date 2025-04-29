@@ -1,5 +1,26 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 
+function CustomTooltip({ active, payload, label }) {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{
+        backgroundColor: 'white',
+        border: '0.5px solid #ccc',
+        padding: '8px',
+        borderRadius: '8px',
+        fontFamily: 'Poppins',
+        fontSize: '14px',
+        color: '#1976d2',
+      }}>
+        <p style={{ margin: 0, fontWeight: '500' }}>{label}</p>
+        <p style={{ margin: 0 }}>{`Publications: ${payload[0].value}`}</p>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 function DiagrammeBarre({ data, width = 450, height = 300 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -24,8 +45,8 @@ function DiagrammeBarre({ data, width = 450, height = 300 }) {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" interval={0} angle={-45} textAnchor="end" fontSize={12} />
           <YAxis />
-          <Tooltip />
-          <Bar dataKey="value" fill="#8884d8" barSize={15} borderRadius={20} activeBar={{ fill: '#1976b4' }} />
+          <Tooltip content={<CustomTooltip />} />
+          <Bar dataKey="value" fill="#1976B4" barSize={15} borderRadius={20} activeBar={{ fill: '#249CF4' }}  />
         </BarChart>
       </div>
     </div>

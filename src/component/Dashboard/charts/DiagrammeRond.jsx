@@ -1,6 +1,6 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#1976B4', '#249CF4', '#A1F7B9', '#121619'];
 
 function DiagrammeRondCard({ title, data, width = 300, height = 300 }) {
   return (
@@ -34,7 +34,7 @@ function DiagrammeRondCard({ title, data, width = 300, height = 300 }) {
               <Cell key={index} fill={COLORS[index % COLORS.length]} />
             ))}
           </Pie>
-          <Tooltip formatter={(value, name, props) => `${name}: ${value}`} />
+          <Tooltip formatter={(value) => `${value}`} />
         </PieChart>
 
         <div style={{ marginLeft: '20px' }}>

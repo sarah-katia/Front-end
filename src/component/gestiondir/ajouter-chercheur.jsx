@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import stylesModule from "../modifier/personal.module.css";
-import Sidebar from '../nav/sidebardir';
+import Sidebar from '../nav/sidebarAssi';
 import Topnav from '../nav/Topnav';
 import ApprovalCard from "../cartes/approvalcard";
 

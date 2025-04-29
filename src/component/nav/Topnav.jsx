@@ -51,6 +51,13 @@ const Topnav = ({ connectedUser }) => {
       case "/dashboard":
         return "Dashboard";
 
+<<<<<<< Updated upstream
+=======
+      case "/Accueil":
+      case "/AccueilA":
+      case "/AccueilDi":
+        return "Accueil";
+>>>>>>> Stashed changes
 
       case "/Accueil":
       case "/AccueilA":
@@ -58,10 +65,20 @@ const Topnav = ({ connectedUser }) => {
         return "Accueil";
       case "/PageProfile":
       case "/profilAss":
+<<<<<<< Updated upstream
       case "/ProfilDi":
         return "Mon profil";
       case "/Confirmation":
         return "Confirmation";
+=======
+      case "/profilDi":
+
+        return "Mon profil"; 
+
+        case "/Confirmation":
+        return "Confirmation"; 
+
+>>>>>>> Stashed changes
       case "/Publications":
         return "Mes publications";
       case "/ChercheurA":
@@ -69,6 +86,7 @@ const Topnav = ({ connectedUser }) => {
       case "/component/modifier/personal":
       case "/component/modifier/securite":
       case "/editassi":
+      case "/editDi":
         return "Modification";
       case "/gestiondir/chercheur":
       case "/gestiondir/publication":

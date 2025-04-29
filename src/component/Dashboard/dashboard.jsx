@@ -82,8 +82,8 @@ function Dashboard() {
       </div>
 
       <div className="dashboard-charts">
-        <DiagrammeRond title="Publications par équipe de recherche" data={fakeDataPublications} />
-        <DiagrammeRond title="Chercheurs par équipe de recherche" data={fakeDataPublications} />
+        <DiagrammeRond title="Publications classée sur Scimago" data={fakeDataPublications} />
+        <DiagrammeRond title="Publications classée sur CORE" data={fakeDataPublications} />
       </div>
       
       </div>

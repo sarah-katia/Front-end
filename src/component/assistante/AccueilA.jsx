@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebardir from "../nav/sidebardir";
+import Sidebardir from "../nav/sidebarAssi";
 import Topnav from '../nav/Topnav';
 import { Link } from "react-router-dom";
 import logo from "../../assets/LMCS.png"; 

@@ -3,23 +3,57 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Flogin from './login/Flogin';
 import Mdpoublier from './login/Mdpoublier';
 import Nvmdp from './login/Nvmdp';
+
 import Accueil from './component/Accueil/Accueil';
 import ProfilePage from './component/Mon profile/PageProfile';
 import ModifierPage from './component/modifier/PageModifier';
 import Cherch from './component/gestiondir/chercheur';
 import Pub from './component/gestiondir/publication';
 import Add from './component/gestiondir/ajouter-chercheur';
+
 import Prrofil from './component/assistante/profilAss';
 import EditAssistantProfile from './component/assistante/editassi';
 import koudilpic from './assets/koudil.png';
+
 import Page_recherche1 from './component/table/Page_recherche1';
 import Page_recherche2 from './component/table/Page_recherche2';
 import Page_visiteur1 from './component/visiteur/Page_visiteur1';
 import Page_visiteur2 from './component/visiteur/Page_visiteur2';
+
 import AccueilA from './component/assistante/AccueilA';
 import ChercheurA from './admine/ChercheurA';
 import Confirmation from './admine/Confimation';
+
 import AccueilDi from './component/Accueil/AccueilDi';
+<<<<<<< Updated upstream
+=======
+import ProfilDi from './component/directrice/profilDi';
+import EditDirectrice from './component/directrice/editDi';
+import Dashboard from './component/Dashboard/dashboard';
+
+
+function App() {
+  const [count, setCount] = useState(0)
+  const chercheurActif = {
+    nom: "Koudil",
+    prenom: "Mouloud",
+    grade: "Directeur de recherche",
+    photo: koudilpic,
+    email: "m_koudil@esi.dz",
+    phone: "0698 30 05 04",
+    diplome: "Doctorat d'État",
+    publications: 79,
+    id:230084,
+    orcid: "0000-0001-9022",
+    hIndex: 16,
+    qualité: "Enseignant chercheur",
+    status: "Actif",
+    team: "Codesign",
+    isTeamLeader: "Oui",
+    institution: "ESI (Ecole Nationale Supérieure d'Informatique)",
+    googleScholar: "https://scholar.google.com/citations?user=9Zbx-EYAAAAJ&hl=fr",
+  };
+>>>>>>> Stashed changes
 
 import Dashboard from './component/Dashboard/dashboard';
 
@@ -66,6 +100,20 @@ function App() {
         <Route path="/ChercheurA" element={<ChercheurA />} />
         <Route path="/Confirmation" element={<Confirmation />} />
         <Route path="/AccueilDi" element={<AccueilDi />} />
+<<<<<<< Updated upstream
+=======
+        <Route path="/profilDi" element={< ProfilDi chercheur={chercheurActif} />} />
+        <Route path="/editDi" element={< EditDirectrice assistant={{
+                                                                            nom: "Sarah",
+                                                                            prenom: "Katia",
+                                                                            email: "assistante@esi.dz",
+                                                                            telephone: "0654545258",
+                                                                            role: "Assistante"
+                                                                            }} />} />
+
+
+
+>>>>>>> Stashed changes
       </Routes>
     </Router>
   );

@@ -56,8 +56,8 @@ const SidebarDi = () => {
         </li>
         
 
-        <li className={  ["/profilAss", "/editassi"].includes(location.pathname) ? "active" : ""}>
-          <Link to="/profilAss" className="nav-item">
+        <li className={  ["/profilDi", "/editDi"].includes(location.pathname) ? "active" : ""}>
+          <Link to="/profilDi" className="nav-item">
             <FaUser className="icon" />
             <span className="text">Mon profil</span>
           </Link>

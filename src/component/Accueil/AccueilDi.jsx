@@ -16,7 +16,8 @@ function AccueilDi() {
           <p>
           Vous pouvez consulter la liste de tous les chercheurs,
 
-modifier leurs comptes et ajouter de nouveaux profils, ainsi que faire la mise à jour et des statistiques
+          modifier leurs comptes et ajouter de nouveaux profils,
+          ainsi que faire la mise à jour et des statistiques
          </p>
           
           <div className="home-buttonsA">
