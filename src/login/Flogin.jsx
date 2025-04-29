@@ -1,28 +1,45 @@
 import React, { useState } from "react";
-import "./Flogin.css"; // Fichier CSS pour le style
-import logo from "./../assets/LMCS.png"
-import audito from "./../assets/audito.png"
-import { FaGoogle } from "react-icons/fa"; // Importez l'icône Google
-import { FaArrowLeft } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom"; // ✅ Ajouté
+import { FaGoogle, FaArrowLeft } from "react-icons/fa";
+import "./Flogin.css";
+import logo from "./../assets/LMCS.png";
+import audito from "./../assets/audito.png";
 
 const Flogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate(); // ✅ Hook pour la navigation
+
+  const redirectByRole = (role) => {
+    const routes = {
+      admin: "/ChercheurA",
+      chercheur: "/Accueil",
+      assistante: "/AccueilA",
+      autre: "/AcceuilDi"
+    };
+    navigate(routes[role] || "/accueil");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation simple des champs
     if (!email || !password) {
       setError("Veuillez remplir tous les champs.");
       return;
     }
 
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailRegex.test(email)) {
+      setError("Veuillez entrer un email valide.");
+      return;
+    }
+
+    setLoading(true);
+
     try {
-      // Appel au backend pour authentification
-      const response = await fetch("https://your-backend-url.com/login", {
+      const response = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -33,16 +50,25 @@ const Flogin = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Authentification réussie
         console.log("Connexion réussie :", data);
-        setError(""); // Réinitialiser l'erreur
-        // Redirection ou mise à jour du contexte utilisateur
+        setError("");
+
+        // Stocker l'utilisateur dans localStorage
+        localStorage.setItem("user", JSON.stringify(data.utilisateur));
+
+        // Afficher les données stockées dans localStorage
+        console.log("Données stockées dans localStorage : ", localStorage.getItem("user"));
+
+        // Rediriger selon le rôle
+        redirectByRole(data.utilisateur.role);
+
       } else {
-        // Gestion des erreurs renvoyées par le backend
         setError(data.message || "Échec de la connexion.");
       }
     } catch (err) {
       setError("Une erreur est survenue. Veuillez réessayer.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -68,19 +94,20 @@ const Flogin = () => {
               placeholder="Mot de passe"
               required
             />
-           <Link to="/Mdpoublier" className="forgot-password">Mot de passe oublié ?</Link>
-            <button type="submit" className="connect-button">
-              Se connecter
+            <Link to="/Mdpoublier" className="forgot-password">
+              Mot de passe oublié ?
+            </Link>
+            <button type="submit" className="connect-button" disabled={loading}>
+              {loading ? "Connexion..." : "Se connecter"}
             </button>
-            <button className="google-connect-button">
-            <FaGoogle className="google-icon" />              Se connecter avec Google
+            <button type="button" className="google-connect-button">
+              <FaGoogle className="google-icon" /> Se connecter avec Google
             </button>
           </form>
-         
         </div>
-      <Link to="/" className="back-to-home1">
-                <FaArrowLeft className="back-icon" /> Revenir à la page d'accueil
-              </Link>
+        <Link to="/" className="back-to-home1">
+          <FaArrowLeft className="back-icon" /> Revenir à la page d'accueil
+        </Link>
       </div>
       <div className="right-side">
         <img src={audito} alt="Building" className="building-image" />
