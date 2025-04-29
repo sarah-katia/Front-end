@@ -17,7 +17,7 @@ function Accueil() {
         Retrouvez toutes vos publications et explorez votre activité scientifique en un seul endroit.
       </p>
       <div className="home-buttons">
-        <Link to="/Table_chercheur" >  <button className="btn">Recherche d'un chercheur du laboratoire</button></Link>
+        <Link to="/Page_recherche1" >  <button className="btn">Recherche d'un chercheur du laboratoire</button></Link>
 
         <Link to="/PageProfile" ><button className="btn1">Voir mon profil</button></Link>
        <Link  to="/" >  <button className="btn2">Voir mes publications</button></Link>

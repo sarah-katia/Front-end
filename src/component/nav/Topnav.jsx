@@ -46,6 +46,12 @@ const Topnav = ({ connectedUser }) => {
         return "Liste des chercheurs";
       case "/Page_recherche2":
         return "Liste des publications";
+
+      
+      case "/dashboard":
+        return "Dashboard";
+
+
       case "/Accueil":
       case "/AccueilA":
       case "/AccueilDi":

@@ -20,6 +20,9 @@ import AccueilA from './component/assistante/AccueilA';
 import ChercheurA from './admine/ChercheurA';
 import Confirmation from './admine/Confimation';
 import AccueilDi from './component/Accueil/AccueilDi';
+
+import Dashboard from './component/Dashboard/dashboard';
+
 import Topnav from './component/nav/Topnav';
 
 function App() {
@@ -47,6 +50,7 @@ function App() {
         <Route path="/gestiondir/publication" element={<Pub />} />
         <Route path="/ajouter-chercheur" element={<Add />} />
         <Route path="/AccueilA" element={<AccueilA />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
         {/* Pages qui utilisent les infos de l'utilisateur connecté */}
         <Route path="/profilAss" element={<Prrofil chercheur={connectedUser} />} />
