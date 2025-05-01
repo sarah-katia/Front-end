@@ -15,12 +15,12 @@ import "./sidebardir.css";
 const Sidebar = () => {
   const location = useLocation();
   const chercheurPaths = [
-    "/gestiondir/chercheur",
+    "/gestionassi/chercheur",
     "/ajouter-chercheur"
   ];
   
   const publicationPaths = [
-    "/gestiondir/publication",
+    "/gestionassi/publication",
     "/ajouter-publication"
   ];
   
@@ -81,14 +81,14 @@ const Sidebar = () => {
         {isGestionOpen && (
           <>
 <li className={isChercheurActive ? "active" : ""}>
-  <Link to="/gestiondir/chercheur" className="nav-item sub-item">
+  <Link to="/gestionassi/chercheur" className="nav-item sub-item">
     <FaUser className="icon" />
     <span className="text">Chercheurs</span>
   </Link>
 </li>
 
 <li className={isPublicationActive ? "active" : ""}>
-  <Link to="/gestiondir/publication" className="nav-item sub-item">
+  <Link to="/gestionassi/publication" className="nav-item sub-item">
     <FaBook className="icon" />
     <span className="text">Publications</span>
   </Link>

@@ -17,20 +17,35 @@ import "./sidebardir.css";
 const SidebarDi = () => {
   const location = useLocation();
   const chercheurPaths = [
-    "/gestiondir/chercheur",
+    "/directrice/chercheurDi",
     "/ajouter-chercheur"
   ];
   
   const publicationPaths = [
-    "/gestiondir/publication",
+    "/directrice/publicationDi",
     "/ajouter-publication"
   ];
+
+  const AssistantePaths =[
+    "/directrice/Assistante",
+    "/ajouter-assistante"
+  ]
+
+  const DashPaths =[
+    "/dashboard",
+    "/generer",
+    "/statresults"
+  ]
   
   const isChercheurActive = chercheurPaths.includes(location.pathname);
   const isPublicationActive = publicationPaths.includes(location.pathname);
+  const isAssistanteActive = AssistantePaths.includes(location.pathname);
+  const isDashActive = DashPaths.includes(location.pathname);
+
+
 
     // ✅ Nouveau : détecter si un sous-menu de Gestion est actif
-  const isSubGestionActive = isChercheurActive || isPublicationActive;
+  const isSubGestionActive = isChercheurActive || isPublicationActive || isAssistanteActive;
 
   // ✅ Modification : ouvrir Gestion par défaut si un sous-item est actif
   const [isGestionOpen, setIsGestionOpen] = useState(isSubGestionActive);
@@ -56,8 +71,8 @@ const SidebarDi = () => {
         </li>
         
 
-        <li className={  ["/profilAss", "/editassi"].includes(location.pathname) ? "active" : ""}>
-          <Link to="/profilAss" className="nav-item">
+        <li className={  ["/profilDi", "/editDi"].includes(location.pathname) ? "active" : ""}>
+          <Link to="/profilDi" className="nav-item">
             <FaUser className="icon" />
             <span className="text">Mon profil</span>
           </Link>
@@ -83,21 +98,21 @@ const SidebarDi = () => {
         {isGestionOpen && (
           <>
 <li className={isChercheurActive ? "active" : ""}>
-  <Link to="/gestiondir/chercheur" className="nav-item sub-item">
+  <Link to="/directrice/chercheurDi" className="nav-item sub-item">
     <FaUsers className="icon" />
     <span className="text">Chercheurs</span>
   </Link>
 </li>
 
 <li className={isPublicationActive ? "active" : ""}>
-  <Link to="/gestiondir/publication" className="nav-item sub-item">
+  <Link to="/directrice/publicationDi" className="nav-item sub-item">
     <FaBook className="icon" />
     <span className="text">Publications</span>
   </Link>
 </li>
 
-<li className={isPublicationActive ? "active" : ""}>
-  <Link to="/" className="nav-item sub-item">
+<li className={isAssistanteActive ? "active" : ""}>
+  <Link to="/directrice/Assistante" className="nav-item sub-item">
     <FaUserFriends className="icon" />
     <span className="text">Assistante</span>
   </Link>
@@ -107,10 +122,10 @@ const SidebarDi = () => {
 
           </>
         )}
-    <li className={location.pathname === "/dashboard" ? "active" : ""}>
+    <li className={isDashActive ? "active" : ""}>
         <Link to="/dashboard" className="nav-item">
             <MdDashboard className="icon" />
-            <span className="text">Dashboard</span>
+            <span className="text">Statistiques</span>
           </Link>
         </li>
       </ul>

@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import {  FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../nav/sidebardir";
+import NavBar from "../nav/SidebarDi";
 import Topnav from "../nav/Topnav";
-import TabsHeader from "./Tabsheader";
+import TabsHeader from "../gestionassi/Tabsheader";
 import Filters from "../table/Filtre";
-import styling from "./chercheur.module.css";
+import styling from "../gestionassi/chercheur.module.css";
 import DeleteConfirmationCard from "../cartes/deletecard"; // ✅ Nouveau import
 
 const fakeData = [
-  { id: 1, photo: "https://via.placeholder.com/50", nom: "Kermi Adel", email: "kermi.adel@example.com", qualite: "Professeur", equipe: "TIIMA" },
-  { id: 2, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", email: "koudil.mouloud@example.com", qualite: "Professeur", equipe: "CoDesign" },
-  { id: 3, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", email: "bensalem.ahmed@example.com", qualite: "Chercheur", equipe: "IMAGE" },
-  { id: 4, photo: "../../assets/Koudil.png", nom: "Toufik Djellal", email: "sofiane.djelloul@example.com", qualite: "Doctorant", equipe: "OPI" },
-  { id: 5, photo: "https://via.placeholder.com/50", nom: "Imene Belkacem", email: "imene.belkacem@example.com", qualite: "Doctorante", equipe: "EIAH" },
+  { id: 1, photo: "https://via.placeholder.com/50", nom: "Bahri Assia", email: "Bahri@example.com", qualite: "professeur", equipe: "IOT" },
+  { id: 2, photo: "https://via.placeholder.com/50", nom: "Kermi Adel", email: "kermi.adel@example.com", qualite: "Professeur", equipe: "TIIMA" },
+  { id: 3, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", email: "koudil.mouloud@example.com", qualite: "Professeur", equipe: "CoDesign" },
+  { id: 4, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", email: "bensalem.ahmed@example.com", qualite: "Chercheur", equipe: "IMAGE" },
+  { id: 5, photo: "../../assets/Koudil.png", nom: "Toufik Djellal", email: "sofiane.djelloul@example.com", qualite: "Doctorant", equipe: "OPI" },
+  { id: 6, photo: "https://via.placeholder.com/50", nom: "Imene Belkacem", email: "imene.belkacem@example.com", qualite: "Doctorante", equipe: "EIAH" },
 ];
 
 const Cherch = () => {
@@ -80,8 +81,9 @@ const Cherch = () => {
       <NavBar />
       <Topnav />
       <TabsHeader   tabs={[
-    { label: "Chercheurs", path: "/gestiondir/chercheur" },
-    { label: "Publications", path: "/gestiondir/publication" },
+    { label: "Chercheurs", path: "/directrice/chercheurDi" },
+    { label: "Publications", path: "/directrice/publicationDi" },
+    { label: "Assistante", path: "/directrice/Assistante" },
   ]} />
 
   
@@ -101,7 +103,7 @@ const Cherch = () => {
             <button className={styling.filteringBtn} onClick={() => setShowFilters(true)}>
               Filtrer
             </button>
-            <button className={styling.addBtn} onClick={() => navigate("/ajouter-chercheur")}>
+            <button className={styling.addBtn} onClick={() => navigate("/ajouter-chercheur" , {state: {Sidebar: "directrice"}, })}>
               + Ajouter un chercheur
             </button>
           </div>

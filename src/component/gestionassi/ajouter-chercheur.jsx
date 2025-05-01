@@ -1,11 +1,28 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import stylesModule from "../modifier/personal.module.css";
-import Sidebar from '../nav/sidebardir';
+import Sidebardirectrice from '../nav/SidebarDi';
+import Sidebarassistante from '../nav/sidebarAssi';
 import Topnav from '../nav/Topnav';
 import ApprovalCard from "../cartes/approvalcard";
 
 const Ajouter = () => {
+
+  const location = useLocation();
+  const sidebarType = location.state?.Sidebar || "assistante"; // défaut : assistant
+
+  let SidebarComponent;
+  switch (sidebarType) {
+    case "assistante":
+      SidebarComponent = Sidebarassistante;
+      break;
+    case "directrice":
+      SidebarComponent = Sidebardirectrice;
+      break;
+    default:
+      SidebarComponent = Sidebarassistante;
+  }
+
   const [formData, setFormData] = useState({
     nom: "",
     prenom: "",
@@ -44,7 +61,7 @@ const Ajouter = () => {
 
   return (
     <div className={stylesModule.profileEditContainer} style={{ paddingTop: "450px" }} >
-      <Sidebar />
+      <SidebarComponent />
       <div className={stylesModule.profileEditContent}>
         <Topnav />
 

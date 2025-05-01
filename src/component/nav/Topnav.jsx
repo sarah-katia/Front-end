@@ -46,24 +46,33 @@ const Topnav = ({ connectedUser }) => {
         return "Liste des chercheurs";
       case "/Page_recherche2":
         return "Liste des publications";
-
       
       case "/dashboard":
+      case "/generer":
+      case "/statresults":
         return "Dashboard";
+
+        
+        case "/Accueil":
+          case "/AccueilA":
+          case "/AccueilDi":
+            return "Accueil";
+      
+
         case "/VoirplusAssis":
           case "/ModifierAssis":
           return "Assistante";
 
-      case "/Accueil":
-      case "/AccueilA":
-      case "/AccueilDi":
-        return "Accueil";
+     
+
       case "/PageProfile":
       case "/profilAss":
       case "/ProfilDi":
         return "Mon profil";
+
       case "/Confirmation":
         return "Confirmation";
+
       case "/Publications":
         return "Mes publications";
       case "/ChercheurA":
@@ -71,12 +80,19 @@ const Topnav = ({ connectedUser }) => {
       case "/component/modifier/personal":
       case "/component/modifier/securite":
       case "/editassi":
+      case "/editDi":
         return "Modification";
-      case "/gestiondir/chercheur":
-      case "/gestiondir/publication":
+
+        case "/gestionassi/chercheur":
+          case "/gestionassi/publication":
+          case "/directrice/Assistante":
+          case "/directrice/publicationDi":
+          case "/directrice/chercheurDi":
         return "Gestion";
+
       case "/ajouter-chercheur":
         return "Ajouter chercheur";
+        
       default:
         return "Page introuvable";
     }

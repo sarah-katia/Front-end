@@ -1,5 +1,5 @@
-import styles from './profil.module.css';
-import Sidebar from '../nav/sidebarAssi';
+import styles from './profilDi.module.css';
+import Sidebar from '../nav/SidebarDi';
 import Topnav from '../nav/Topnav';
 import { useNavigate } from "react-router-dom";
 
@@ -7,7 +7,7 @@ export default function ProfilAss({ chercheur }) {
   const navigate = useNavigate();
 
   const handleEditClick = () => {
-    navigate("/editassi");
+    navigate("/editDi");
   };
 
   return (

@@ -1,17 +1,16 @@
 /* cherch.module.css */
 
-.chercheursContainer {
+.Container {
     display: flex;
     flex-direction: column;
     margin-left: 250px;
     margin-top: 550px;
     padding: 05px  ;
-    background-color: #f5f5f5;
     min-height: 100vh;
   }
   
   
-  .chercheursContent {
+.Content {
     width: 100%;
   }
   
@@ -54,7 +53,7 @@
   
   .addBtn {
     all: unset;
-    background-color: #1976b4;
+    background-color: #249CF4;
     color: white;
     border: none;
     padding:5px 10px ;
@@ -62,20 +61,6 @@
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
-    font-family: 'Poppins', sans-serif;
-    transition: background-color 0.3s;
-  }
-
-  .filteringBtn {
-    all: unset;
-    background-color: #A1F7B9;
-    color: white;
-    border: none;
-    padding: 5px 20px ;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
     font-family: 'Poppins', sans-serif;
     transition: background-color 0.3s;
   }
@@ -106,8 +91,7 @@
     flex-wrap: wrap;
   }
   
-  .viewBtn,
-.deleteBtn {
+  .viewBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -130,41 +114,6 @@
 .viewBtn:hover {
   background-color: #146195;
 }
-
-.deleteBtn {
-  background-color: #249CF4;
-}
-
-.deleteBtn:hover {
-  background-color: #30a8fd;
-}
-
-
-  .filterOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Ajout d’un fond assombri */
-    backdrop-filter: blur(2px); /* Flou élégant */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
-  
-
-  
-  .closeBtn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-  }
 
 /* -------------------- RESPONSIVE -------------------- */
 

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Sidebardir from "../nav/sidebarAssi";
+import Sidebardir from "../nav/SidebarDi";
 import Topnav from "../nav/Topnav";
 import Security from "../modifier/securite"; // Ton composant existant pour mot de passe
 import ApprovalCard from "../cartes/approvalcard";
 
-import styles from "./editassi.module.css"; // Tu vas le créer
+import styles from "./editDi.module.css"; // Tu vas le créer
 
 const EditAssistantProfile = ({ assistant }) => {
   const [formData, setFormData] = useState({
