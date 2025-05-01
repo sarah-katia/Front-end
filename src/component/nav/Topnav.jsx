@@ -51,12 +51,20 @@ const Topnav = ({ connectedUser }) => {
       case "/generer":
       case "/statresults":
         return "Dashboard";
+
         
         case "/Accueil":
           case "/AccueilA":
           case "/AccueilDi":
             return "Accueil";
       
+
+        case "/VoirplusAssis":
+          case "/ModifierAssis":
+          return "Assistante";
+
+     
+
       case "/PageProfile":
       case "/profilAss":
       case "/ProfilDi":

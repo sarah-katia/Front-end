@@ -24,6 +24,7 @@ import AccueilA from './component/assistante/AccueilA';
 import ChercheurA from './admine/ChercheurA';
 import Confirmation from './admine/Confimation';
 
+
 import AccueilDi from './component/Accueil/AccueilDi';
 import ProfilDi from './component/directrice/profilDi';
 import EditDirectrice from './component/directrice/editDi';
@@ -34,6 +35,12 @@ import Dashboard from './component/Dashboard/dashboard';
 import Generer from './component/Dashboard/generer';
 import Resultats from './component/Dashboard/statresults';
 
+
+
+
+import VoirplusAssis from './component/carte_assistante/VoirplusAssis';
+import Topnav from './component/nav/Topnav';
+import ModifierAssis from './component/carte_assistante/ModifierAssis';
 
 function App() {
 
@@ -114,6 +121,7 @@ function App() {
         <Route path="/directrice/publicationDi" element={<PubTable />} />
         <Route path="/directrice/Assistante" element={<AssiTable />} />
         <Route path="/AccueilDi" element={<AccueilDi />} />
+
         <Route path="/profilDi" element={< ProfilDi chercheur={chercheurActif} />} />
         <Route path="/editDi" element={< EditDirectrice assistant={{
                                                                             nom: "Benatchba",
@@ -123,6 +131,11 @@ function App() {
                                                                             role: "Directrice"
                                                                             }} />} />
 
+
+
+
+        <Route path="/VoirplusAssis" element={<VoirplusAssis />} />
+        <Route path="/ModifierAssis" element={<ModifierAssis />} />
 
 
       </Routes>
