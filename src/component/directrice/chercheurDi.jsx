@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import DataTable from "react-data-table-component";
 import {  FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../nav/sidebarAssi";
+import NavBar from "../nav/SidebarDi";
 import Topnav from "../nav/Topnav";
-import TabsHeader from "./Tabsheader";
+import TabsHeader from "../gestionassi/Tabsheader";
 import Filters from "../table/Filtre";
-import styling from "./chercheur.module.css";
+import styling from "../gestionassi/chercheur.module.css";
 import DeleteConfirmationCard from "../cartes/deletecard"; // ✅ Nouveau import
 
 const fakeData = [
@@ -81,8 +81,9 @@ const Cherch = () => {
       <NavBar />
       <Topnav />
       <TabsHeader   tabs={[
-    { label: "Chercheurs", path: "/gestiondir/chercheur" },
-    { label: "Publications", path: "/gestiondir/publication" },
+    { label: "Chercheurs", path: "/directrice/chercheurDi" },
+    { label: "Publications", path: "/directrice/publicationDi" },
+    { label: "Assistante", path: "/directrice/Assistante" },
   ]} />
 
   
@@ -102,7 +103,7 @@ const Cherch = () => {
             <button className={styling.filteringBtn} onClick={() => setShowFilters(true)}>
               Filtrer
             </button>
-            <button className={styling.addBtn} onClick={() => navigate("/ajouter-chercheur")}>
+            <button className={styling.addBtn} onClick={() => navigate("/ajouter-chercheur" , {state: {Sidebar: "directrice"}, })}>
               + Ajouter un chercheur
             </button>
           </div>

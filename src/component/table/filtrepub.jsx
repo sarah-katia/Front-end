@@ -25,13 +25,15 @@ const Filtrepub = ({ onApply }) => {
         {/* Année de publication */}
         <div className="filter-group1">
           <label>Année de publication</label>
+          <div className="h-index-inputs">
           <input 
-            type="text" 
+            type="date" 
             name="anneePublication" 
             placeholder="JJ/MM/AAAA" 
             value={filters.anneePublication} 
             onChange={handleChange} 
           />
+          </div>
         </div>
 
         {/* Période */}
@@ -39,14 +41,14 @@ const Filtrepub = ({ onApply }) => {
           <label>Période</label>
           <div className="h-index-inputs1">
             <input 
-              type="text" 
+              type="date" 
               name="periodeDebut" 
               placeholder="JJ/MM/AAAA" 
               value={filters.periodeDebut} 
               onChange={handleChange} 
             />
             <input 
-              type="text" 
+              type="date" 
               name="periodeFin" 
               placeholder="JJ/MM/AAAA" 
               value={filters.periodeFin} 
@@ -89,6 +91,23 @@ const Filtrepub = ({ onApply }) => {
           ))}
         </div>
 
+                {/* Classement de la publication */}
+                <div className="filter-group1">
+          <label>Classement de la publication</label>
+          {["CORE", "Scimago", "DGRSDT", "Qualis", "Autres"].map((c) => (
+            <div key={c}>
+              <input 
+                type="radio" 
+                name="classementPublication" 
+                value={c} 
+                checked={filters.classementPublication === c} 
+                onChange={handleChange} 
+              />{" "}
+              {c}
+            </div>
+          ))}
+        </div>
+
         {/* Thématique */}
         <div className="filter-group1">
           <label>Thématique</label>
@@ -106,26 +125,10 @@ const Filtrepub = ({ onApply }) => {
           ))}
         </div>
 
-        {/* Classement de la publication */}
-        <div className="filter-group1">
-          <label>Classement de la publication</label>
-          {["CORE", "Scimago", "DGRSDT", "Qualis", "Autres"].map((c) => (
-            <div key={c}>
-              <input 
-                type="radio" 
-                name="classementPublication" 
-                value={c} 
-                checked={filters.classementPublication === c} 
-                onChange={handleChange} 
-              />{" "}
-              {c}
-            </div>
-          ))}
-        </div>
-
         {/* Classement */}
         <div className="filter-group1">
           <label>Classement</label>
+          <div className="h-index-inputs">
           <input 
             type="text" 
             name="classement" 
@@ -133,6 +136,7 @@ const Filtrepub = ({ onApply }) => {
             value={filters.classement} 
             onChange={handleChange} 
           />
+          </div>
         </div>
       </div>
 
