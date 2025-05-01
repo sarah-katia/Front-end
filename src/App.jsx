@@ -34,7 +34,7 @@ import AssiTable from './component/directrice/Assistante';
 import Dashboard from './component/Dashboard/dashboard';
 import Generer from './component/Dashboard/generer';
 import Resultats from './component/Dashboard/statresults';
-
+import ProfilAdmin from './admine/ProfilAdmin';
 
 
 
@@ -115,6 +115,8 @@ function App() {
         <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
 
         <Route path="/ChercheurA" element={<ChercheurA />} />
+        <Route path="/ProfilAdmin" element={<ProfilAdmin />} />
+
         <Route path="/Confirmation" element={<Confirmation />} />
 
         <Route path="/directrice/chercheurDi" element={<ChercheurTable />} />

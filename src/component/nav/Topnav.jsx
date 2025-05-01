@@ -68,6 +68,7 @@ const Topnav = ({ connectedUser }) => {
       case "/PageProfile":
       case "/profilAss":
       case "/ProfilDi":
+        case "/ProfilAdmin":
         return "Mon profil";
 
       case "/Confirmation":
