@@ -50,7 +50,9 @@ const Topnav = ({ connectedUser }) => {
       
       case "/dashboard":
         return "Dashboard";
-
+        case "/VoirplusAssis":
+          case "/ModifierAssis":
+          return "Assistante";
 
       case "/Accueil":
       case "/AccueilA":

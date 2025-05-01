@@ -20,11 +20,10 @@ import AccueilA from './component/assistante/AccueilA';
 import ChercheurA from './admine/ChercheurA';
 import Confirmation from './admine/Confimation';
 import AccueilDi from './component/Accueil/AccueilDi';
-
 import Dashboard from './component/Dashboard/dashboard';
-
+import VoirplusAssis from './component/carte_assistante/VoirplusAssis';
 import Topnav from './component/nav/Topnav';
-
+import ModifierAssis from './component/carte_assistante/ModifierAssis';
 function App() {
   const [connectedUser, setConnectedUser] = useState(null);
 
@@ -66,6 +65,10 @@ function App() {
         <Route path="/ChercheurA" element={<ChercheurA />} />
         <Route path="/Confirmation" element={<Confirmation />} />
         <Route path="/AccueilDi" element={<AccueilDi />} />
+
+        <Route path="/VoirplusAssis" element={<VoirplusAssis />} />
+        <Route path="/ModifierAssis" element={<ModifierAssis />} />
+
       </Routes>
     </Router>
   );
