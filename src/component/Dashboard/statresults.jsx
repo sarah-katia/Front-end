@@ -13,72 +13,80 @@ const fakeDataPublications = [
   { name: 'Livres', value: 10 },
 ];
 
-const pourcentage = [
-    { name: 'Articles', value: 90 },
-    { name: 'Conférences', value: 50 },
-    { name: 'Livres', value: 20 }
-]
-
 const fakeDataChercheurs = [
   { name: 'Mouloud Koudil', value: 10 },
   { name: 'Kermi Adel', value: 20 },
-  { name: 'SiTayeb Fatima', value: 5 },
-  { name: 'BenBouzid Mohamed', value: 30 },
-  { name: 'AYA SOFIA', value: 15 },
-  { name: 'Khelouat Boualem', value: 10 },
-  { name: 'Artabaz Saliha', value: 20 },
-  { name: 'Equipe C', value: 5 }, 
-  { name: 'Equipe A', value: 10 }
+  // …
 ];
 
-const data = [
-    { name: '2019', publications: 10, projets: 5 },
-    { name: '2020', publications: 30, projets: 17 },
-    { name: '2021', publications: 8,  projets: 4 },
-    { name: '2022', publications: 10, projets: 16 },
-    { name: '2023', publications: 20, projets: 12 },
-    { name: '2024', publications: 5,  projets: 8 },
-  ];
-
-
+// toutes tes données annuelles
+const allYearData = [
+  { name: '2019', publications: 10, projets: 5 },
+  { name: '2020', publications: 30, projets: 17 },
+  { name: '2021', publications: 8,  projets: 4 },
+  { name: '2022', publications: 10, projets: 16 },
+  { name: '2023', publications: 20, projets: 12 },
+  { name: '2024', publications: 5,  projets: 8 },
+];
 
 function Statresults() {
+  const navigate = useNavigate();
+  const { critere, dateDebut, dateFin } = useLocation().state || {};
 
-  const navigate = useNavigate(); 
-  const location = useLocation();
+  // 1) Filtrer les données annuelles si le critère est “par date”
+  let yearData = allYearData;
+  if (critere?.includes('date') && dateDebut && dateFin) {
+    yearData = allYearData.filter(d => {
+      const y = parseInt(d.name, 10);
+      return y >= dateDebut && y <= dateFin;
+    });
+  }
 
-  const { critere, dateDebut, dateFin } = location.state || {};
-
-  console.log("Critère :", critere);
-  console.log("Date début :", dateDebut);
-  console.log("Date fin :", dateFin);
-  
+  // 2) Construire un titre dynamique
+  const yearChartTitle = critere?.includes('date')
+    ? `Nombre de publications de ${dateDebut} à ${dateFin}`
+    : 'Nombre de publications (toutes années)';
 
   return (
-
     <div className="dashboard-wrapper">
       <Sidebar />
-    <div className="dashboard-content">
-      <Topnav />
-    <div className="dashboard-container">
-
-      {/* Diagrammes principaux */}
-
-      <div className="dashboard-charts">
-      <div className="piechart">
-      <DiagrammeRond title="Publications classée sur Scimago" data={fakeDataPublications} />
-      </div>
-      <GroupedBarChart title="Nombre de publications (6 dernières années)" data={data} />
-      </div>
+      <div className="dashboard-content">
+        <Topnav />
+        <div className="dashboard-container">
 
 
-      <div className="dashboard-actions">
-            <button type="button" onClick={() => navigate(-1)} >Annuler</button>
-            <button className="btn-interval" >Importer En Excel</button>
+
+          <div className="dashboard-charts">
+            {/* Si par équipe, on affiche un camembert */}
+            {critere === 'nombre de publication par equipe' && (
+              <DiagrammeRond
+                title="Répartition des publications par équipe"
+                data={fakeDataChercheurs}
+              />
+            )}
+
+            {/* Si par date, on affiche un bar chart groupé */}
+            {critere === 'nombre de publication par date' && (
+              <>
+              <div className='piechart'>
+              <DiagrammeRond title={yearChartTitle} data={fakeDataPublications} />
+              </div>
+              <GroupedBarChart title={yearChartTitle} data={yearData} />
+              </>
+            )}
+          </div>
+
+          <div className="dashboard-actions">
+            <button type="button" onClick={() => navigate(-1)}>
+              Annuler
+            </button>
+            <button className="btn-interval">
+              Importer en Excel
+            </button>
+          </div>
+
         </div>
-      
       </div>
-     </div>
     </div>
   );
 }

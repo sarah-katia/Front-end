@@ -1,31 +1,50 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 import Sidebar from "../nav/SidebarDi";
 import TopNav from "../nav/Topnav";
 import styles from "./generer.module.css";
 
 const StatiqueIntervalle = () => {
-  const [dateDebut, setDateDebut] = useState("");
-  const [dateFin, setDateFin] = useState("");
+  const [anneeDebut, setAnneeDebut] = useState(null);
+  const [anneeFin, setAnneeFin] = useState(null);
   const [critere, setCritere] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (!critere) {
-        alert("Veuillez choisir un critère avant de continuer.");
+      alert("Veuillez choisir un critère avant de continuer.");
+      return;
+    }
+  
+    if (critere.includes("date")) {
+      // 1) Validation des années
+      if (!anneeDebut || !anneeFin) {
+        alert("Veuillez remplir les deux années.");
         return;
       }
-    
-      // Si le critère inclut "date", vérifier aussi les dates
-      if (critere.includes("date") && (!dateDebut || !dateFin)) {
-        alert("Veuillez remplir les deux dates.");
+      if (anneeDebut.getFullYear() > anneeFin.getFullYear()) {
+        alert("L'année de début doit être antérieure ou égale à l'année de fin.");
         return;
       }
-
-    navigate("/statresults", {
-      state: { critere, dateDebut, dateFin },
-    });
+  
+      // 2) Navigation pour le critère date
+      navigate("/statresults", {
+        state: {
+          critere,
+          dateDebut: anneeDebut.getFullYear(),
+          dateFin: anneeFin.getFullYear(),
+        },
+      });
+    } else {
+      // Critère sans date → on navigue directement
+      navigate("/statresults", {
+        state: { critere },
+      });
+    }
   };
+  
 
 
   return (
@@ -51,22 +70,31 @@ const StatiqueIntervalle = () => {
             {critere.includes("date") && (
               <>
                 <label>
-                  Date de début :
-                  <input
-                    type="date"
-                    value={dateDebut}
-                    onChange={(e) => setDateDebut(e.target.value)}
-                  />
-                </label>
+  Année de début :
+  <DatePicker
+    selected={anneeDebut}
+    onChange={(date) => setAnneeDebut(date)}
+    showYearPicker
+    dateFormat="yyyy"
+    placeholderText="Choisir une année"
+    className={styles.customInput}
+    popperPlacement="bottom-end"
+  />
+</label>
 
-                <label>
-                  Date de fin :
-                  <input
-                    type="date"
-                    value={dateFin}
-                    onChange={(e) => setDateFin(e.target.value)}
-                  />
-                </label>
+<label>
+  Année de fin :
+  <DatePicker
+    selected={anneeFin}
+    onChange={(date) => setAnneeFin(date)}
+    showYearPicker
+    dateFormat="yyyy"
+    placeholderText="Choisir une année"
+    className={styles.customInput}
+    popperPlacement="bottom-end"
+  />
+</label>
+
               </>
             )}
           </div>

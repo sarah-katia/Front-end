@@ -104,7 +104,7 @@ function App() {
                                                                     }} />} />
 
         {/* Pages qui utilisent les infos de l'utilisateur connecté */}
-        <Route path="/profilAss" element={<Prrofil chercheur={connectedUser} />} />
+        <Route path="/profilAss" element={<Prrofil chercheur={chercheurActif} />} />
         <Route path="/PageProfile" element={<ProfilePage chercheur={connectedUser} />} />
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={connectedUser} />} />
 

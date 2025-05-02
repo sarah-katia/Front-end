@@ -1,6 +1,6 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
-const COLORS = ['#1976B4', '#249CF4', '#A1F7B9', '#121619'];
+const COLORS = ['#1976B4', '#249CF4', '#A1F7B9', '#121619', 'rgb(205, 207, 207)'];
 
 function DiagrammeRondCard({ title, data, width = 300, height = 300 }) {
   return (

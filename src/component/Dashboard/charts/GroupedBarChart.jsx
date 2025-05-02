@@ -1,6 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Legend } from 'recharts';
 
-function GroupedBarChart({ data, width = 450, height = 300 }) {
+function GroupedBarChart({ title , data, width = 450, height = 300 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2 style={{
@@ -11,7 +11,7 @@ function GroupedBarChart({ data, width = 450, height = 300 }) {
         color: '#1976d2',
         textAlign: 'center'
       }}>
-        Nombre de publications (6 dernières années)
+        {title}
       </h2>
       <div style={{
         background: 'white',
