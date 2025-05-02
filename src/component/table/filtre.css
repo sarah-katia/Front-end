@@ -49,6 +49,18 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+  .h-index-base{
+    margin-top: 0.5rem;
+  }
+
+  .h-index-base input {
+
+    width: 140px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
   
   .filter-group1 div {
   

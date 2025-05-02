@@ -9,7 +9,13 @@ function VoirplusAssis() {
     <div>
         <Topnav/>
         <SidebarDi/>
-        <TabsHeader/>
+       
+          <TabsHeader   tabs={[
+            { label: "Chercheurs", path: "/directrice/chercheurDi" },
+            { label: "Publications", path: "/directrice/publicationDi" },
+            { label: "Assistante", path: "/directrice/Assistante" },
+          
+          ]} />
         <CarteAssis/>
       
     </div>

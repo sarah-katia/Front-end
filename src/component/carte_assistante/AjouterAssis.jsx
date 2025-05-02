@@ -1,10 +1,10 @@
 import React from 'react'
 import Topnav from '../nav/Topnav'
 import SidebarDi from '../nav/SidebarDi'
-import CarteModifAssis from './CarteModifAssis'
+import CarteAjouterAssis from './CarteAjouterAssis'
 import TabsHeader from '../gestionassi/Tabsheader'
 
-function ModifierAssis() {
+function AjouterAssis() {
   return (
     <div>
       <Topnav/>
@@ -14,9 +14,9 @@ function ModifierAssis() {
           { label: "Publications", path: "/directrice/publicationDi" },
           { label: "Assistante", path: "/directrice/Assistante" },
         ]} />
-      <CarteModifAssis/>
+      <CarteAjouterAssis/>
     </div>
   )
 }
 
-export default ModifierAssis
+export default AjouterAssis

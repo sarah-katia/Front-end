@@ -60,7 +60,8 @@ const Topnav = ({ connectedUser }) => {
       
 
         case "/VoirplusAssis":
-          case "/ModifierAssis":
+          case "/ModifierAssis": 
+          case "/AjouterAssis":
           return "Assistante";
 
      
@@ -77,11 +78,15 @@ const Topnav = ({ connectedUser }) => {
       case "/Publications":
         return "Mes publications";
       case "/ChercheurA":
+        case "/Voirplus":
+          case "/ModifVoirplus":
         return "Liste des utilisateurs";
       case "/component/modifier/personal":
       case "/component/modifier/securite":
       case "/editassi":
       case "/editDi":
+        case "/ModifierAdmin":
+          
         return "Modification";
 
         case "/gestionassi/chercheur":
