@@ -89,7 +89,7 @@ const Assi = () => {
                 onChange={handleSearch}
               />
             </div>
-            <button className={styling.addBtn} onClick={() => navigate("/ajouter-assistante")}>
+            <button className={styling.addBtn} onClick={() => navigate("/AjouterAssis")}>
               + Ajouter une assistante
             </button>
           </div>

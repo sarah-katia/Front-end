@@ -1,32 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Importation correcte de useState
+import { useNavigate } from 'react-router-dom'; // Importer useNavigate pour la navigation
+import DataTable from 'react-data-table-component';
 import SidebarA from '../component/nav/SidebarAd';
 import Topnav from '../component/nav/Topnav';
-import DataTable from 'react-data-table-component';
 
 const fakeData = [
-  { id: '1admin', photo: "https://via.placeholder.com/50", nom: "Kermi Adel", role: "Chercheur" },
-  { id: '2admin', photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", role: "Assistante" },
-  { id: '3admin', photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", role: "Chercheur" },
-  { id: '4admin', photo: "../../assets/Koudil.png", nom: "Sofiane Djelloul", role: "Assistante"},
-  { id: '5admin', photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", role: "Assistante"},
-  { id: '6admin', photo: "../../assets/Koudil.png", nom: "Sofiane Djelloul", role: "Directrice"},
+  { id: '1admin', photo: "https://via.placeholder.com/50", nom: "Kermi Adel", prenom: "Adel", phone: "123456789", email: "adel@example.com", role: "Chercheur" },
+  { id: '2admin', photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", prenom: "Mouloud", phone: "987654321", email: "mouloud@example.com", role: "Assistante" },
+  // Ajoute d'autres chercheurs ici
 ];
 
 function ChercheurA() {
+  const navigate = useNavigate();
   const [chercheurs, setChercheurs] = useState(fakeData);
   const [search, setSearch] = useState("");
 
   const filteredData = chercheurs.filter(item =>
     item.nom.toLowerCase().includes(search.toLowerCase()) ||
-    item.role.toLowerCase().includes(search.toLowerCase()) ||
-    item.equipe.toLowerCase().includes(search.toLowerCase())
+    item.role.toLowerCase().includes(search.toLowerCase())
   );
 
   const columns = [
     { name: "Photo", selector: (row) => <img src={row.photo} alt="Profile" className="profile-pic" />, width: "15%" },
     { name: "Nom complet", selector: (row) => row.nom, sortable: true, width: "30%" },
     { name: "Rôle", selector: (row) => row.role, sortable: true, width: "25%" },
-   { name: "Plus de détails", cell: () => <button className="btn-profile">Voir Profile</button>, width: "20%" },
+    { 
+      name: "Plus de détails", 
+      cell: (row) => (
+        <button 
+          className="btn-profile" 
+          onClick={() => navigate('/Voirplus', { state: { chercheur: row } })}
+        >
+          Voir Profil
+        </button>
+      ), 
+      width: "20%" 
+    },
   ];
 
   return (
@@ -63,7 +72,7 @@ function ChercheurA() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default ChercheurA;

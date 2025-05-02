@@ -33,12 +33,13 @@ const SidebarA = () => {
         </li>
  
 
-        <li className={location.pathname === "/ProfilDi" ? "active" : ""}>
-          <Link to="/ProfilDi" className="nav-item">
-            <FaUser className="icon" />
-            <span className="text">Mon profile</span>
-          </Link>
-        </li>
+        <li className={location.pathname === "/ProfilAdmin" || location.pathname === "/ModifierAdmin" ? "active" : ""}>
+  <Link to="/ProfilAdmin" className="nav-item">
+    <FaUser className="icon" />
+    <span className="text">Mon profil</span>
+  </Link>
+</li>
+
        
           
 

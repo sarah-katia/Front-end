@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Kermi from '../../assets/kermi.jpg'
+
 const CarteAssis = () => {
   const [showCard, setShowCard] = useState(true);
 
@@ -16,8 +17,8 @@ const CarteAssis = () => {
 
   const styles = {
     card: {
-      marginTop : '15rem',
-     marginLeft : '8rem',
+      marginTop : '12rem',
+      marginLeft : '11rem',
       width: '40rem',
       backgroundColor: '#fff',
       borderRadius: '0.8rem',

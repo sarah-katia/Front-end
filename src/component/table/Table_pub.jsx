@@ -1,9 +1,8 @@
-
-
-import { useState } from "react"
-import DataTable from "react-data-table-component"
-import { FaSearch, FaFilter } from "react-icons/fa"
-import "./Table_pub.css"
+import { useState } from "react";
+import DataTable from "react-data-table-component";
+import { FaSearch, FaFilter } from "react-icons/fa";
+import "./Table_pub.css";
+import Filtrepub from "./filtrepub";
 
 // Fake publications data
 const fakePublications = [
@@ -43,38 +42,43 @@ const fakePublications = [
     titre: "A novel active learning method using SVM for text classification",
     annee: "2023",
   },
-]
+];
 
 const Table_pub = () => {
-  const [publications, setPublications] = useState(fakePublications)
-  const [search, setSearch] = useState("")
-  const [filterAuteur, setFilterAuteur] = useState("")
-  const [filterAnnee, setFilterAnnee] = useState("")
-  const [showFilters, setShowFilters] = useState(false)
+  const [publications, setPublications] = useState(fakePublications);
+  const [search, setSearch] = useState("");
+  const [filterAuteur, setFilterAuteur] = useState("");
+  const [filterAnnee, setFilterAnnee] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
+  const [filters, setFilters] = useState({});
 
   const handleSearch = (event) => {
-    event.preventDefault()
-    setSearch(event.target.value)
-  }
+    event.preventDefault();
+    setSearch(event.target.value);
+  };
 
-  const handleFilterAuteur = (event) => {
-    setFilterAuteur(event.target.value)
-  }
+  // Gérer l'application des filtres et fermer le modal
+  const handleApplyFilters = (appliedFilters) => {
+    setFilters(appliedFilters);
+    
+    // On peut aussi extraire des filtres spécifiques si nécessaire
+    if (appliedFilters.anneePublication) {
+      const year = new Date(appliedFilters.anneePublication).getFullYear().toString();
+      setFilterAnnee(year);
+    }
+    
+    // Fermer la fenêtre de filtres après application
+    setShowFilters(false);
+  };
 
-  const handleFilterAnnee = (event) => {
-    setFilterAnnee(event.target.value)
-  }
-
-  // Get unique authors and years for filter dropdowns
-  const uniqueAuthors = [...new Set(publications.map((p) => p.auteur))]
-  const uniqueYears = [...new Set(publications.map((p) => p.annee))]
-
+  // Filtrer les données en fonction de la recherche et des filtres
   const filteredData = publications.filter(
     (p) =>
-      (p.titre.toLowerCase().includes(search.toLowerCase()) || p.auteur.toLowerCase().includes(search.toLowerCase())) &&
+      (p.titre.toLowerCase().includes(search.toLowerCase()) ||
+        p.auteur.toLowerCase().includes(search.toLowerCase())) &&
       (filterAuteur ? p.auteur === filterAuteur : true) &&
-      (filterAnnee ? p.annee === filterAnnee : true),
-  )
+      (filterAnnee ? p.annee === filterAnnee : true)
+  );
 
   const columns = [
     { name: "Auteur", selector: (row) => row.auteur, sortable: true },
@@ -85,21 +89,35 @@ const Table_pub = () => {
       cell: () => <button className="btn-voir-plus">Voir plus</button>,
       center: true,
     },
-  ]
+  ];
 
   return (
     <div className="publications-container">
-          <div className="filters2">
-                 <div className="search-bar2">
-                   <FaSearch className="logo-recherche" />
-                   <input type="text" placeholder="Rechercher un chercheur" value={search} onChange={handleSearch} />
-                 </div>
-                 <button onClick={() => setShowFilters(true)} className="plus" >
-                   <FaFilter className="filtree2" /> Plus de filtres
-                 </button>
+      <div className="filters2">
+        <div className="search-bar2">
+          <FaSearch className="logo-recherche" />
+          <input
+            type="text"
+            placeholder="Rechercher une publication "
+            value={search}
+            onChange={handleSearch}
+          />
+        </div>
+        <button onClick={() => setShowFilters(true)} className="plus">
+          <FaFilter className="filtree2" /> Plus de filtres
+        </button>
       </div>
 
-      <div className="publications-content">
+      {/* Affichage des filtres actifs */}
+      <div className="active-filters">
+        {filterAnnee && <span>Année: {filterAnnee}</span>}
+        {filters.typePublication && <span>Type: {filters.typePublication}</span>}
+        {filters.thematique && <span>Thématique: {filters.thematique}</span>}
+        {!filterAnnee && !filters.typePublication && !filters.thematique && 
+          <span>Aucun filtre actif</span>}
+      </div>
+
+      <div className="publications-content" style={{ position: "relative" }}>
         <DataTable
           columns={columns}
           data={filteredData}
@@ -111,32 +129,31 @@ const Table_pub = () => {
             table: {
               style: {
                 width: "100%",
-                minHeight: "36rem", 
+                minHeight: "36rem",
                 backgroundColor: "#fafafa",
-                zIndex: "-1",
+                zIndex: "1",
               },
             },
             rows: {
               style: {
-                minHeight: "60px", 
+                minHeight: "60px",
                 borderRadius: "10px",
                 marginTop: "10px",
                 fontSize: "15px",
-                padding: "2px", 
+                padding: "2px",
                 backgroundColor: "#fafafa",
                 border: "1px solid #ccc",
               },
             },
             headCells: {
               style: {
-                fontSize: "16px", 
+                fontSize: "16px",
                 fontWeight: "bold",
                 textAlign: "center",
                 paddingLeft: "40px",
                 backgroundColor: "#fafafa",
-                paddingTop: "8px", 
-                paddingBottom: "8px", 
-              
+                paddingTop: "8px",
+                paddingBottom: "8px",
               },
             },
             cells: {
@@ -144,8 +161,8 @@ const Table_pub = () => {
                 backgroundColor: "#fafafa",
                 paddingLeft: "40px",
                 paddingRight: "20px",
-                paddingTop: "8px", // Added
-                paddingBottom: "8px", // Added
+                paddingTop: "8px",
+                paddingBottom: "8px",
               },
             },
             pagination: {
@@ -154,15 +171,15 @@ const Table_pub = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "5px",
-                marginTop: "10px", // Added
-                paddingBottom: "5px", // Added
+                marginTop: "10px",
+                paddingBottom: "5px",
               },
               pageButtonsStyle: {
                 backgroundColor: "#f1f1f1",
                 border: "1px solid #ccc",
                 color: "#333",
-                padding: "4px 8px", // Reduced from 5px 10px
-                margin: "0 3px", // Reduced from 0 5px
+                padding: "4px 8px",
+                margin: "0 3px",
                 cursor: "pointer",
                 borderRadius: "5px",
                 transition: "background-color 0.3s",
@@ -191,136 +208,35 @@ const Table_pub = () => {
           }}
         />
 
-{showFilters && (
-          <div className="filter-overlay">
-            <div className="filter-modal">
-              <button className="close-btn" onClick={() => setShowFilters(false)}>
-                ✖
-              </button>
-              <div className="advanced-filters">
-                <h3>Plus de filtre</h3>
-
-                <div className="filter-row">
-                  <div className="filter-group">
-                    <label>Année de publication</label>
-                    <input type="text" placeholder="AAAA" className="year-input" />
-                  </div>
-
-                  <div className="filter-group">
-                    <label>Période</label>
-                    <div className="date-range">
-                      <input type="text" placeholder="JJ/MM/AAAA" className="date-input" />
-                      <input type="text" placeholder="JJ/MM/AAAA" className="date-input" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="filter-row">
-                  <div className="filter-group">
-                    <label>Type de publication</label>
-                    <div className="checkbox-group">
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="conference" />
-                        <label htmlFor="conference">Conférence</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="journal" />
-                        <label htmlFor="journal">Journal</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="livre" />
-                        <label htmlFor="livre">Livre</label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="filter-group">
-                    <label>Classement de la publication</label>
-                    <div className="checkbox-group">
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="core" />
-                        <label htmlFor="core">CORE</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="scimago" />
-                        <label htmlFor="scimago">Scimago</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="dgrsdt" />
-                        <label htmlFor="dgrsdt">DGRSDT</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="qualis" />
-                        <label htmlFor="qualis">Qualis</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="autres" />
-                        <label htmlFor="autres">Autres</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="filter-group">
-                    <label>Classement</label>
-                    <input type="text" placeholder="A,B,1,..." className="ranking-input" />
-                  </div>
-                </div>
-
-                <div className="filter-row">
-                  <div className="filter-group">
-                    <label>Périodicité</label>
-                    <div className="checkbox-group">
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="annuel" />
-                        <label htmlFor="annuel">Annuel</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="biannuel" />
-                        <label htmlFor="biannuel">Biannuel</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="mensuel" />
-                        <label htmlFor="mensuel">Mensuel</label>
-                      </div>
-                    </div>
-                  </div>
-
-                 
-                </div>
-
-                <div className="filter-row">
-                  <div className="filter-group">
-                    <label>Thématique</label>
-                    <div className="checkbox-group">
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="cs" />
-                        <label htmlFor="cs">Computer science</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="ai" />
-                        <label htmlFor="ai">Artificial intelligence</label>
-                      </div>
-                      <div className="checkbox-item">
-                        <input type="checkbox" id="sv" />
-                        <label htmlFor="sv">Science vision</label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="filter-actions">
-                  <button className="reset-btn1">Réinitialiser</button>
-                  <button className="apply-btn1" onClick={() => setShowFilters(false)}>
-                    Appliquer
-                  </button>
-                </div>
-              </div>
+        {showFilters && (
+          <div className="filter-overlay" style={{ 
+            position: "absolute", 
+            top: "0",
+            left: "0",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 100,
+          
+          }}>
+            <div style={{
+             
+              borderRadius: "8px",
+              padding: "15px",
+            
+              maxWidth: "90%",
+              maxHeight: "90%",
+              overflow: "auto"
+            }}>
+              <Filtrepub onApply={handleApplyFilters} />
             </div>
           </div>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Table_pub
-
+export default Table_pub;

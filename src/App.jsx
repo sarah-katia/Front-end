@@ -34,13 +34,17 @@ import AssiTable from './component/directrice/Assistante';
 import Dashboard from './component/Dashboard/dashboard';
 import Generer from './component/Dashboard/generer';
 import Resultats from './component/Dashboard/statresults';
-
+import ProfilAdmin from './admine/ProfilAdmin';
 
 
 
 import VoirplusAssis from './component/carte_assistante/VoirplusAssis';
 import Topnav from './component/nav/Topnav';
 import ModifierAssis from './component/carte_assistante/ModifierAssis';
+import AjouterAssis from './component/carte_assistante/AjouterAssis';
+import ModifierAdmin from './admine/ModifierAdmin';
+import Voirplus from './admine/Voirplus';
+import ModifVoirplus from './admine/ModifVoirplus';
 
 function App() {
 
@@ -115,7 +119,14 @@ function App() {
         <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
 
         <Route path="/ChercheurA" element={<ChercheurA />} />
+  
+
         <Route path="/Confirmation" element={<Confirmation />} />
+        <Route path="/Voirplus" element={<Voirplus />} />
+        <Route path="/ModifVoirplus" element={<ModifVoirplus />} />
+
+
+
 
         <Route path="/directrice/chercheurDi" element={<ChercheurTable />} />
         <Route path="/directrice/publicationDi" element={<PubTable />} />
@@ -136,6 +147,16 @@ function App() {
 
         <Route path="/VoirplusAssis" element={<VoirplusAssis />} />
         <Route path="/ModifierAssis" element={<ModifierAssis />} />
+        <Route path="/AjouterAssis" element={<AjouterAssis />} />
+        <Route path="/profilAdmin" element={< ProfilAdmin chercheur={chercheurActif} />} />
+        <Route path="/ModifierAdmin" element={< ModifierAdmin assistant={{
+                                                                    nom: "Sarah",
+                                                                    prenom: "Katia",
+                                                                    email: "admine@esi.dz",
+                                                                    telephone: "0654545258",
+                                                                    role: "Admine"
+                                                                    }} />} />
+
 
 
       </Routes>

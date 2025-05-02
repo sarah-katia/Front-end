@@ -35,8 +35,8 @@ const CarteModifAssis = () => {
 
   const styles = {
     card: {
-        marginTop : '15rem',
-        marginLeft : '8rem',
+        marginTop : '20rem',
+        marginLeft : '11rem',
       width: '40rem',
       backgroundColor: '#fff',
       borderRadius: '0.8rem',
