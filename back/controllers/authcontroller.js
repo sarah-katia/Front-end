@@ -39,6 +39,25 @@ exports.login = async (req, res) => {
       });
     }
 
+    // Si c'est un chercheur, on vérifie son statut
+    if (utilisateur.Rôle === "Chercheur") {
+      if (!utilisateur.Chercheur) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Chercheur introuvable pour cet utilisateur.',
+          error: 'Lien chercheur manquant'
+        });
+      }
+
+      if (utilisateur.Chercheur.Statut === "Inactif") {
+        return res.status(403).json({
+          status: 'error',
+          message: 'Compte chercheur inactif. Accès refusé.',
+          error: 'Chercheur inactif'
+        });
+      }
+    }
+
     const isMatch = await bcrypt.compare(password, utilisateur.password);
     if (!isMatch) {
       return res.status(401).json({
@@ -57,7 +76,6 @@ exports.login = async (req, res) => {
       process.env.SECRET_KEY,
       { expiresIn: '10d' }
     );
-    console.log(`[LOGIN] Rôle de l'utilisateur: ${utilisateur.Rôle}`);
 
     return res.status(200).json({
       status: 'success',
@@ -82,8 +100,6 @@ exports.login = async (req, res) => {
       error: error.message
     });
   }
-
-  
 };
 
 exports.requestPasswordReset = async (req, res) => {
@@ -109,30 +125,15 @@ exports.requestPasswordReset = async (req, res) => {
           { expiresIn: '10m' } // Expiration du token dans 10 minutes
         );
     
-        const resetLink = `http://localhost:5173/Nvmdp?token=${token}`;
+        const resetLink = `https://ton-frontend.com/reset-password?token=${token}`;
     
         // Envoi du lien de réinitialisation dans l'email
         await transporter.sendMail({
           from: '"ESI Auth System" <lmcslabo@gmail.com>',
           to: email,
           subject: 'Réinitialisation de votre mot de passe',
-          html: `
-          <p>Bonjour,</p>
-          <p>
-            Vous avez demandé à réinitialiser votre mot de passe. Pour procéder, veuillez cliquer sur le lien ci-dessous :
-          </p>
-          <p>
-            <a href="${resetLink}" style="color: #1976B4; font-weight: bold;">Réinitialiser mon mot de passe</a>
-          </p>
-          <p>
-            Ce lien est valide pendant 10 minutes. Si vous n’êtes pas à l’origine de cette demande, veuillez ignorer cet e-mail.
-          </p>
-          <p>
-            Merci,<br>
-            L’équipe LMCS
-          </p>
-        `
-                });
+          html: `<p>Bonjour,<br><br>Voici votre lien de réinitialisation de mot de passe : <a href="${resetLink}">${resetLink}</a><br><br>Le lien expire dans 10 minutes.</p>`
+        });
     
         console.log(`[RESET] Lien de réinitialisation envoyé à ${email}`);
         return res.status(200).json({ message: 'Lien de réinitialisation envoyé par email.' });

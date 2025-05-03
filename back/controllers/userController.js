@@ -6,12 +6,13 @@ exports.getUserInfo = async (req, res) => {
       const utilisateurId = req.params.id || req.user?.utilisateur_id;
   
       // 2. Si on accède à /users/:id et qu'on n’est pas admin → refus
-      if (req.params.id && req.user?.Rôle !== 'Administrateur') {
+      if (req.params.id && (req.user?.Rôle !== 'Administrateur' || req.user?.Rôle !== 'Directeur')) {
         return res.status(403).json({
           status: 'error',
-          message: 'Accès refusé : seuls les administrateurs peuvent consulter ce profil.'
+          message: 'Accès refusé '
         });
       }
+    
   
       // 3. Requête à la BDD
       const utilisateur = await Utilisateur.findByPk(utilisateurId, {

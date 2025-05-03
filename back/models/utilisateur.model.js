@@ -40,6 +40,8 @@ const Utilisateur = sequelize.define("Utilisateur", {
     type: DataTypes.STRING,
    
   },
+
+  
 });
 
 

@@ -103,26 +103,7 @@ exports.createUser = async (req, res) => {
         from: '"ESI Auth System" <lmcslabo@gmail.com>',
         to: Mails,
         subject: 'Votre compte a été créé',
-        html: `
-        <p>Bonjour,</p>
-        <p>
-          Bienvenue dans votre espace personnel sur la plateforme LMCS. <br>
-          Nous sommes ravis de vous compter parmi nous !
-        </p>
-        <p>
-          Voici les informations nécessaires pour vous connecter à votre compte :
-          <br>
-          <strong>Mot de passe temporaire :</strong> <b>${plainPassword}</b>
-        </p>
-        <p>
-          Pour des raisons de sécurité, nous vous recommandons de modifier ce mot de passe dès votre première connexion.
-        </p>
-        <p>
-          Si vous avez des questions ou besoin d’assistance, n’hésitez pas à nous contacter.
-        </p>
-        <p>Bonne utilisation,<br>L’équipe LMCS</p>
-      `
-      
+        html: `<p>Bonjour,<br><br>Votre mot de passe est : <b>${plainPassword}</b><br><br>Merci.</p>`
       });
     } catch (err) {
       console.error('[EMAIL] Échec envoi email:', err);

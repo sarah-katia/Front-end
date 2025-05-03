@@ -10,5 +10,7 @@ router.get('/me', authMiddleware, getUserInfo);
 
 // 🔐 Route réservée à l’admin pour consulter un utilisateur spécifique
 router.get('/admin/users/:id', authMiddleware, getUserInfo);
+router.get('/directeur/users/:id', authMiddleware, getUserInfo);
+
 
 module.exports = router;

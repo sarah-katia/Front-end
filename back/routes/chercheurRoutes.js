@@ -37,6 +37,6 @@ router.post("/", validateChercheur, createchercheur);
 router.put("/:id", validateChercheur, updateChercheur);
 
 // ✅ Route pour supprimer un chercheur
-router.delete("/:id", deleteChercheur);
+router.delete("/:id", authMiddleware, deleteChercheur);
 
 module.exports = router;

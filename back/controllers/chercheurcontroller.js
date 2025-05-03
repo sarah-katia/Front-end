@@ -257,6 +257,15 @@ const updateChercheur = async (req, res) => {
 const deleteChercheur = async (req, res) => {
   const id = req.params.id;
   try {
+    if (req.user?.Rôle !== 'Directeur') {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Accès refusé : seuls les directeurs peuvent supprimer des utilisateurs.'
+      });
+    }
+
+
+
     const chercheur = await Chercheur.findByPk(id);
     if (!chercheur) {
       return res.status(404).json({ message: "Chercheur non trouvé" });
