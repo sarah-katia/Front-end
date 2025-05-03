@@ -132,8 +132,22 @@ exports.requestPasswordReset = async (req, res) => {
           from: '"ESI Auth System" <lmcslabo@gmail.com>',
           to: email,
           subject: 'Réinitialisation de votre mot de passe',
-          html: `<p>Bonjour,<br><br>Voici votre lien de réinitialisation de mot de passe : <a href="${resetLink}">${resetLink}</a><br><br>Le lien expire dans 10 minutes.</p>`
-        });
+          html: `
+          <p>Bonjour,</p>
+          <p>
+            Vous avez demandé à réinitialiser votre mot de passe. Pour procéder, veuillez cliquer sur le lien ci-dessous :
+          </p>
+          <p>
+            <a href="${resetLink}" style="color: #1976B4; font-weight: bold;">Réinitialiser mon mot de passe</a>
+          </p>
+          <p>
+            Ce lien est valide pendant 10 minutes. Si vous n’êtes pas à l’origine de cette demande, veuillez ignorer cet e-mail.
+          </p>
+          <p>
+            Merci,<br>
+            L’équipe LMCS
+          </p>
+        `        });
     
         console.log(`[RESET] Lien de réinitialisation envoyé à ${email}`);
         return res.status(200).json({ message: 'Lien de réinitialisation envoyé par email.' });
