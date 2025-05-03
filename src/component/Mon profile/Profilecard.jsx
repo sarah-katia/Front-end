@@ -1,42 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom"; 
-import styles from "./Profilecard.module.css"; // Import du CSS Module
+import styles from "./Profilecard.module.css";
 
 const ProfileCard = () => {
     const navigate = useNavigate();
     const [utilisateur, setUtilisateur] = useState(null);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("user"); // ici 'user' et pas 'utilisateur'
+        const storedUser = localStorage.getItem("user");
         if (storedUser) {
-            setUtilisateur(JSON.parse(storedUser));  // On stocke l'objet utilisateur dans l'état
+            setUtilisateur(JSON.parse(storedUser));
         }
     }, []);
 
     const handleEditClick = () => {
-        navigate("/component/modifier/personal");  // Navigation vers la page de modification
+        navigate("/component/modifier/personal");
     };
 
-    if (!utilisateur) {
-        return <div>Chargement...</div>;  // Affichage pendant le chargement des données
+    if (!utilisateur || !utilisateur.chercheur) {
+        return <div className={styles.error}>Aucune information utilisateur disponible</div>;
     }
 
-    // On accède aux informations du chercheur dans l'objet utilisateur
     const { chercheur } = utilisateur;
 
     return (
         <div className={styles.profileCard}>
-            <div className={styles.profileTitle}>Mon Profile</div>
+            <div className={styles.profileTitle}>Mon Profil</div>
 
             <div className={styles.profileHeader}>
                 <img
-                    src={chercheur.photo || "/default-profile.png"}  // Photo de profil (avec image par défaut)
+                    src={chercheur.photo || "/default-profile.png"}
                     alt="Profil"
                     className={styles.profileImage}
                 />
                 <div className={styles.profileInfo}>
-                    <p><strong>Nom Complet:</strong> {chercheur.nom_complet}</p> {/* nom_complet */}
-                    <p><strong>Grade de Recherche:</strong> {chercheur.grade_recherche}</p> {/* grade_recherche */}
+                    <p><strong>Nom Complet:</strong> {chercheur.nom_complet}</p>
+                    <p><strong>Grade de Recherche:</strong> {chercheur.grade_recherche}</p>
                 </div>
             </div>
 

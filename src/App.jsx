@@ -24,7 +24,6 @@ import AccueilA from './component/assistante/AccueilA';
 import ChercheurA from './admine/ChercheurA';
 import Confirmation from './admine/Confimation';
 
-
 import AccueilDi from './component/Accueil/AccueilDi';
 import ProfilDi from './component/directrice/profilDi';
 import EditDirectrice from './component/directrice/editDi';
@@ -36,8 +35,6 @@ import Generer from './component/Dashboard/generer';
 import Resultats from './component/Dashboard/statresults';
 import ProfilAdmin from './admine/ProfilAdmin';
 
-
-
 import VoirplusAssis from './component/carte_assistante/VoirplusAssis';
 import Topnav from './component/nav/Topnav';
 import ModifierAssis from './component/carte_assistante/ModifierAssis';
@@ -45,10 +42,10 @@ import AjouterAssis from './component/carte_assistante/AjouterAssis';
 import ModifierAdmin from './admine/ModifierAdmin';
 import Voirplus from './admine/Voirplus';
 import ModifVoirplus from './admine/ModifVoirplus';
+import Hero from './LandingPage/Hero';
 
 function App() {
-
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   const chercheurActif = {
     nom: "Koudil",
@@ -59,7 +56,7 @@ function App() {
     phone: "0698 30 05 04",
     diplome: "Doctorat d'État",
     publications: 79,
-    id:230084,
+    id: 230084,
     orcid: "0000-0001-9022",
     hIndex: 16,
     qualité: "Enseignant chercheur",
@@ -75,17 +72,21 @@ function App() {
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setConnectedUser(JSON.parse(storedUser));
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        setConnectedUser(parsedUser);
+      } catch (error) {
+        console.error("Erreur de parsing de l'utilisateur depuis localStorage :", error);
+        alert("Une erreur est survenue lors de la récupération de vos données.");
+      }
     }
   }, []);
 
   return (
-    
     <Router>
-       
-
       <Routes>
-      <Route path="/Topnav" element={<Topnav user={connectedUser} />} />
+        <Route path="/" element={<Hero />} />
+        <Route path="/Topnav" element={<Topnav user={connectedUser} />} />
         <Route path="/Flogin" element={<Flogin />} />
         <Route path="/Nvmdp" element={<Nvmdp />} />
         <Route path="/Mdpoublier" element={<Mdpoublier />} />
@@ -100,12 +101,12 @@ function App() {
         <Route path="/statresults" element={<Resultats />} />
 
         <Route path="/editassi" element={< EditAssistantProfile assistant={{
-                                                                    nom: "Sarah",
-                                                                    prenom: "Katia",
-                                                                    email: "assistante@esi.dz",
-                                                                    telephone: "0654545258",
-                                                                    role: "Assistante"
-                                                                    }} />} />
+          nom: "Sarah",
+          prenom: "Katia",
+          email: "assistante@esi.dz",
+          telephone: "0654545258",
+          role: "Assistante"
+        }} />} />
 
         {/* Pages qui utilisent les infos de l'utilisateur connecté */}
         <Route path="/profilAss" element={<Prrofil chercheur={chercheurActif} />} />
@@ -119,14 +120,10 @@ function App() {
         <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
 
         <Route path="/ChercheurA" element={<ChercheurA />} />
-  
 
         <Route path="/Confirmation" element={<Confirmation />} />
         <Route path="/Voirplus" element={<Voirplus />} />
         <Route path="/ModifVoirplus" element={<ModifVoirplus />} />
-
-
-
 
         <Route path="/directrice/chercheurDi" element={<ChercheurTable />} />
         <Route path="/directrice/publicationDi" element={<PubTable />} />
@@ -135,34 +132,27 @@ function App() {
 
         <Route path="/profilDi" element={< ProfilDi chercheur={chercheurActif} />} />
         <Route path="/editDi" element={< EditDirectrice assistant={{
-                                                                            nom: "Benatchba",
-                                                                            prenom: "Karima",
-                                                                            email: "directrice@esi.dz",
-                                                                            telephone: "06 98 30 05 04 ",
-                                                                            role: "Directrice"
-                                                                            }} />} />
-
-
-
+          nom: "Benatchba",
+          prenom: "Karima",
+          email: "directrice@esi.dz",
+          telephone: "06 98 30 05 04 ",
+          role: "Directrice"
+        }} />} />
 
         <Route path="/VoirplusAssis" element={<VoirplusAssis />} />
         <Route path="/ModifierAssis" element={<ModifierAssis />} />
         <Route path="/AjouterAssis" element={<AjouterAssis />} />
         <Route path="/profilAdmin" element={< ProfilAdmin chercheur={chercheurActif} />} />
         <Route path="/ModifierAdmin" element={< ModifierAdmin assistant={{
-                                                                    nom: "Sarah",
-                                                                    prenom: "Katia",
-                                                                    email: "admine@esi.dz",
-                                                                    telephone: "0654545258",
-                                                                    role: "Admine"
-                                                                    }} />} />
-
-
-
+          nom: "Sarah",
+          prenom: "Katia",
+          email: "admine@esi.dz",
+          telephone: "0654545258",
+          role: "Admine"
+        }} />} />
       </Routes>
     </Router>
   );
 }
-
 
 export default App;

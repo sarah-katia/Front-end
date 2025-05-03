@@ -1,0 +1,11 @@
+DB_NAME=dbname
+DB_USER=root
+DB_PASS=mp
+DB_HOST=dbhost
+DB_DIALECT=mysql
+SECRET_KEY=your_jwt_secret
+PORT=8000
+EMAIL_PASSWORD=password application
+RESET_PASSWORD_SECRET=ton_secret_reset_key_jwt
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=MotDePasseFort123!

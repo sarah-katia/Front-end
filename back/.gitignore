@@ -1,0 +1,61 @@
+# Dependency directories
+node_modules/
+temp/
+dist/
+build/
+
+# Environment variable files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor folders
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Database / migration files (optional)
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+*.db-journal
+dump.rdb
+
+# Coverage reports (for tests)
+coverage/
+
+# PM2 logs (if you use PM2 process manager)
+pids/
+*.pid
+*.seed
+
+# Optional: backup files
+*.bak
+*.backup
+
+# Optional: OS-specific files
+*.swp
+*.swo
+
+# Optional: Test output
+test-results/
+
+# Ignore uploads folder (optional, if you have user-uploaded files)
+uploads/
+# Ignore package files
+package.json
+package-lock.json

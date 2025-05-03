@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Nvmdp.css";
 import logo from "./../assets/LMCS.png";
 import audito from "./../assets/audito.png";
@@ -10,14 +11,51 @@ const Nvmdp = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const token = new URLSearchParams(location.search).get("token");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newPassword !== confirmPassword) {
-      alert("Les mots de passe ne correspondent pas");
+    setError("");
+    setMessage("");
+
+    if (!token) {
+      setError("Lien invalide ou expiré.");
       return;
     }
-    console.log("Mot de passe changé avec succès");
+
+    if (newPassword !== confirmPassword) {
+      setError("Les mots de passe ne correspondent pas.");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const response = await fetch("http://localhost:3000/auth/confirmreset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, newPassword }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage("Mot de passe modifié avec succès !");
+        setTimeout(() => navigate("/Flogin"), 3000); // Redirection après 3s
+      } else {
+        setError(data.message || "Erreur lors de la réinitialisation.");
+      }
+    } catch (err) {
+      setError("Erreur de connexion au serveur.");
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -26,6 +64,10 @@ const Nvmdp = () => {
         <div className="login-form">
           <img src={logo} alt="Logo" className="logo" />
           <h2>Changer votre mot de passe</h2>
+
+          {message && <div className="success-message">{message}</div>}
+          {error && <div className="error-message">{error}</div>}
+
           <form onSubmit={handleSubmit}>
             <div className="password-field">
               <input
@@ -51,10 +93,11 @@ const Nvmdp = () => {
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </span>
             </div>
-            <button type="submit" className="connect-button">
-              Modifier le mot de passe
+            <button type="submit" className="connect-button" disabled={isLoading}>
+              {isLoading ? "Modification..." : "Modifier le mot de passe"}
             </button>
           </form>
+
           <Link to="/Mdpoublier" className="back-button">
             <FaArrowLeft /> Retour
           </Link>

@@ -1,0 +1,5 @@
+class_id,Nom,Type
+1,CORE ranking,Conference 
+2,Scimago,Journal
+3,DGRSDT,Journal
+4,Qualis,Conference

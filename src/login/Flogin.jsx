@@ -1,37 +1,42 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // ✅ Ajouté
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaArrowLeft } from "react-icons/fa";
 import "./Flogin.css";
 import logo from "./../assets/LMCS.png";
 import audito from "./../assets/audito.png";
 
 const Flogin = () => {
-  const [email, setEmail] = useState("");
+  const [Mails, setMails] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate(); // ✅ Hook pour la navigation
+  const navigate = useNavigate();
 
   const redirectByRole = (role) => {
+    // Convertir le rôle en minuscule pour correspondre aux routes
+    const roleLC = role.toLowerCase();
     const routes = {
-      admin: "/ChercheurA",
+      administrateur: "/Confirmation",
       chercheur: "/Accueil",
-      assistante: "/AccueilA",
+      assistant: "/AccueilA",
+      directeur: "/AccueilDi", 
+
       autre: "/AcceuilDi"
     };
-    navigate(routes[role] || "/accueil");
+    navigate(routes[roleLC] || "/accueil");
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!Mails || !password) {
       setError("Veuillez remplir tous les champs.");
       return;
     }
 
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!emailRegex.test(email)) {
+    // Correction de la regex email
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,6}$/;
+    if (!emailRegex.test(Mails)) {
       setError("Veuillez entrer un email valide.");
       return;
     }
@@ -39,33 +44,57 @@ const Flogin = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch("http://localhost:3000/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ Mails, password }),
       });
 
       const data = await response.json();
+      console.log("Réponse du serveur:", data);
 
       if (response.ok) {
-        console.log("Connexion réussie :", data);
+        console.log("Connexion réussie:", data);
         setError("");
 
+        // Récupérer les données utilisateur du bon endroit dans la réponse
+        const userData = data.data.utilisateur;
+        
         // Stocker l'utilisateur dans localStorage
-        localStorage.setItem("user", JSON.stringify(data.utilisateur));
+        localStorage.setItem("user", JSON.stringify(userData));
+        localStorage.setItem("token", data.data.token);
 
-        // Afficher les données stockées dans localStorage
-        console.log("Données stockées dans localStorage : ", localStorage.getItem("user"));
+        // Afficher les données stockées avec plus de détails
+        console.log("----------- DONNÉES STOCKÉES DANS LOCALSTORAGE -----------");
+        console.log("• Utilisateur (brut):", userData);
+        console.log("• Token:", data.data.token);
+        
+        // Récupérer et afficher les données pour vérifier le stockage
+        const storedUser = JSON.parse(localStorage.getItem("user"));
+        const storedToken = localStorage.getItem("token");
+        console.log("• Utilisateur (récupéré):", storedUser);
+        console.log("• Token (récupéré):", storedToken);
+        
+        // Afficher les détails spécifiques de l'utilisateur
+        console.log("----------- DÉTAILS UTILISATEUR -----------");
+        console.log("• ID:", userData.utilisateur_id);
+        console.log("• Email:", userData.Mails);
+        console.log("• Rôle:", userData.Rôle);
+        console.log("• Téléphone:", userData.Tél);
+        if (userData.chercheur) {
+            console.log("• Détails chercheur:", userData.chercheur);
+        }
+        console.log("--------------------------------------------");
 
         // Rediriger selon le rôle
-        redirectByRole(data.utilisateur.role);
-
+        redirectByRole(userData.Rôle);
       } else {
         setError(data.message || "Échec de la connexion.");
       }
     } catch (err) {
+      console.error("Erreur lors de la requête:", err);
       setError("Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setLoading(false);
@@ -82,8 +111,8 @@ const Flogin = () => {
           <form onSubmit={handleSubmit}>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={Mails}
+              onChange={(e) => setMails(e.target.value)}
               placeholder="Email"
               required
             />

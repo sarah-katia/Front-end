@@ -8,47 +8,165 @@ import "./Table_chercheur.css";
 
 const Table_chercheur = () => {
   const [chercheurs, setChercheurs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [totalRows, setTotalRows] = useState(0);
+  const [perPage, setPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const [filterQualite, setFilterQualite] = useState("");
   const [filterEquipe, setFilterEquipe] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [advancedFilters, setAdvancedFilters] = useState({});
 
+  // Vérifier les API disponibles au chargement
+  useEffect(() => {
+    checkApiEndpoints();
+  }, []);
+
+  // Récupérer les chercheurs lorsque les filtres changent
   useEffect(() => {
     fetchChercheurs();
-  }, [search, filterQualite, filterEquipe, advancedFilters]);
+  }, [perPage, currentPage, search, filterQualite, filterEquipe, advancedFilters]);
+  
+  // Fonction pour vérifier quelles routes API sont disponibles
+  const checkApiEndpoints = async () => {
+    try {
+      // Liste des routes potentielles à tester, ajout de la route sans 's'
+      const potentialRoutes = [
+        "http://localhost:3000/chercheur",         // <-- Cette route sans 's' en premier
+        "http://localhost:3000/api/chercheur",
+        "http://localhost:3000/chercheurs",
+        "http://localhost:3000/api/chercheurs",
+        "http://localhost:3000/api/v1/chercheurs",
+        "http://localhost:3000/v1/chercheurs"
+      ];
+      
+      for (const route of potentialRoutes) {
+        try {
+          console.log(`Tentative d'accès à la route: ${route}`);
+          const response = await axios.get(route);
+          if (response.status === 200) {
+            console.log(`✅ Route disponible: ${route}`);
+            // Si vous voulez stocker la route fonctionnelle pour une utilisation ultérieure
+            window.workingApiRoute = route;
+            break;
+          }
+        } catch (err) {
+          console.log(`❌ Route indisponible: ${route}`, err.message);
+        }
+      }
+    } catch (error) {
+      console.error("Erreur lors de la vérification des points d'API:", error);
+    }
+  };
 
   const fetchChercheurs = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/chercheurs", {
-        params: {
-          search,
-          qualite: filterQualite,
-          equipe: filterEquipe,
-          ...advancedFilters
+      setLoading(true);
+      const offset = (currentPage - 1) * perPage;
+      
+      // Utiliser la route détectée automatiquement ou la route par défaut sans 's'
+      const baseRoute = window.workingApiRoute || "http://localhost:3000/chercheur";
+      const searchRoute = `${baseRoute}/search`;
+      
+      console.log("Tentative de récupération des chercheurs avec la route:", baseRoute);
+      
+      let response;
+      
+      // Si une recherche est en cours, essayer d'utiliser l'endpoint de recherche
+      if (search || filterQualite || filterEquipe || Object.keys(advancedFilters).length > 0) {
+        try {
+          console.log("Utilisation de la route de recherche:", searchRoute);
+          response = await axios.get(searchRoute, {
+            params: {
+              nom_complet: search || undefined,
+              Qualité: filterQualite || undefined,
+              Equipe: filterEquipe || undefined,
+              limit: perPage,
+              offset,
+              ...advancedFilters
+            }
+          });
+        } catch (searchError) {
+          console.log("Route de recherche indisponible, repli sur la route principale");
+          // Si la route de recherche échoue, repli sur la route principale avec paramètres
+          response = await axios.get(baseRoute, {
+            params: {
+              search: search || undefined,
+              qualite: filterQualite || undefined,
+              equipe: filterEquipe || undefined,
+              limit: perPage,
+              offset,
+              ...advancedFilters
+            }
+          });
         }
-      });
-      setChercheurs(response.data);
+      } else {
+        // Route principale pour récupérer tous les chercheurs
+        response = await axios.get(baseRoute, {
+          params: {
+            limit: perPage,
+            offset
+          }
+        });
+      }
+      
+      // Vérifier la structure de la réponse et adapter
+      console.log("Réponse reçue:", response.data);
+      
+      if (response.data && Array.isArray(response.data.data)) {
+        // Format {data: [...], total: n}
+        setChercheurs(response.data.data);
+        setTotalRows(response.data.total || response.data.data.length);
+      } else if (response.data && Array.isArray(response.data)) {
+        // Format directement un tableau
+        setChercheurs(response.data);
+        setTotalRows(response.data.length);
+      } else if (response.data && typeof response.data === 'object') {
+        // Au cas où les données sont dans un autre format
+        const dataArray = response.data.chercheurs || response.data.results || response.data.items || [];
+        setChercheurs(Array.isArray(dataArray) ? dataArray : []);
+        setTotalRows(response.data.total || response.data.count || dataArray.length || 0);
+      } else {
+        // Si aucun format reconnu
+        console.error("Format de données non reconnu:", response.data);
+        setChercheurs([]);
+        setTotalRows(0);
+      }
+      setLoading(false);
     } catch (error) {
       console.error("Erreur lors de la récupération des chercheurs :", error);
+      setLoading(false);
     }
   };
 
   const handleSearch = (event) => {
     setSearch(event.target.value);
+    setCurrentPage(1); // Revenir à la première page lors d'une nouvelle recherche
   };
 
   const handleFilterQualite = (event) => {
     setFilterQualite(event.target.value);
+    setCurrentPage(1);
   };
 
   const handleFilterEquipe = (event) => {
     setFilterEquipe(event.target.value);
+    setCurrentPage(1);
   };
 
   const applyAdvancedFilters = (filters) => {
     setAdvancedFilters(filters);
+    setCurrentPage(1);
     setShowFilters(false);
+  };
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const handlePerRowsChange = (newPerPage, page) => {
+    setPerPage(newPerPage);
   };
 
   const columns = [
@@ -59,14 +177,33 @@ const Table_chercheur = () => {
       ),
       width: "140px"
     },
-    { name: "Nom complet", selector: (row) => row.nom, sortable: true },
-    { name: "Qualité", selector: (row) => row.qualite, sortable: true },
-    { name: "Équipe", selector: (row) => row.equipe, sortable: true },
+    { 
+      name: "Nom complet", 
+      selector: (row) => row.nom_complet || row.nom, // Adaptation aux deux formats possibles
+      sortable: true 
+    },
+    { 
+      name: "Qualité", 
+      selector: (row) => row.Qualité || row.qualite, // Adaptation aux deux formats possibles
+      sortable: true 
+    },
+    { 
+      name: "Équipe", 
+      selector: (row) => row.Equipe || row.equipe, // Adaptation aux deux formats possibles
+      sortable: true 
+    },
     {
       name: "Plus de détails",
-      cell: () => <button className="btn-profile">Voir Profile</button>
+      cell: (row) => <button className="btn-profile" onClick={() => handleViewProfile(row)}>Voir Profile</button>
     }
   ];
+
+  const handleViewProfile = (chercheur) => {
+    // Fonction pour afficher les détails du chercheur
+    console.log("Voir le profil de:", chercheur);
+    // Vous pouvez implémenter ici une redirection vers la page de profil
+    // ou afficher un modal avec les détails
+  };
 
   return (
     <div className="general">
@@ -112,8 +249,14 @@ const Table_chercheur = () => {
             <DataTable
               columns={columns}
               data={chercheurs}
+              progressPending={loading}
               pagination
+              paginationServer
+              paginationTotalRows={totalRows}
+              onChangeRowsPerPage={handlePerRowsChange}
+              onChangePage={handlePageChange}
               className="table"
+              noDataComponent="Aucun chercheur trouvé"
               customStyles={{
                 table: {
                   style: {
