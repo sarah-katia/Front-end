@@ -6,36 +6,57 @@ import { useNavigate } from "react-router-dom";
 
 export default function ProfilDi() {
   const navigate = useNavigate();
-  const [directeur, setDirecteur] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [directeur, setDirecteur] = useState({
+    nom_complet: '',
+    phone: '',
+    email: '',
+    photo: ''
+  });
 
   useEffect(() => {
-    // Récupérer les données du directeur depuis le localStorage
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const userData = JSON.parse(storedUser);
-      // En supposant que les informations du directeur sont stockées dans userData.directeur
-      if (userData.directeur) {
-        setDirecteur(userData.directeur);
-      } else {
-        // Si les données ne sont pas structurées comme prévu, on utilise tout l'objet userData
-        setDirecteur(userData);
+    const fetchUserInfo = async () => {
+      try {
+        const token = sessionStorage.getItem('token') || localStorage.getItem('token');
+        if (!token) {
+          console.error('Aucun token trouvé');
+          navigate('/login');
+          return;
+        }
+
+        const response = await fetch('http://localhost:3000/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('Échec de récupération des données');
+        }
+
+        const data = await response.json();
+        console.log("Réponse API :", data); // pour debug
+
+        if (data.status === 'success') {
+          const user = data.data;
+
+          setDirecteur({
+            nom_complet: user.nom_complet || `${user.nom || ''} ${user.prenom || ''}`,
+            phone: user.Tél || '',
+            email: user.Mails || '',
+            photo: user.photo || ''
+          });
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération des données:', error);
       }
-    }
-    setLoading(false);
-  }, []);
+    };
+
+    fetchUserInfo();
+  }, [navigate]);
 
   const handleEditClick = () => {
     navigate("/editDi");
   };
-
-  if (loading) {
-    return <div>Chargement...</div>;
-  }
-
-  if (!directeur) {
-    return <div>Aucune information disponible</div>;
-  }
 
   return (
     <div>
@@ -54,9 +75,7 @@ export default function ProfilDi() {
               />
               <div className={styles.profileInfo}>
                 <div className={styles.infoColumn}>
-                  <p className={styles.infoItem}><strong>Nom:</strong> {directeur.nom}</p>
-                  <p className={styles.infoItem}><strong>Prénom:</strong> {directeur.prenom}</p>
-                  <p className={styles.infoItem}><strong>Rôle:</strong> Directeur</p>
+                  <p className={styles.infoItem}><strong>Nom complet:</strong> {directeur.nom_complet}</p>
                 </div>
                 <div className={styles.infoColumn}>
                   <p className={styles.infoItem}><strong>Num.tél:</strong> {directeur.phone}</p>
