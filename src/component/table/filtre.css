@@ -5,9 +5,9 @@
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); /* Un peu plus doux */
-    width: 650px;
+    width: auto;
     height: auto; /* Ne pas fixer à 500px */
-    max-height: 88vh;
+    max-height: 82vh;
     overflow-y: hidden;
   }
   

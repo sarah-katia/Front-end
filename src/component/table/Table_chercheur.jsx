@@ -34,11 +34,7 @@ const Table_chercheur = () => {
       // Liste des routes potentielles à tester, ajout de la route sans 's'
       const potentialRoutes = [
         "http://localhost:3000/chercheur",         // <-- Cette route sans 's' en premier
-        "http://localhost:3000/api/chercheur",
-        "http://localhost:3000/chercheurs",
-        "http://localhost:3000/api/chercheurs",
-        "http://localhost:3000/api/v1/chercheurs",
-        "http://localhost:3000/v1/chercheurs"
+    
       ];
       
       for (const route of potentialRoutes) {
