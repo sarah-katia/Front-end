@@ -1,13 +1,26 @@
-const { Publication, Chercheur, ConfJournal, PubClassement } = require('../models');
+const { Publication, Chercheur, ConfJournal, PubClassement,Utilisateur } = require('../models');
 const { exec } = require('child_process');
 const fs = require('fs');
 const csv = require('csv-parser');
-const path = require('path');
-const os = require('os');
+const path = require('path'); 
+const os = require('os');         
 const cron = require('node-cron');
 
 
+
 const jobQueue = new Map();
+
+const getAssistants = async (req, res) => {
+    try {
+      const assistants = await Utilisateur.findAll({
+        where: { Rôle: "Assistant" }
+      });
+      res.status(200).json(assistants);
+    } catch (error) {
+      console.error("Erreur lors de la récupération des assistants :", error);
+      res.status(500).json({ message: "Erreur serveur", error });
+    }
+  };
 
 
 const addResearcherWithPublications = async (req, res) => {
@@ -818,9 +831,51 @@ async function runScheduledUpdate(jobId) {
         }
     }
 }
-
-
+const bcrypt = require("bcrypt");
+const addAssistant = async (req, res) => {
+    try {
+        if (req.user?.Rôle !== 'Directeur' ) {
+            return res.status(403).json({
+              status: 'error',
+              message: 'Accès refusé : seuls les directeurs  peuvent modifier des publications.'
+            });
+          }
+      const { Mails, password, Tél, photo } = req.body;
+  
+      // Vérifie que les champs obligatoires sont présents
+      if (!Mails || !password) {
+        return res.status(400).json({ message: "Email et mot de passe sont requis." });
+      }
+  
+      // Vérifie si l'utilisateur existe déjà
+      const existingUser = await Utilisateur.findOne({ where: { Mails } });
+      if (existingUser) {
+        return res.status(409).json({ message: "Un utilisateur avec ce mail existe déjà." });
+      }
+  
+      // Hashage du mot de passe
+      const hashedPassword = await bcrypt.hash(password, 10);
+  
+      // Création de l'utilisateur assistant
+      const newAssistant = await Utilisateur.create({
+        Mails,
+        password: hashedPassword,
+        Tél: Tél || null,
+        chercheur_id: null,
+        Rôle: "Assistant",
+        photo: photo || null,
+      });
+  
+      res.status(201).json({ message: "Assistant ajouté avec succès.", assistant: newAssistant });
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de l'assistant :", error);
+      res.status(500).json({ message: "Erreur serveur", error });
+    }
+  };
+  
 module.exports = {
+    addAssistant,
+    getAssistants,
     updatePublications,
     addResearcherWithPublications,
     getJobStatus,
