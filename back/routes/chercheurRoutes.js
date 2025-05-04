@@ -31,7 +31,7 @@ router.get('/:id', getChercheurById);
 
 
 // ✅ Route pour créer un chercheur
-router.post("/", validateChercheur, createchercheur);
+router.post("/createchercheur", validateChercheur, createchercheur);
 
 // ✅ Route pour mettre à jour un chercheur
 router.put("/:id", validateChercheur, updateChercheur);
