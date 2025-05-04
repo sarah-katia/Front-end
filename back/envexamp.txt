@@ -1,7 +1,7 @@
-DB_NAME=dbname
+DB_NAME=firstdb
 DB_USER=root
-DB_PASS=mp
-DB_HOST=dbhost
+DB_PASS=Safin@123
+DB_HOST=localhost
 DB_DIALECT=mysql
 SECRET_KEY=your_jwt_secret
 PORT=8000

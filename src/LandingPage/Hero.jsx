@@ -74,7 +74,7 @@ const Hero = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('http://localhost:3001');
+        const response = await fetch('http://localhost:8000');
         
         if (!response.ok) {
           throw new Error('Failed to fetch data');
@@ -164,7 +164,7 @@ const Hero = () => {
         setIsSubmitting(true);
         setSubmitMessage(null);
         
-        const response = await fetch(' http://localhost:3001/contact', {
+        const response = await fetch(' http://localhost:8000/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

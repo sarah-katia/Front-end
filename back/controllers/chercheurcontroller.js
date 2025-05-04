@@ -86,7 +86,7 @@ const chercheurSchema = Joi.object({
   Orcid: Joi.string().allow('', null),
   Grade_Enseignement: Joi.string().allow('', null), // Corrigé l'orthographe
   Chef_Equipe: Joi.boolean().optional(),
- // photo: Joi.string().allow('', null) // Ajouté pour correspondre au modèle
+  photo: Joi.string().allow('', null) // Ajouté pour correspondre au modèle
 });
 
 // ✅ Middleware de validation
