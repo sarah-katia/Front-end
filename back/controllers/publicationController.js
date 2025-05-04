@@ -5,6 +5,9 @@ const ConfJournal = require("../models/conf_journal.model");
 const Classement = require("../models/classement.model");  
 const PubClassement = require("../models/pub_classement.model");  
 const Joi = require("joi");  
+
+
+  
 const filtrerPublications = async (req, res) => {
   try {
     const {
@@ -267,6 +270,12 @@ const createPublication = async (req, res) => {
   const transaction = await Publication.sequelize.transaction();
   
   try {
+    if (req.user?.Rôle !== 'Directeur'||"Assistant" ) {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Accès refusé : seuls les directeurs les assistants  peuvent ajouter une publication.'
+      });
+    }
     // Validation des données
     const { error: pubError } = publicationSchema.validate(req.body.publication);
     if (pubError) {
@@ -381,7 +390,13 @@ const getPublicationsByChercheur = async (req, res) => {
 const updatePublication = async (req, res) => {
   const transaction = await Publication.sequelize.transaction();
   
-  try {
+  try {  
+    if (req.user?.Rôle !== 'Directeur'||"Assistant" ) {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Accès refusé : seuls les directeurs et les assistants  peuvent modifier des publications.'
+      });
+    }
     const { publication_id, chercheur_id } = req.params;
     
     // Validation des données
@@ -458,6 +473,12 @@ const updatePublication = async (req, res) => {
 // Supprimer une publication (soft delete)
 const deletePublication = async (req, res) => {
   try {
+    if (req.user?.Rôle !== 'Directeur'||"Assistant") {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Accès refusé : seuls les directeurs et les assistants  peuvent supprimer des publications.'
+      });
+    }
     const { publication_id, chercheur_id } = req.params;
     
     const publication = await Publication.findOne({
@@ -482,6 +503,47 @@ const deletePublication = async (req, res) => {
     res.status(500).json({ error: "Erreur serveur lors de la suppression de la publication" });
   }
 };
+
+
+const getAllPublications = async (req, res) => {
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+    const { count, rows: publications } = await Publication.findAndCountAll({
+      where: {
+        is_deleted: false
+      },
+      include: [
+        {
+          model: ConfJournal,
+          include: [
+            {
+              model: PubClassement,
+              attributes: ['classement', 'lien_vers_classement'],
+              include: [
+                {
+                  model: Classement,
+                  attributes: ['Nom', 'Type']
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      limit,
+      offset
+    });
+
+    res.json({ total: count, page, publications });
+
+  } catch (error) {
+    console.error("Erreur lors de la récupération des publications :", error);
+    res.status(500).json({ error: "Erreur serveur lors de la récupération des publications" });
+  }
+};
+
+
 const getPublicationDetails = async (req, res) => {
   try {
     const { publication_id, chercheur_id } = req.params;
@@ -524,6 +586,7 @@ const getPublicationDetails = async (req, res) => {
 };
 
  
+
 module.exports = {
   filtrerPublications,
   getPublicationsByChercheur,
@@ -531,5 +594,6 @@ module.exports = {
   createPublication,
   updatePublication,
   deletePublication,
-  validatePublication 
+  validatePublication ,
+  getAllPublications
 };

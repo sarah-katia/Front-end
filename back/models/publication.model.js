@@ -12,6 +12,10 @@ const Publication = sequelize.define("Publication", {
   auteurs: DataTypes.TEXT,
   publisher: DataTypes.STRING,
   book: DataTypes.STRING,
-  editors: DataTypes.TEXT
+  editors: DataTypes.TEXT ,
+  is_deleted: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false  
+  }
 });
 module.exports = Publication;

@@ -34,7 +34,6 @@ import Dashboard from './component/Dashboard/dashboard';
 import Generer from './component/Dashboard/generer';
 import Resultats from './component/Dashboard/statresults';
 import ProfilAdmin from './admine/ProfilAdmin';
-
 import VoirplusAssis from './component/carte_assistante/VoirplusAssis';
 import Topnav from './component/nav/Topnav';
 import ModifierAssis from './component/carte_assistante/ModifierAssis';
@@ -43,6 +42,8 @@ import ModifierAdmin from './admine/ModifierAdmin';
 import Voirplus from './admine/Voirplus';
 import ModifVoirplus from './admine/ModifVoirplus';
 import Hero from './LandingPage/Hero';
+
+import VoirplusPub from './component/page/VoirplusPub';
 
 
 function App() {
@@ -88,6 +89,12 @@ function App() {
   return (
     <Router>
       <Routes>
+
+
+
+
+      
+
         <Route path="/" element={<Hero />} />
         <Route path="/Topnav" element={<Topnav user={connectedUser} />} />
         <Route path="/Flogin" element={<Flogin />} />
@@ -114,13 +121,27 @@ function App() {
         {/* Pages qui utilisent les infos de l'utilisateur connecté */}
         <Route path="/profilAss" element={<Prrofil chercheur={connectedUser} />} />
         <Route path="/PageProfile" element={<ProfilePage chercheur={connectedUser} />} />
+
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
+
+
+
+
+
+        <Route path="/component/modifier/*" element={<ModifierPage chercheur={connectedUser} />} />
+
 
         {/* Visiteurs */}
         <Route path="/Page_recherche1" element={<Page_recherche1 />} />
         <Route path="/Page_recherche2" element={<Page_recherche2 />} />
         <Route path="/Page_visiteur1" element={<Page_visiteur1 />} />
         <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
+        <Route path="/Voirpluspub" element={<VoirplusPub />} />
+        <Route path="/voirpluspub/:id" element={<VoirplusPub />} />
+
+
+
+
 
         <Route path="/ChercheurA" element={<ChercheurA />} />
 

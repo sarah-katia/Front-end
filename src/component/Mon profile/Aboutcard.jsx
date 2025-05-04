@@ -28,7 +28,7 @@ const AboutCard = () => {
     }
   }, []);
 
-  // Fonction pour afficher "Non disponible $" quand une donnée n'est pas disponible
+  // Fonction pour afficher "Non disponible" quand une donnée n'est pas disponible
   const displayValue = (value) => {
     return value ? value : "Non disponible";
   };
@@ -46,51 +46,49 @@ const AboutCard = () => {
     </div>;
   }
 
-  // Vérifier si les données du chercheur existent
-  if (!userData.chercheur) {
-    return <div className={aboutStyles.warning}>
-      <h3>Information</h3>
-      <p>Les données de chercheur ne sont pas disponibles pour ce compte.</p>
-      <p>Email: {displayValue(userData.Mails)}</p>
-      <p>Rôle: {displayValue(userData.Rôle)}</p>
-      <p>Téléphone: {displayValue(userData.Tél)}</p>
-    </div>;
-  }
-
-  // Accéder aux informations de chercheur
-  const { chercheur } = userData;
+  // Si les données ne sont pas dans le format attendu (pas de propriété chercheur)
+  // On suppose que les données sont directement à la racine de l'objet
+  const chercheurData = userData.chercheur || userData;
 
   return (
     <div className={aboutStyles.aboutCard}>
       <div className={aboutStyles.aboutHeader}>À Propos</div>
       <div className={aboutStyles.aboutContent}>
         <div className={aboutStyles.aboutLeft}>
-          <p><FaEnvelope className={aboutStyles.icon} /> <strong>E-mail:</strong> <a href={`mailto:${userData.Mails}`} className={aboutStyles.link}>{displayValue(userData.Mails)}</a></p>
-          <p><FaUserGraduate className={aboutStyles.icon} /> <strong>Diplôme:</strong> {displayValue(chercheur.diplome)}</p>
-          <p><BsClipboardData className={aboutStyles.icon} /> <strong>ORCID:</strong> {displayValue(chercheur.orcid)}</p>
-          <p><BsFileEarmarkPerson className={aboutStyles.icon} /> <strong>Qualité:</strong> {displayValue(chercheur.qualite)}</p>
-          <p><FaUsers className={aboutStyles.icon} /> <strong>Équipe:</strong> {displayValue(chercheur.equipe)}</p>
+          <p><FaEnvelope className={aboutStyles.icon} /> <strong>E-mail:</strong> <a href={`mailto:${userData.Mails || chercheurData.Mails}`} className={aboutStyles.link}>{displayValue(userData.Mails || chercheurData.Mails)}</a></p>
+          <p><FaUserGraduate className={aboutStyles.icon} /> <strong>Diplôme:</strong> {displayValue(chercheurData.Diplôme || chercheurData.diplome)}</p>
+          <p><BsClipboardData className={aboutStyles.icon} /> <strong>ORCID:</strong> {displayValue(chercheurData.Orcid || chercheurData.orcid)}</p>
+          <p><BsFileEarmarkPerson className={aboutStyles.icon} /> <strong>Qualité:</strong> {displayValue(chercheurData.Qualité || chercheurData.qualite)}</p>
+          <p><FaUsers className={aboutStyles.icon} /> <strong>Équipe:</strong> {displayValue(chercheurData.Equipe || chercheurData.equipe)}</p>
         </div>
 
         <div className={aboutStyles.aboutRight}>
-          <p><FaPhone className={aboutStyles.icon} /> <strong>N° de téléphone:</strong> {displayValue(userData.Tél || chercheur.tel)}</p>
-          <p><BsBook className={aboutStyles.icon} /> <strong>Nombre de Publications:</strong> {displayValue(chercheur.publications_count)}</p>
-          <p><BsClipboardData className={aboutStyles.icon} /> <strong>Indice-H:</strong> {displayValue(chercheur.hindex)}</p>
-          <p><BsCheckCircle className={aboutStyles.icon} /> <strong>Statut:</strong> {displayValue(chercheur.statut)}</p>
-          <p><FaUsers className={aboutStyles.icon} /> <strong>Chef équipe:</strong> {chercheur.is_team_leader ? "Oui" : "Non disponible"}</p>
+          <p><FaPhone className={aboutStyles.icon} /> <strong>N° de téléphone:</strong> {displayValue(userData.Tél || chercheurData.Tél || chercheurData.tel)}</p>
+          <p><BsBook className={aboutStyles.icon} /> <strong>Nombre de Publications:</strong> {displayValue(chercheurData.publications_count)}</p>
+          <p><BsClipboardData className={aboutStyles.icon} /> <strong>Indice-H:</strong> {displayValue(chercheurData.Hindex || chercheurData.hindex)}</p>
+          <p><BsCheckCircle className={aboutStyles.icon} /> <strong>Statut:</strong> {displayValue(chercheurData.Statut || chercheurData.statut)}</p>
+          <p><FaUsers className={aboutStyles.icon} /> <strong>Chef équipe:</strong> {
+            (chercheurData.Chef_Equipe !== undefined || chercheurData.is_team_leader !== undefined) ? 
+            ((chercheurData.Chef_Equipe || chercheurData.is_team_leader) ? "Oui" : "Non") : 
+            "Non disponible"
+          }</p>
         </div>
 
-        <p className={aboutStyles.fullWidth}><FaUniversity className={aboutStyles.icon} /> <strong>Établissement d'origine:</strong> {displayValue(chercheur.etablissement_origine)}</p>
+        <p className={aboutStyles.fullWidth}><FaUniversity className={aboutStyles.icon} /> <strong>Établissement d'origine:</strong> {displayValue(chercheurData.Etablissement_origine || chercheurData.etablissement_origine)}</p>
         
         <p className={aboutStyles.fullWidth}><FaGoogle className={aboutStyles.icon} /> <strong>Lien Google Scholar:</strong> {
-          chercheur.lien_googlescholar ? 
-          <a href={chercheur.lien_googlescholar} className={aboutStyles.link} target="_blank" rel="noopener noreferrer">{chercheur.lien_googlescholar}</a> : 
+          chercheurData.Lien_GoogleScholar || chercheurData.lien_googlescholar ? 
+          <a href={chercheurData.Lien_GoogleScholar || chercheurData.lien_googlescholar} className={aboutStyles.link} target="_blank" rel="noopener noreferrer">
+            {chercheurData.Lien_GoogleScholar || chercheurData.lien_googlescholar}
+          </a> : 
           "Non disponible"
         }</p>
         
         <p className={aboutStyles.fullWidth}><FaGoogle className={aboutStyles.icon} /> <strong>Lien DBLP:</strong> {
-          chercheur.lien_dblp ? 
-          <a href={chercheur.lien_dblp} className={aboutStyles.link} target="_blank" rel="noopener noreferrer">{chercheur.lien_dblp}</a> : 
+          chercheurData.Lien_DBLP || chercheurData.lien_dblp ? 
+          <a href={chercheurData.Lien_DBLP || chercheurData.lien_dblp} className={aboutStyles.link} target="_blank" rel="noopener noreferrer">
+            {chercheurData.Lien_DBLP || chercheurData.lien_dblp}
+          </a> : 
           "Non disponible"
         }</p>
       </div>

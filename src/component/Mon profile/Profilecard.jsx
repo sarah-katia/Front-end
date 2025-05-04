@@ -5,11 +5,19 @@ import styles from "./Profilecard.module.css";
 const ProfileCard = () => {
     const navigate = useNavigate();
     const [utilisateur, setUtilisateur] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUtilisateur(JSON.parse(storedUser));
+        try {
+            const storedUser = localStorage.getItem("user");
+            if (storedUser) {
+                setUtilisateur(JSON.parse(storedUser));
+            } else {
+                setError("Aucune donnée utilisateur trouvée dans le localStorage");
+            }
+        } catch (err) {
+            console.error("Erreur lors de la récupération des données:", err);
+            setError("Erreur lors du chargement des données utilisateur");
         }
     }, []);
 
@@ -17,11 +25,22 @@ const ProfileCard = () => {
         navigate("/component/modifier/personal");
     };
 
-    if (!utilisateur || !utilisateur.chercheur) {
+    // Fonction pour afficher "Non disponible" quand une donnée n'est pas disponible
+    const displayValue = (value) => {
+        return value ? value : "Non disponible";
+    };
+
+    if (error) {
+        return <div className={styles.error}>{error}</div>;
+    }
+
+    if (!utilisateur) {
         return <div className={styles.error}>Aucune information utilisateur disponible</div>;
     }
 
-    const { chercheur } = utilisateur;
+    // Si les données ne sont pas dans le format attendu (pas de propriété chercheur)
+    // On suppose que les données sont directement à la racine de l'objet
+    const chercheurData = utilisateur.chercheur || utilisateur;
 
     return (
         <div className={styles.profileCard}>
@@ -29,13 +48,13 @@ const ProfileCard = () => {
 
             <div className={styles.profileHeader}>
                 <img
-                    src={chercheur.photo || "/default-profile.png"}
+                    src={chercheurData.photo || "/default-profile.png"}
                     alt="Profil"
                     className={styles.profileImage}
                 />
                 <div className={styles.profileInfo}>
-                    <p><strong>Nom Complet:</strong> {chercheur.nom_complet}</p>
-                    <p><strong>Grade de Recherche:</strong> {chercheur.grade_recherche}</p>
+                    <p><strong>Nom Complet:</strong> {displayValue(chercheurData.nom_complet || chercheurData.Nom_complet)}</p>
+                    <p><strong>Grade de Recherche:</strong> {displayValue(chercheurData.grade_recherche || chercheurData.Grade_Recherche)}</p>
                 </div>
             </div>
 
