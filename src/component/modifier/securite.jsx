@@ -89,7 +89,7 @@ const Security = () => {
       const token = localStorage.getItem('token');
       if (!token) throw new Error("Vous n'êtes pas connecté. Veuillez vous reconnecter.");
 
-      const response = await fetch("http://localhost:3000/auth/updatepassword", {
+      const response = await fetch("http://localhost:8000/auth/updatepassword", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -128,7 +128,6 @@ const Security = () => {
   return (
     <div className={pageStyle.container}>
       <div className={pageStyle.content}>
-        <h2 className={pageStyle.title}>Modifier votre mot de passe</h2>
 
         {apiError && (
           <div className={pageStyle.errorAlert}>

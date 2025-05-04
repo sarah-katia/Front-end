@@ -372,7 +372,6 @@ const Ajouter = () => {
               >
                 <option value="Actif">Actif</option>
                 <option value="Inactif">Inactif</option>
-                <option value="Retraité">Retraité</option>
               </select>
             </div>
 

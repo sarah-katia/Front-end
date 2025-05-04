@@ -33,7 +33,7 @@ const Table_chercheur = () => {
     try {
       // Liste des routes potentielles à tester, ajout de la route sans 's'
       const potentialRoutes = [
-        "http://localhost:3000/chercheur",         // <-- Cette route sans 's' en premier
+        "http://localhost:8000/chercheur",         // <-- Cette route sans 's' en premier
     
       ];
       
@@ -62,7 +62,7 @@ const Table_chercheur = () => {
       const offset = (currentPage - 1) * perPage;
       
       // Utiliser la route détectée automatiquement ou la route par défaut sans 's'
-      const baseRoute = window.workingApiRoute || "http://localhost:3000/chercheur";
+      const baseRoute = window.workingApiRoute || "http://localhost:8000/chercheur";
       const searchRoute = `${baseRoute}/search`;
       
       console.log("Tentative de récupération des chercheurs avec la route:", baseRoute);
