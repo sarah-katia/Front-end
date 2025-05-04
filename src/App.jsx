@@ -78,6 +78,7 @@ function App() {
       } catch (error) {
         console.error("Erreur de parsing de l'utilisateur depuis localStorage :", error);
         alert("Une erreur est survenue lors de la récupération de vos données.");
+        localStorage.removeItem('user');
       }
     }
   }, []);
@@ -109,7 +110,7 @@ function App() {
         }} />} />
 
         {/* Pages qui utilisent les infos de l'utilisateur connecté */}
-        <Route path="/profilAss" element={<Prrofil chercheur={chercheurActif} />} />
+        <Route path="/profilAss" element={<Prrofil chercheur={connectedUser} />} />
         <Route path="/PageProfile" element={<ProfilePage chercheur={connectedUser} />} />
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={connectedUser} />} />
 
@@ -129,7 +130,6 @@ function App() {
         <Route path="/directrice/publicationDi" element={<PubTable />} />
         <Route path="/directrice/Assistante" element={<AssiTable />} />
         <Route path="/AccueilDi" element={<AccueilDi />} />
-
         <Route path="/profilDi" element={< ProfilDi chercheur={chercheurActif} />} />
         <Route path="/editDi" element={< EditDirectrice assistant={{
           nom: "Benatchba",

@@ -19,6 +19,40 @@
     max-width: 900px;
 }
 
+/* Style pour les select - identique aux input */
+.profileEditContent .inputGroup select {
+    padding: 8px;
+    border: 1.5px solid #1976B4;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 95%;
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    appearance: none; /* Supprime le style par défaut du navigateur */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231976B4'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Style au focus */
+  .profileEditContent .inputGroup select:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(25, 118, 180, 0.2);
+  }
+  
+  /* Style pour les options */
+  .profileEditContent .inputGroup select option {
+    padding: 8px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Style pour le placeholder (option vide) */
+  .profileEditContent .inputGroup select option[value=""] {
+    color: #999;
+  }
+
 /* Formulaire */
 .profileEditForm {
     background: white;
@@ -173,6 +207,7 @@
     justify-content: flex-end; /* Aligner à droite */
     margin-top: 20px; /* Espacement avec le formulaire */
     width: 100%;
+    gap: 10px;
 }
 
 .saveButton {

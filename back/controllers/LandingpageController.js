@@ -96,7 +96,7 @@ exports.getHomePageData = async (req, res) => {
         role: member.Qualité || (member.Grade_Recherche === 'doctorant' ? 'membre de l\'équipe' : 'Chef d\'équipe'),
         description: `Membre de l'équipe ${member.Equipe || 'LMCS'}`,
         occupation: member.Grade_Recherche,
-        image: member.photo || koudilImage 
+        image: member.photo  
       }))
     });
   } catch (error) {
