@@ -21,7 +21,7 @@ const MdpOublier = () => {
     
     try {
       // Remplacez l'URL par celle de votre API backend
-      const response = await fetch("http://localhost:3000/auth/requestreset", {
+      const response = await fetch("http://localhost:8000/auth/requestreset", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

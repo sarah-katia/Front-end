@@ -156,9 +156,11 @@ button {
 
   .table-container table {
     font-size: 14px; /* ✅ table plus petite */
-    min-width: 700px; /* ✅ force le scroll horizontal si trop petit */
+    min-width: 800px; /* ✅ force le scroll horizontal si trop petit */
   }
 }
+
+
 
 @media screen and (max-width: 600px) {
   .headCells {

@@ -36,7 +36,7 @@ const Nvmdp = () => {
 
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:3000/auth/confirmreset", {
+      const response = await fetch("http://localhost:8000/auth/confirmreset", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token, newPassword }),
