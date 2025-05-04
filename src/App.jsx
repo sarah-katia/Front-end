@@ -67,6 +67,7 @@ function App() {
     isTeamLeader: "Oui",
     institution: "ESI (Ecole Nationale Supérieure d'Informatique)",
     googleScholar: "https://scholar.google.com/citations?user=9Zbx-EYAAAAJ&hl=fr",
+    dblp:"https://dblp.org/pid/50/5791.html"
   };
 
   const [connectedUser, setConnectedUser] = useState(null);
@@ -121,10 +122,14 @@ function App() {
         <Route path="/profilAss" element={<Prrofil chercheur={connectedUser} />} />
         <Route path="/PageProfile" element={<ProfilePage chercheur={connectedUser} />} />
 
+        <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
+
+
 
 
 
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={connectedUser} />} />
+
 
         {/* Visiteurs */}
         <Route path="/Page_recherche1" element={<Page_recherche1 />} />

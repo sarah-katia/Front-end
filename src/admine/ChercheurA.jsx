@@ -16,7 +16,7 @@ function ChercheurA() {
     const fetchChercheurs = async () => {
       try {
         setLoading(true);
-        const response = await axios.get('http://localhost:3000/chercheur/');
+        const response = await axios.get('http://localhost:8000/chercheur/');
         
         if (response.data && response.data.data) {
           // Mapping des données de l'API pour correspondre à la structure actuelle

@@ -4,7 +4,6 @@
     height: 100vh;
     width: 950px;
     padding-left: 310px; /* Pour éviter le chevauchement avec la sidebar */
-    padding-top: 380px; /* Ajuste en fonction de la navbar */
     justify-content: center;
     align-items: center;
     
@@ -199,6 +198,38 @@
     transform: translate(-50%, -50%);
 }
 
+.urlInputContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .urlInput {
+    flex: 1;
+    padding-right: 30px; /* Space for the icon */
+  }
+  
+  .linkIcon {
+    position: absolute;
+    right: 10px;
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .linkIcon:hover {
+    color: #004499;
+  }
+  
+  .errorMessage {
+    color: #d32f2f;
+    background-color: #fde8e8;
+    padding: 10px 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border: 1px solid #f5c6cb;
+  }
 
 /* Bouton de sauvegarde */
 .saveButtonContainer {
