@@ -44,7 +44,6 @@ import Voirplus from './admine/Voirplus';
 import ModifVoirplus from './admine/ModifVoirplus';
 import Hero from './LandingPage/Hero';
 
-
 function App() {
   const [count, setCount] = useState(0);
 
@@ -87,6 +86,12 @@ function App() {
   return (
     <Router>
       <Routes>
+
+
+
+
+      
+
         <Route path="/" element={<Hero />} />
         <Route path="/Topnav" element={<Topnav user={connectedUser} />} />
         <Route path="/Flogin" element={<Flogin />} />
