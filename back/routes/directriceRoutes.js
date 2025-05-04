@@ -6,5 +6,7 @@ const pageController = require('../controllers/directriceController');
 router.post('/', pageController.addResearcherWithPublications);
 router.post('/MAJ', pageController.updatePublications);
 router.get('/jobs/:jobId', pageController.getJobStatus);
+router.get("/assistants",  pageController.getAssistants ) ;
+router.post("/assistants",  pageController.addAssistant ) ; 
 
 module.exports = router;

@@ -1,55 +1,6 @@
-  /*const { Chercheur } = require('../models');
-
-exports.createchercheur = async (req, res) => {
-  try {
-    const {
-      chercheur_id,
-      nom_complet,
-      mails,
-      tél,
-      diplôme,
-      etablissement_origine,
-      qualité, 
-      grade_recherche,
-      statut,
-      hindex,
-      equipe,
-      url,
-      photo
-    } = req.body;
-
-    // Check if a Chercheur with same email (mails) already exists
-    const existingChercheur = await Chercheur.findOne({ where: { Mails: mails } });
-    if (existingChercheur) {
-      return res.status(400).json({ message: 'Un chercheur avec cet e-mail existe déjà.' });
-    }
-
-    // Create new Chercheur
-    const chercheur = await Chercheur.create({
-      chercheur_id,
-      nom_complet,
-      Mails: mails,
-      Tél: tél,
-      Diplôme: diplôme,
-      Etablissement_origine: etablissement_origine,
-      Qualité: qualité,
-      Grade_Recherche: grade_recherche,
-      Statut: statut,
-      Hindex: hindex,
-      Equipe: equipe,
-      URL: url,
-      photo
-    });
-
-    res.status(201).json({ message: 'Chercheur créé avec succès', chercheur });
-  } catch (error) {
-    console.error('Erreur lors de la création du chercheur:', error);
-    res.status(500).json({ message: 'Erreur serveur lors de la création du chercheur.' });
-  }
-};   */
 
 
- const Chercheur = require("../models/chercheur.model");
+const Chercheur = require("../models/chercheur.model");
 const { Op } = require("sequelize");
 const Joi = require("joi");
 
@@ -86,7 +37,7 @@ const chercheurSchema = Joi.object({
   Orcid: Joi.string().allow('', null),
   Grade_Enseignement: Joi.string().allow('', null), // Corrigé l'orthographe
   Chef_Equipe: Joi.boolean().optional(),
-  photo: Joi.string().allow('', null) // Ajouté pour correspondre au modèle
+ // photo: Joi.string().allow('', null) // Ajouté pour correspondre au modèle
 });
 
 // ✅ Middleware de validation
@@ -140,6 +91,13 @@ const getChercheurById = async (req, res) => {
 // ✅ Ajouter un chercheur
 const createchercheur = async (req, res) => { 
   try {
+    if (req.user?.Rôle !== 'Directeur'||"Assistant" ) {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Accès refusé : seuls les directeurs peuvent supprimer des utilisateurs.'
+      });
+    }
+    
     const { error } = chercheurSchema.validate(req.body);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
@@ -169,7 +127,8 @@ const createchercheur = async (req, res) => {
 
 // ✅ Rechercher avec filtres avancés
 const searchChercheurs = async (req, res) => {
-  try {
+  try { 
+  
     const {
       nom_complet, Diplôme, Etablissement_origine, Qualité,
       Grade_Recherche, Statut, Equipe, Hindex_min,
@@ -220,6 +179,13 @@ const searchChercheurs = async (req, res) => {
 // ✅ Mettre à jour un chercheur
 const updateChercheur = async (req, res) => {
   try {
+    if (req.user?.Rôle !== 'Directeur'||"Assistant"||"Chercheur" ) {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Accès refusé : seuls les directeurs peuvent supprimer des utilisateurs.'
+      });
+    }
+
     const { id } = req.params;
     const nouvellesDonnees = req.body;
 
@@ -253,18 +219,16 @@ const updateChercheur = async (req, res) => {
   }
 };
 
-// ✅ Supprimer un chercheur (changer le statut à inactif)
+/// ✅ Supprimer un chercheur (changer le statut à inactif)
 const deleteChercheur = async (req, res) => {
   const id = req.params.id;
   try {
-    if (req.user?.Rôle !== 'Directeur') {
+    if (req.user?.Rôle !== 'Directeur'||"Assistant" ) {
       return res.status(403).json({
         status: 'error',
         message: 'Accès refusé : seuls les directeurs peuvent supprimer des utilisateurs.'
       });
     }
-
-
 
     const chercheur = await Chercheur.findByPk(id);
     if (!chercheur) {
