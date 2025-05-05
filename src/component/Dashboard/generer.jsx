@@ -12,27 +12,30 @@ const StatiqueIntervalle = () => {
   const [critere, setCritere] = useState("");
   const navigate = useNavigate();
 
+  const critereInclutDate = critere.toLowerCase().includes("date");
+
   const handleSubmit = () => {
     if (!critere) {
       alert("Veuillez choisir un critère avant de continuer.");
       return;
     }
 
-    if (!anneeDebut || !anneeFin) {
-      alert("Veuillez remplir les deux années.");
-      return;
-    }
-    if (anneeDebut.getFullYear() > anneeFin.getFullYear()) {
-      alert("L'année de début doit être antérieure ou égale à l'année de fin.");
-      return;
+    if (critereInclutDate) {
+      if (!anneeDebut || !anneeFin) {
+        alert("Veuillez remplir les deux années.");
+        return;
+      }
+      if (anneeDebut.getFullYear() > anneeFin.getFullYear()) {
+        alert("L'année de début doit être antérieure ou égale à l'année de fin.");
+        return;
+      }
     }
 
-    // Navigation avec critère + intervalle de date
     navigate("/statresults", {
       state: {
         critere,
-        dateDebut: anneeDebut.getFullYear(),
-        dateFin: anneeFin.getFullYear(),
+        dateDebut: critereInclutDate ? anneeDebut.getFullYear() : null,
+        dateFin: critereInclutDate ? anneeFin.getFullYear() : null,
       },
     });
   };
@@ -52,7 +55,7 @@ const StatiqueIntervalle = () => {
                 <option value="">-- Choisir un critère --</option>
                 <option value="Nombre de publication par equipe">Nombre de publication par equipe</option>
                 <option value="Nombre de publication par date">Nombre de publication par date</option>
-                <option value="Taux de croissance des pubs entre chaque deux ans">Taux de croissance des pubs entre chaque deux ans</option>
+                <option value="Taux de croissance des pubs avec date">Taux de croissance des pubs entre chaque deux ans</option>
                 <option value="Meilleur classement des pubs selon les quatres sites">Meilleur classement des pubs selon les quatres sites</option>
                 <option value="Nombre de chercheur par grade de recherche">Nombre de chercheur par grade de recherche</option>
                 <option value="Nombre de chercheur par equipe">Nombre de chercheur par equipe</option>
@@ -60,31 +63,35 @@ const StatiqueIntervalle = () => {
               </select>
             </label>
 
-            <label>
-              Année de début :
-              <DatePicker
-                selected={anneeDebut}
-                onChange={(date) => setAnneeDebut(date)}
-                showYearPicker
-                dateFormat="yyyy"
-                placeholderText="Choisir une année"
-                className={styles.customInput}
-                popperPlacement="bottom-end"
-              />
-            </label>
+            {critereInclutDate && (
+              <>
+                <label>
+                  Année de début :
+                  <DatePicker
+                    selected={anneeDebut}
+                    onChange={(date) => setAnneeDebut(date)}
+                    showYearPicker
+                    dateFormat="yyyy"
+                    placeholderText="Choisir une année"
+                    className={styles.customInput}
+                    popperPlacement="bottom-end"
+                  />
+                </label>
 
-            <label>
-              Année de fin :
-              <DatePicker
-                selected={anneeFin}
-                onChange={(date) => setAnneeFin(date)}
-                showYearPicker
-                dateFormat="yyyy"
-                placeholderText="Choisir une année"
-                className={styles.customInput}
-                popperPlacement="bottom-end"
-              />
-            </label>
+                <label>
+                  Année de fin :
+                  <DatePicker
+                    selected={anneeFin}
+                    onChange={(date) => setAnneeFin(date)}
+                    showYearPicker
+                    dateFormat="yyyy"
+                    placeholderText="Choisir une année"
+                    className={styles.customInput}
+                    popperPlacement="bottom-end"
+                  />
+                </label>
+              </>
+            )}
           </div>
 
           <div className={styles.buttonContainer}>
