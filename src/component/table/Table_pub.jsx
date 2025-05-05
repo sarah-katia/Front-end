@@ -373,6 +373,13 @@ const Table_pub = () => {
     // Obtenir l'ID de la publication
     const pubId = publication.publication_id || "detail";
     
+ {/*
+    // Naviguer vers la page de détail avec l'ID correct et la publication complète
+    navigate(`/voirpluspub/${pubId}`, { state: { publication ,
+          Sidebar: 'chercheur'
+        }
+        });*/}
+
     // Vérifier l'URL actuelle pour déterminer la direction de redirection
     const currentPath = location.pathname;
     console.log("Chemin actuel:", currentPath);
@@ -387,6 +394,7 @@ const Table_pub = () => {
       navigate(`/Voirpluspub/${pubId}`, { state: { publication } });
       console.log("Redirection vers Voirpluspub");
     }
+
   };
 
   // Colonnes optimisées pour un affichage compact

@@ -398,24 +398,52 @@ const Personal = () => {
 
           <div className={stylesModule.inputGroup}>
             <label>Lien Google Scholar</label>
+            <div className={stylesModule.urlInputContainer}>
             <input 
               type="url" 
               name="Lien_GoogleScholar" 
               value={formData.Lien_GoogleScholar} 
               onChange={handleChange} 
-              placeholder="https://scholar.google.com/..." 
+              placeholder="https://scholar.google.com/..."
+              disabled 
             />
+              {formData.Lien_GoogleScholar && (
+                <a 
+                  href={formData.Lien_GoogleScholar} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={stylesModule.linkIcon}
+                  title="Open link"
+                >
+                  ↗
+                </a>
+              )}
+            </div>
           </div>
 
           <div className={stylesModule.inputGroup}>
             <label>Lien DBLP</label>
+            <div className={stylesModule.urlInputContainer}>
             <input 
               type="url" 
               name="Lien_DBLP" 
               value={formData.Lien_DBLP} 
               onChange={handleChange} 
               placeholder="https://dblp.org/..." 
+              disabled
             />
+            {formData.Lien_DBLP && (
+                <a 
+                  href={formData.Lien_DBLP} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={stylesModule.linkIcon}
+                  title="Open link"
+                >
+                  ↗
+                </a>
+              )}
+           </div>
           </div>
 
           <div className={stylesModule.inputGroup}>
@@ -427,20 +455,6 @@ const Personal = () => {
               onChange={handleChange} 
               placeholder="Université d'origine" 
             />
-          </div>
-
-          <div className={stylesModule.inputGroup}>
-            <label>Statut</label>
-            <select
-              name="Statut"
-              value={formData.Statut}
-              onChange={handleChange}
-              className={stylesModule.selectInput}
-            >
-              <option value="Actif">Actif</option>
-              <option value="Inactif">Inactif</option>
-              <option value="Retraité">Retraité</option>
-            </select>
           </div>
 
           <div className={stylesModule.saveButtonContainer}>
