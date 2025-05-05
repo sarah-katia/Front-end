@@ -49,6 +49,9 @@ import Publichercheur from './component/page/Publichercheur';
 
 import Ajouterjournak from './component/Mon profile/MesPubli';
 
+import Pluschercheur from './component/page/Pluschercheur';
+import PChercheurplus from './component/page/PChercheurplus';
+
 function App() {
   const [count, setCount] = useState(0);
 
@@ -144,6 +147,8 @@ function App() {
         <Route path="/voirpluspub/:id" element={<VoirplusPub />} />
         <Route path="/voirpluspubV/:id" element={<VoirpluspubV />} />
         <Route path="/Publichercheur" element={<Publichercheur />} />
+        <Route path="/Pluschercheur" element={<Pluschercheur />} />
+        <Route path="/Plus" element={<PChercheurplus />} />
 
 
 
