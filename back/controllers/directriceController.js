@@ -8,9 +8,12 @@ const cron = require('node-cron');
 const { upload, uploadToCloudinary } = require('../config/cloudinary');
 const PendingUser = require("../models/pendinguser");
 
+const bcrypt = require('bcrypt');
+const transporter = require('../utiles/mailer');
 const jobQueue = new Map();
 
 uploadChercheurPhoto = upload.single('photo');
+
 
 
 // Controller for submitting registration requests
@@ -877,8 +880,100 @@ async function runScheduledUpdate(jobId) {
     }
 }
 
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+async function createAssistant(req, res) {
+  try {
+    // Vérification du rôle
+  if (req.user?.Rôle !== 'Directeur') {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Accès refusé : seuls les directeurs peuvent créer des assistants.'
+      });
+    }
+
+    // Données du corps de la requête
+    const { Mails, Tél, chercheur_id } = req.body;
+    const Rôle = 'Assistant'; // Rôle imposé
+
+    // Validation des champs
+    if (!Mails) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Le champ "Mails" est requis.',
+        error: 'Champs manquants'
+      });
+    }
+
+    if (!isValidEmail(Mails)) {
+      return res.status(400).json({
+        status: 'error',
+        message: "Format d'email invalide.",
+        error: 'Email regex failed'
+      });
+    }
+
+    // Vérifie si un utilisateur existe déjà
+    const existingUser = await Utilisateur.findOne({ where: { Mails } });
+    if (existingUser) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Un compte avec cet e-mail existe déjà.',
+        error: 'Utilisateur existant'
+      });
+    }
+
+    // Génère un mot de passe aléatoire
+    const plainPassword = Math.random().toString(36).slice(-10);
+    const hashedPassword = await bcrypt.hash(plainPassword, 10);
+
+    // Génère un nouvel ID utilisateur (si ce champ n'est pas auto-incrémenté)
+    const count = await Utilisateur.count();
+    const utilisateurId = count + 1;
+
+    // Création de l'utilisateur
+    const utilisateur = await Utilisateur.create({
+      utilisateur_id: utilisateurId,
+      Mails,
+      password: hashedPassword,
+      Tél,
+      chercheur_id: chercheur_id || null,
+      Rôle
+    });
+
+    // Envoi de l'e-mail avec le mot de passe
+    try {
+      await transporter.sendMail({
+        from: '"ESI Auth System" <lmcslabo@gmail.com>',
+        to: Mails,
+        subject: 'Votre compte Assistant a été créé',
+        html: `<p>Bonjour,<br><br>Votre mot de passe est : <b>${plainPassword}</b><br><br>Merci.</p>`
+      });
+    } catch (err) {
+      console.error('[EMAIL] Échec de l’envoi de l’email :', err);
+      // Optionnel : tu peux choisir de continuer même si l'email échoue
+    }
+
+    return res.status(201).json({
+      status: 'success',
+      message: 'Compte Assistant créé et email envoyé.',
+      data: { utilisateur_id: utilisateur.utilisateur_id }
+    });
+
+  } catch (error) {
+    console.error('[CREATE ASSISTANT] Erreur serveur :', error);
+    return res.status(500).json({
+      status: 'error',
+      message: 'Erreur serveur lors de la création du compte.',
+      error: error.message
+    });
+  }
+}
+
 
 module.exports = {
+    createAssistant,
+    getAssistants,
     updatePublications,
     addResearcherWithPublications,
     getJobStatus,
