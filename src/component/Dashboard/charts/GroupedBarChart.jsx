@@ -36,8 +36,8 @@ function GroupedBarChart({ title , data, width = 450, height = 300 }) {
             iconType="circle"
             wrapperStyle={{ top: 0, left: 30 }}
           />
-          <Bar dataKey="publications" fill="#1976B4" barSize={15} activeBar={{ fill: '#249CF4' }} />
-          <Bar dataKey="projets" fill="#A1F7B9" barSize={15} activeBar={{ fill: '#71ef95' }} />
+          <Bar dataKey="conferences" fill="#1976B4" barSize={15} activeBar={{ fill: '#249CF4' }} />
+          <Bar dataKey="articles" fill="#A1F7B9" barSize={15} activeBar={{ fill: '#71ef95' }} />
         </BarChart>
       </div>
     </div>

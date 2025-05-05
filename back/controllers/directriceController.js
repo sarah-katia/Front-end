@@ -1,76 +1,121 @@
-const { Publication, Chercheur, ConfJournal, PubClassement,Utilisateur } = require('../models');
+const { Publication, Chercheur, ConfJournal, PubClassement } = require('../models');
 const { exec } = require('child_process');
 const fs = require('fs');
 const csv = require('csv-parser');
-const path = require('path'); 
-const os = require('os');         
+const path = require('path');
+const os = require('os');
 const cron = require('node-cron');
-
-
+const { upload, uploadToCloudinary } = require('../config/cloudinary');
+const PendingUser = require("../models/pendinguser");
 
 const jobQueue = new Map();
 
-const getAssistants = async (req, res) => {
+uploadChercheurPhoto = upload.single('photo');
+
+
+// Controller for submitting registration requests
+const submitRequest = async (req, res) => {
     try {
-      const assistants = await Utilisateur.findAll({
-        where: { Rôle: "Assistant" }
+     
+
+      const userData = { ...req.body };
+      
+      // Add the image URL if a file was uploaded
+      if (req.file) {
+        const uploadResult = await uploadToCloudinary(req.file);
+        userData.photo = uploadResult.url;
+        userData.photoPublicId = uploadResult.public_id;
+        console.log(uploadResult.url)
+      }
+      
+      console.log(userData)
+      // Create pending user record
+      const pendingUser = await PendingUser.create(userData);
+      
+      res.status(201).json({
+        success: true,
+        message: "Registration request submitted successfully. Awaiting admin approval.",
+        data: pendingUser
       });
-      res.status(200).json(assistants);
     } catch (error) {
-      console.error("Erreur lors de la récupération des assistants :", error);
-      res.status(500).json({ message: "Erreur serveur", error });
+      res.status(500).json({
+        success: false,
+        message: "Error submitting registration request",
+        error: error.message
+      });
     }
   };
-
+  
 
 const addResearcherWithPublications = async (req, res) => {
     try {
-        const { nom_complet, chercheur_id } = req.body;  
-
-        if (!nom_complet ) {
-            return res.status(400).json({ message: "Complete name and researcher ID are required!" });
-        }
-
-        // 1. Create the researcher in the database
-        const researcher = await Chercheur.create(req.body);
-
-        // 2. Generate a job ID
-        const jobId = `researcher_${chercheur_id}_${Date.now()}`;
-        
-        // 3. Add job to queue with status "pending"
-        jobQueue.set(jobId, {
-            type: 'add_researcher',
-            status: 'pending',
-            started: new Date(),
-            researcher: {
-                id: chercheur_id,
-                name: nom_complet
-            },
-            completed: false,
-            results: null
-        });
-
-        // 4. Return immediate response with job ID
-        res.status(202).json({
-            success: true,
-            message: 'Researcher created. Publication scraping started in background.',
-            researcher,
-            jobId,
-            statusEndpoint: `/directrice/jobs/${jobId}`
-        });
-
-        // 5. Run the scraping process in background
-        processResearcherInBackground(jobId, nom_complet, chercheur_id);
-        
+      // Get text data from the request body
+      const { nom_complet, chercheur_id } = req.body;  
+      
+      // Validate required fields
+      if (!nom_complet) {
+        return res.status(400).json({ message: "Complete name is required!" });
+      }
+      
+      // Create a new object with all fields from req.body
+      const chercheurData = { ...req.body };
+      
+      // Add the image URL if a file was uploaded
+      if (req.file) {
+        const uploadResult = await uploadToCloudinary(req.file);
+        chercheurData.photo = uploadResult.url;
+        chercheurData.photoPublicId = uploadResult.public_id;
+        console.log(uploadResult.url)
+      }
+      
+      // Create the researcher in the database
+      const researcher = await Chercheur.create(chercheurData);
+      
+      // Get the researcher's ID from the created record
+    //   const chercheur_id = researcher._id || researcher.id;
+      
+      // Generate a job ID
+      const jobId = `researcher_${chercheur_id}_${Date.now()}`;
+      
+      // Add job to queue with status "pending"
+      jobQueue.set(jobId, {
+        type: 'add_researcher',
+        status: 'pending',
+        started: new Date(),
+        researcher: {
+          id: chercheur_id,
+          name: nom_complet
+        },
+        completed: false,
+        results: null
+      });
+      
+      // Return response with job ID (SEND ONLY ONE RESPONSE)
+      res.status(202).json({
+        success: true,
+        message: 'Researcher created. Publication scraping started in background.',
+        researcher,
+        jobId,
+        statusEndpoint: `/directrice/jobs/${jobId}`
+      });
+      
+      // Run the scraping process in background AFTER sending response
+      // This won't affect the response as it runs after
+      console.log(chercheur_id)
+      processResearcherInBackground(jobId, nom_complet, chercheur_id);
+      
     } catch (err) {
-        console.error(`Controller error: ${err}`);
-        res.status(500).json({ 
-            success: false, 
-            message: 'Internal server error', 
-            error: err.message 
+      console.error(`Controller error: ${err}`);
+      // Make sure we haven't already sent a response
+      if (!res.headersSent) {
+        res.status(500).json({
+          success: false,
+          message: 'Internal server error',
+          error: err.message
         });
+      }
     }
-};
+  };
 
 // Background processing function for a single researcher
 async function processResearcherInBackground(jobId, nom_complet, chercheur_id) {
@@ -831,53 +876,13 @@ async function runScheduledUpdate(jobId) {
         }
     }
 }
-const bcrypt = require("bcrypt");
-const addAssistant = async (req, res) => {
-    try {
-        if (req.user?.Rôle !== 'Directeur' ) {
-            return res.status(403).json({
-              status: 'error',
-              message: 'Accès refusé : seuls les directeurs  peuvent modifier des publications.'
-            });
-          }
-      const { Mails, password, Tél, photo } = req.body;
-  
-      // Vérifie que les champs obligatoires sont présents
-      if (!Mails || !password) {
-        return res.status(400).json({ message: "Email et mot de passe sont requis." });
-      }
-  
-      // Vérifie si l'utilisateur existe déjà
-      const existingUser = await Utilisateur.findOne({ where: { Mails } });
-      if (existingUser) {
-        return res.status(409).json({ message: "Un utilisateur avec ce mail existe déjà." });
-      }
-  
-      // Hashage du mot de passe
-      const hashedPassword = await bcrypt.hash(password, 10);
-  
-      // Création de l'utilisateur assistant
-      const newAssistant = await Utilisateur.create({
-        Mails,
-        password: hashedPassword,
-        Tél: Tél || null,
-        chercheur_id: null,
-        Rôle: "Assistant",
-        photo: photo || null,
-      });
-  
-      res.status(201).json({ message: "Assistant ajouté avec succès.", assistant: newAssistant });
-    } catch (error) {
-      console.error("Erreur lors de l'ajout de l'assistant :", error);
-      res.status(500).json({ message: "Erreur serveur", error });
-    }
-  };
-  
+
+
 module.exports = {
-    addAssistant,
-    getAssistants,
     updatePublications,
     addResearcherWithPublications,
     getJobStatus,
-    scheduleAutomaticUpdates
+    scheduleAutomaticUpdates,
+    uploadChercheurPhoto,
+    submitRequest
 };
