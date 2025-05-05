@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const session = require('express-session');
@@ -7,13 +8,11 @@ const authRoutes = require('./routes/authRoutes');
 const chercheurRoutes = require('./routes/chercheurRoutes');
 const directriceRoutes = require('./routes/directriceRoutes');
 const adminRoutes = require('./routes/adminRoutes');
-const protectedroutes = require('./routes/protectedroutes'); 
-const publicationRoutes = require('./routes/publicationRoutes'); 
+const protectedroutes = require('./routes/protectedroutes');
+const dashboardRoutes = require('./routes/dashboardRoutes');
 const cors = require('cors');
 const seedAdmin = require('./scripts/seedAdmin');
-const userRoutes = require('./routes/userRoutes');
 
-require('dotenv').config(); // Load .env variables
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -29,15 +28,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // API routes
-
 app.use('/', homeRoutes);
 app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/chercheur', chercheurRoutes);
 app.use('/directrice', directriceRoutes);
 app.use('/protected', protectedroutes);
-app.use("/publications", publicationRoutes);
-app.use('/', userRoutes);
+app.use('/dashboard', dashboardRoutes);
 
 // 404 handler
 app.use((req, res) => {
@@ -77,16 +74,16 @@ const seedStaticTables = async () => {
     await sequelize.authenticate();
     console.log('Connected to the database successfully.');
 
-    await sequelize.sync({ alter: true }); // ⚡ Force recreation of tables
+    await sequelize.sync({ force: true }); 
     console.log('Database synchronized.');
 
     await seedStaticTables(); // Seed static Classement table
     await seedAdmin();        // Seed admin user
 
     app.listen(PORT, () => {
-      console.log(`✅ API server is running on http://localhost:${PORT}`);
+      console.log(` API server is running on http://localhost:${PORT}`);
     });
   } catch (error) {
-    console.error('❌ Failed to start the server:', error);
+    console.error(' Failed to start the server:', error);
   }
 })();

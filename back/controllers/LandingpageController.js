@@ -3,6 +3,8 @@
 const { Chercheur, Publication } = require('../models');
 const { Op, Sequelize } = require('sequelize');
 const sendEmail = require('../utiles/mailer');
+const unknown = "https://res.cloudinary.com/dv5ylazxm/image/upload/v1746196561/Unknown_person_gffmfs.jpg"
+
 
 
 
@@ -72,7 +74,6 @@ exports.getHomePageData = async (req, res) => {
       order: [['annee', 'ASC']],
       raw: true
     });
-    console.log(publicationsParAnnee);
     
     // Récupérer quelques chercheurs arbitraires pour "Notre équipe"
     const teamMembers = await Chercheur.findAll({
@@ -96,7 +97,7 @@ exports.getHomePageData = async (req, res) => {
         role: member.Qualité || (member.Grade_Recherche === 'doctorant' ? 'membre de l\'équipe' : 'Chef d\'équipe'),
         description: `Membre de l'équipe ${member.Equipe || 'LMCS'}`,
         occupation: member.Grade_Recherche,
-        image: member.photo  
+        image: member.photo || unknown 
       }))
     });
   } catch (error) {

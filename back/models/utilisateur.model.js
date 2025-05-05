@@ -16,6 +16,10 @@ const Utilisateur = sequelize.define("Utilisateur", {
       isEmail: true
     }
   },
+  nom_complet:{
+    type: DataTypes.STRING,
+    allowNull:false,
+  },
   password: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -36,12 +40,6 @@ const Utilisateur = sequelize.define("Utilisateur", {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  nom_complet: {
-    type: DataTypes.STRING,
-   
-  },
-
-  
 });
 
 

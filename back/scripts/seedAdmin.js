@@ -10,6 +10,7 @@ async function seedAdmin() {
 
       await Utilisateur.create({
         utilisateur_id: 1,
+        nom_complet: 'weew',
         Mails: process.env.ADMIN_EMAIL || 'admin@example.com',
         password: hashedPassword,
         Rôle: 'Administrateur',
