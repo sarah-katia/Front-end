@@ -4,7 +4,7 @@ import { FaSearch, FaFilter } from "react-icons/fa";
 import axios from "axios";
 import "./Table_pub.css";
 import Filtrepub from "./filtrepub";
-import { useNavigate } from "react-router-dom"; // Importation de useNavigate
+import { useNavigate, useLocation } from "react-router-dom"; // Importation de useLocation également
 
 const Table_pub = () => {
   const [publications, setPublications] = useState([]);
@@ -21,6 +21,7 @@ const Table_pub = () => {
   const [apiError, setApiError] = useState(null);
   const [allPublications, setAllPublications] = useState([]); // Nouvel état pour stocker toutes les publications
   const navigate = useNavigate(); // Hook pour la navigation
+  const location = useLocation(); // Hook pour obtenir l'URL actuelle
 
   // Vérifier les API disponibles au chargement
   useEffect(() => {
@@ -65,6 +66,48 @@ const Table_pub = () => {
     }
   };
 
+  // Transforme les filtres frontend en paramètres pour l'API backend
+  const transformFiltersForAPI = (filters) => {
+    const apiParams = {};
+
+    // Transformation des filtres pour le backend
+    if (filters.anneePublication) {
+      const year = new Date(filters.anneePublication).getFullYear().toString();
+      apiParams.annee_debut = year;
+      apiParams.annee_fin = year;
+    }
+    
+    if (filters.periodeDebut) {
+      apiParams.annee_debut = new Date(filters.periodeDebut).getFullYear().toString();
+    }
+    
+    if (filters.periodeFin) {
+      apiParams.annee_fin = new Date(filters.periodeFin).getFullYear().toString();
+    }
+    
+    if (filters.typePublication) {
+      apiParams.type_publication = filters.typePublication;
+    }
+    
+    if (filters.periodicite) {
+      apiParams.periodicite = filters.periodicite;
+    }
+    
+    if (filters.thematique) {
+      apiParams.thematique = filters.thematique;
+    }
+    
+    if (filters.classementPublication) {
+      apiParams.classement_type = filters.classementPublication;
+    }
+    
+    if (filters.classement) {
+      apiParams.classement_rang = filters.classement;
+    }
+    
+    return apiParams;
+  };
+
   const fetchPublications = async () => {
     try {
       setLoading(true);
@@ -75,28 +118,52 @@ const Table_pub = () => {
       
       console.log("Tentative de récupération des publications avec la route:", baseRoute);
       
-      // Récupérer toutes les publications sans pagination pour s'assurer d'avoir toutes les données
-      const response = await axios.get(baseRoute);
+      // Préparer les paramètres de la requête en fonction des filtres
+      const queryParams = {};
+      
+      // Ajouter les filtres de base (recherche, auteur, année)
+      if (search) queryParams.search = search;
+      if (filterAuteur) queryParams.auteur = filterAuteur;
+      if (filterAnnee) {
+        queryParams.annee_debut = filterAnnee;
+        queryParams.annee_fin = filterAnnee;
+      }
+      
+      // Ajouter les filtres avancés
+      if (Object.keys(advancedFilters).length > 0) {
+        Object.assign(queryParams, advancedFilters);
+      }
+      
+      // Ajouter la pagination
+      queryParams.page = currentPage;
+      queryParams.limit = perPage;
+      
+      console.log("Paramètres de la requête:", queryParams);
+      
+      // Effectuer la requête avec les paramètres
+      const response = await axios.get(baseRoute, { params: queryParams });
       
       console.log("Réponse brute complète:", response);
       console.log("Type de réponse:", typeof response.data);
       console.log("Réponse data:", response.data);
       
-      if (Array.isArray(response.data)) {
-        console.log("Nombre total de publications reçues (format tableau):", response.data.length);
-      } else if (response.data && typeof response.data === 'object') {
-        console.log("Structure de l'objet response.data:", Object.keys(response.data).join(', '));
-      }
-      
       let publicationsData = [];
+      let totalCount = 0;
       
       if (response.data && Array.isArray(response.data)) {
         // Format directement un tableau (comme dans Postman)
         publicationsData = response.data;
+        totalCount = publicationsData.length;
         console.log("Données au format tableau. Nombre d'éléments:", publicationsData.length);
+      } else if (response.data && Array.isArray(response.data.publications)) {
+        // Format du backend avec pagination {publications: [...], total: n}
+        publicationsData = response.data.publications;
+        totalCount = response.data.total || publicationsData.length;
+        console.log("Données au format paginé. Total:", totalCount);
       } else if (response.data && Array.isArray(response.data.data)) {
         // Format {data: [...], total: n}
         publicationsData = response.data.data;
+        totalCount = response.data.total || publicationsData.length;
         console.log("Données au format {data: [...]}, Nombre d'éléments:", publicationsData.length);
       } else if (response.data && typeof response.data === 'object') {
         // Au cas où les données sont dans un autre format
@@ -105,6 +172,7 @@ const Table_pub = () => {
         for (const key of possibleArrayKeys) {
           if (response.data[key] && Array.isArray(response.data[key])) {
             publicationsData = response.data[key];
+            totalCount = response.data.total || publicationsData.length;
             console.log(`Données trouvées sous la clé '${key}'. Nombre d'éléments:`, publicationsData.length);
             break;
           }
@@ -115,6 +183,7 @@ const Table_pub = () => {
           const entries = Object.entries(response.data);
           if (entries.length > 0 && typeof entries[0][1] === 'object') {
             publicationsData = entries.map(([key, value]) => value);
+            totalCount = publicationsData.length;
             console.log("Données converties à partir d'un objet. Nombre d'éléments:", publicationsData.length);
           } else {
             throw new Error("Format de données non reconnu dans l'objet response.data");
@@ -128,14 +197,16 @@ const Table_pub = () => {
       // Afficher les 3 premières publications pour le débogage
       console.log("Échantillon des 3 premières publications:", publicationsData.slice(0, 3));
       
-      // MODIFICATION: Supprimer la déduplication et utiliser directement toutes les publications
-      console.log(`Total de publications: ${publicationsData.length}`);
+      console.log(`Total de publications: ${totalCount}`);
       
-      // Stocker toutes les publications dans l'état sans déduplication
-      setAllPublications(publicationsData);
+      // Si c'est une recherche initiale ou un changement complet de filtres, stocker toutes les publications
+      if (publicationsData.length > 0 && allPublications.length === 0) {
+        setAllPublications(publicationsData);
+      }
       
-      // Appliquer les filtres et la pagination
-      applyFiltersAndPagination(publicationsData);
+      // Mettre à jour les publications affichées
+      setPublications(publicationsData);
+      setTotalRows(totalCount);
       
     } catch (error) {
       console.error("Erreur lors de la récupération des publications:", error);
@@ -224,42 +295,67 @@ const Table_pub = () => {
 
   // Application des filtres avancés
   const handleApplyFilters = (filters) => {
-    const apiFilters = {};
+    console.log("Filtres reçus du composant Filtrepub:", filters);
+    
     const newActiveFilters = [];
     
+    // 1. Traitement de l'année de publication
     if (filters.anneePublication) {
       const year = new Date(filters.anneePublication).getFullYear().toString();
-      apiFilters.annee = year;
       setFilterAnnee(year);
       newActiveFilters.push({ type: 'année', value: year });
     } else {
       setFilterAnnee("");
     }
     
+    // 2. Transformer les filtres pour l'API backend
+    const apiFilters = transformFiltersForAPI(filters);
+    console.log("Filtres transformés pour l'API:", apiFilters);
+    
+    // 3. Mettre à jour les filtres actifs pour l'affichage
     if (filters.typePublication) {
-      apiFilters.type = filters.typePublication;
       newActiveFilters.push({ type: 'type', value: filters.typePublication });
     }
     
     if (filters.thematique) {
-      apiFilters.thematique = filters.thematique;
       newActiveFilters.push({ type: 'thématique', value: filters.thematique });
     }
     
-    if (filters.journal) {
-      apiFilters.journal = filters.journal;
-      newActiveFilters.push({ type: 'journal', value: filters.journal });
+    if (filters.periodicite) {
+      newActiveFilters.push({ type: 'périodicité', value: filters.periodicite });
     }
     
-    if (filters.conference) {
-      apiFilters.conference = filters.conference;
-      newActiveFilters.push({ type: 'conférence', value: filters.conference });
+    if (filters.classementPublication) {
+      newActiveFilters.push({ type: 'classement', value: filters.classementPublication });
     }
     
+    if (filters.classement) {
+      newActiveFilters.push({ type: 'rang', value: filters.classement });
+    }
+    
+    if (filters.periodeDebut && filters.periodeFin) {
+      const debut = new Date(filters.periodeDebut).getFullYear();
+      const fin = new Date(filters.periodeFin).getFullYear();
+      newActiveFilters.push({ type: 'période', value: `${debut}-${fin}` });
+    } else if (filters.periodeDebut) {
+      const debut = new Date(filters.periodeDebut).getFullYear();
+      newActiveFilters.push({ type: 'depuis', value: debut });
+    } else if (filters.periodeFin) {
+      const fin = new Date(filters.periodeFin).getFullYear();
+      newActiveFilters.push({ type: 'jusqu\'à', value: fin });
+    }
+    
+    // 4. Mettre à jour les états
     setAdvancedFilters(apiFilters);
     setActiveFilters(newActiveFilters);
     setCurrentPage(1);
     setShowFilters(false);
+    
+    // 5. Si nous avons des filtres qui nécessitent une requête au backend, vider allPublications
+    // pour forcer une nouvelle requête
+    if (Object.keys(apiFilters).length > 0) {
+      setAllPublications([]);
+    }
   };
 
   const handlePageChange = (page) => {
@@ -274,14 +370,31 @@ const Table_pub = () => {
   const handleViewDetails = (publication) => {
     console.log("Redirection vers la page de détails pour:", publication);
     
-    // Utiliser publication_id qui est l'identifiant correct dans vos données
+    // Obtenir l'ID de la publication
     const pubId = publication.publication_id || "detail";
     
+ {/*
     // Naviguer vers la page de détail avec l'ID correct et la publication complète
     navigate(`/voirpluspub/${pubId}`, { state: { publication ,
           Sidebar: 'chercheur'
         }
-        });
+        });*/}
+
+    // Vérifier l'URL actuelle pour déterminer la direction de redirection
+    const currentPath = location.pathname;
+    console.log("Chemin actuel:", currentPath);
+    
+    // Déterminer la route cible en fonction de l'URL actuelle
+    if (currentPath.includes("Page_visiteur2")) {
+      // Si l'utilisateur est sur la page visiteur, rediriger vers VoirpluspubV
+      navigate(`/VoirpluspubV/${pubId}`, { state: { publication } });
+      console.log("Redirection vers VoirpluspubV");
+    } else {
+      // Par défaut ou pour Page_recherche2, rediriger vers Voirpluspub
+      navigate(`/Voirpluspub/${pubId}`, { state: { publication } });
+      console.log("Redirection vers Voirpluspub");
+    }
+
   };
 
   // Colonnes optimisées pour un affichage compact
@@ -305,7 +418,7 @@ const Table_pub = () => {
       name: "Actions",
       cell: (row) => (
         <button className="btn-voir-plus" onClick={() => handleViewDetails(row)}>
-          Voir
+          Voir plus
         </button>
       ),
       center: true,
@@ -328,7 +441,7 @@ const Table_pub = () => {
   ];
 
   return (
-    <div className="publications-container">
+    <div className="publications-container2">
       <div className="publications-stats" style={{ 
         margin: '10px 0',
         fontSize: '0.9rem',

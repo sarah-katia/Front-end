@@ -42,9 +42,12 @@ import ModifierAdmin from './admine/ModifierAdmin';
 import Voirplus from './admine/Voirplus';
 import ModifVoirplus from './admine/ModifVoirplus';
 import Hero from './LandingPage/Hero';
-
 import VoirplusPub from './component/page/VoirplusPub';
+import VoirpluspubV from './component/page/VoirpluspubV';
 
+import Publichercheur from './component/page/Publichercheur';
+
+import Ajouterjournak from './component/Mon profile/MesPubli';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -93,7 +96,8 @@ function App() {
 
 
 
-      
+      <Route path="/on" element={<Ajouterjournak />} />
+
 
         <Route path="/" element={<Hero />} />
         <Route path="/Topnav" element={<Topnav user={connectedUser} />} />
@@ -138,6 +142,8 @@ function App() {
         <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
         <Route path="/Voirpluspub" element={<VoirplusPub />} />
         <Route path="/voirpluspub/:id" element={<VoirplusPub />} />
+        <Route path="/voirpluspubV/:id" element={<VoirpluspubV />} />
+        <Route path="/Publichercheur" element={<Publichercheur />} />
 
 
 
