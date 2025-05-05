@@ -46,8 +46,8 @@ const Sidebar = () => {
         </li>
         <li>
         <Link
-            to="/"
-            className={`${prvstyle.navitem} ${location.pathname === "/" ? prvstyle.active : ""}`}
+            to="/Publichercheur"
+            className={`${prvstyle.navitem} ${location.pathname === "/Publichercheur" ? prvstyle.active : ""}`}
           >
             <FaBook className={prvstyle.icon} /> <span className={prvstyle.text}>Mes publications</span> 
           </Link>
