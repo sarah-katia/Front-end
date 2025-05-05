@@ -3,15 +3,19 @@
 .chercheursContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 250px;
+  margin-left: 500px;
   margin-top: 550px;
   padding: 05px  ;
   min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 5;
 }
 
 
 .chercheursContent {
-  width: 100%;
+  width: 80%;
+  
 }
 
 
@@ -88,6 +92,7 @@
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
 }
 
 .profilePic {

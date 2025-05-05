@@ -278,7 +278,10 @@ const Table_pub = () => {
     const pubId = publication.publication_id || "detail";
     
     // Naviguer vers la page de détail avec l'ID correct et la publication complète
-    navigate(`/voirpluspub/${pubId}`, { state: { publication } });
+    navigate(`/voirpluspub/${pubId}`, { state: { publication ,
+          Sidebar: 'chercheur'
+        }
+        });
   };
 
   // Colonnes optimisées pour un affichage compact
