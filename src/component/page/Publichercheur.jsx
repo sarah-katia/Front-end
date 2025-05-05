@@ -1,7 +1,7 @@
 import React from 'react'
 import Topnav from '../nav/Topnav'
 import Sidebar from '../nav/Sidebar'
-import Cartepubli from './cartepubli' 
+
 
 import ProfileCard from '../Mon profile/Profilecard'
 import pageStyle from './Publichercheur.module.css';  

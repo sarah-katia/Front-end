@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { FaSearch, FaFilter } from "react-icons/fa";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import Filtre from "./Filtre";
 import "./Table_chercheur.css";
 
 const Table_chercheur = () => {
+  const navigate = useNavigate();
   const [chercheurs, setChercheurs] = useState([]);
   const [loading, setLoading] = useState(false);
   const [totalRows, setTotalRows] = useState(0);
@@ -17,7 +19,8 @@ const Table_chercheur = () => {
   const [filterEquipe, setFilterEquipe] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [advancedFilters, setAdvancedFilters] = useState({});
-  const [activeFilters, setActiveFilters] = useState([]); // Pour afficher les filtres actifs
+  const [activeFilters, setActiveFilters] = useState([]);
+  const [navigationError, setNavigationError] = useState(null);
 
   // Vérifier les API disponibles au chargement
   useEffect(() => {
@@ -34,8 +37,7 @@ const Table_chercheur = () => {
     try {
       // Liste des routes potentielles à tester, ajout de la route sans 's'
       const potentialRoutes = [
-        "http://localhost:8000/chercheur",         // <-- Cette route sans 's' en premier
-
+        "http://localhost:8000/chercheur",
       ];
       
       for (const route of potentialRoutes) {
@@ -271,16 +273,74 @@ const Table_chercheur = () => {
     },
     {
       name: "Plus de détails",
-      cell: (row) => <button className="btn-profile" onClick={() => handleViewProfile(row)}>Voir Profile</button>
+      cell: (row) => (
+        <button 
+          className="btn-profile" 
+          onClick={() => handleViewProfile(row)}
+        >
+          Voir Profile
+        </button>
+      )
     }
   ];
 
   const handleViewProfile = (chercheur) => {
-    // Fonction pour afficher les détails du chercheur
-    console.log("Voir le profil de:", chercheur);
-    // Vous pouvez implémenter ici une redirection vers la page de profil
-    // ou afficher un modal avec les détails
+    try {
+      // Afficher toutes les propriétés pour déboguer
+      console.log("Données du chercheur complètes:", chercheur);
+      
+      // Récupérer l'ID du chercheur (essayer toutes les possibilités)
+      const chercheurId = chercheur.chercheur_id || chercheur.id || chercheur._id;
+      
+      console.log("ID du chercheur trouvé:", chercheurId);
+      
+      if (chercheurId) {
+        // Rediriger vers la page de détails avec l'ID comme paramètre
+        console.log(`Navigation vers /voirplus/${chercheurId}`);
+        navigate(`/voirplus/${chercheurId}`);
+      } else {
+        // Si aucun ID n'est trouvé dans l'objet chercheur
+        const erreur = "ID de chercheur non trouvé dans les données";
+        console.error(erreur, chercheur);
+        setNavigationError(erreur);
+        alert("Impossible d'afficher le profil: ID non trouvé dans les données");
+      }
+    } catch (error) {
+      // Capturer toute erreur qui pourrait se produire pendant la navigation
+      console.error("Erreur lors de la navigation:", error);
+      setNavigationError(error.message);
+      alert(`Erreur lors de la navigation: ${error.message}`);
+    }
   };
+
+  // Fonction pour vérifier si la route existe et est correctement configurée
+  const checkRouteExists = () => {
+    try {
+      // Cette méthode peut aider à vérifier si la route est configurée
+      const routes = navigate.getRoutes ? navigate.getRoutes() : [];
+      console.log("Routes disponibles:", routes);
+      
+      // Trouver si la route /voirplus/:id existe
+      const voirplusRoute = routes.find(route => 
+        route.path && route.path.includes('/voirplus/')
+      );
+      
+      if (voirplusRoute) {
+        console.log("Route /voirplus trouvée:", voirplusRoute);
+      } else {
+        console.warn("Route /voirplus non trouvée dans la configuration");
+      }
+    } catch (error) {
+      console.error("Erreur lors de la vérification des routes:", error);
+    }
+  };
+
+  // Vérifiez les routes au chargement du composant
+  useEffect(() => {
+    if (typeof navigate.getRoutes === 'function') {
+      checkRouteExists();
+    }
+  }, [navigate]);
 
   return (
     <div className="general">
@@ -323,6 +383,14 @@ const Table_chercheur = () => {
               <FaFilter className="filtree" /> Plus de filtres
             </button>
           </div>
+
+          {/* Affichage des erreurs de navigation */}
+          {navigationError && (
+            <div className="error-message">
+              <p>Erreur de navigation: {navigationError}</p>
+              <button onClick={() => setNavigationError(null)}>Fermer</button>
+            </div>
+          )}
 
           {/* Affichage des filtres actifs */}
           {activeFilters.length > 0 && (

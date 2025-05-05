@@ -147,8 +147,8 @@ function App() {
         <Route path="/voirpluspub/:id" element={<VoirplusPub />} />
         <Route path="/voirpluspubV/:id" element={<VoirpluspubV />} />
         <Route path="/Publichercheur" element={<Publichercheur />} />
-        <Route path="/Pluschercheur" element={<Pluschercheur />} />
-        <Route path="/Plus" element={<PChercheurplus />} />
+        <Route path="/voirplus/:id" element={<Pluschercheur />} />
+                <Route path="/Plus" element={<PChercheurplus />} />
 
 
 
