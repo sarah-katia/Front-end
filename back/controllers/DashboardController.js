@@ -93,9 +93,7 @@ const DashboardController = {
     }
   },
 
-  /**
-   * Get yearly statistics for publications and projects
-   */
+  
   /**
  * Get yearly statistics for publications with conferences and articles
  */

@@ -74,7 +74,7 @@ const seedStaticTables = async () => {
     await sequelize.authenticate();
     console.log('Connected to the database successfully.');
 
-    await sequelize.sync({ force: true }); 
+    await sequelize.sync({ alter: true }); 
     console.log('Database synchronized.');
 
     await seedStaticTables(); // Seed static Classement table
