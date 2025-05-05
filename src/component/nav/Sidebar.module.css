@@ -57,6 +57,7 @@
     background-color: #A1F7B9 ; /* Fond de l'élément actif */
     border-radius: 12px;
     height: 21px;
+    font-size: 0.5rem;
     margin-bottom: 7px;
     width: calc(100% - 40px); /* Réduit la largeur du fond vert */
   

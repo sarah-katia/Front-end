@@ -109,6 +109,7 @@ const Topnav = () => {
         return "Confirmation";
 
       case "/Publications":
+        case "/Publichercheur":
         return "Mes publications";
       case "/ChercheurA":
       case "/Voirplus":
@@ -121,12 +122,18 @@ const Topnav = () => {
       case "/ModifierAdmin":
         return "Modification";
 
+       
+
       case "/gestionassi/chercheur":
       case "/gestionassi/publication":
       case "/directrice/Assistante":
       case "/directrice/publicationDi":
       case "/directrice/chercheurDi":
         return "Gestion";
+
+      
+        
+
 
       case "/ajouter-chercheur":
         return "Ajouter chercheur";

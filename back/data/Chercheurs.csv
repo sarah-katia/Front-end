@@ -1,31 +1,31 @@
-chercheur_id,nom_complet,email,tel,diplome,etablissement_origine,qualite,grade_enseignement,grade_recherche,equipe,statut,chef_E,Lien Google Scholar,Lien DBLP,ORCID,Citations totales,Indice h
-1,abdelmeziem,,,,,,,,,,,,,,,
-2,abdellaoui sabrina,s_abdellaoui@esi.dz,,Doctorat,ESI,,,,,,,https://scholar.google.com/citations?user=EbCO7zUAAAAJ,,0009-0001-5179-634X,34,3
-3,amrouche hakim,h_amrouche@esi.dz,,,ESI,,,,,,,https://scholar.google.com/citations?user=y5DKQy4AAAAJ,https://dblp.org/pid/23/6531,0009-0007-0540-8194,8,2
-4,artabaz saliha,s_artabaz@esi.dz,,,ESI,Enseignat Chercheur,,,Systèmes Ubiquitaires Résilients Efficaces et Sécurisés,,FALSE,https://scholar.google.com/citations?user=R0oPubgAAAAJ,https://dblp.org/pid/160/6929,0000-0002-9673-1507,28,4
-5,karima benatchba,k_benatchba@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Optimisation,Actif,TRUE,https://scholar.google.com/citations?user=7iGY4M0AAAAJ,https://dblp.org/pid/64/997,0000-0002-3302-7344,1427,14
-6,malika bessedik,m_bessedik@esi.dz,,Doctorat,ESI,Enseignat Chercheur,,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=FTzfUeEAAAAJ,https://dblp.org/pid/02/5217,0000-0002-1007-9096,224,9
-7,belahrache abderahmane,,,,,,,,,,,,,0009-0009-3324-8540,,
-8,boukhedimi souhila,s_boukhedimi@esi.dz,,Docterat d'Etat,ESI,,,,,,,,,0000-0003-1728-1809,,
-9,boukhadra adel,a_boukhadra@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/116/6640,0000-0001-9473-6729,,
-10,nabila bousbia,n_bousbia@esi.dz,,Doctorat,ESI,Enseignat Chercheur,Maitre de Recherche A,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=_u5IOC4AAAAJ,https://dblp.org/pid/15/6951,0000-0001-6777-3567,407,10
-11,boussaha ryma,r_boussaha@esi.dz,,,ESI,,,,Systèmes Ubiquitaires Résilients Efficaces et Sécurisés,,FALSE,https://scholar.google.com/citations?user=mg6cCloAAAAJ,https://dblp.org/pid/210/3947,0009-0006-6033-8806,43,3
-12,rachid chalal,r_chalal@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Systèmes Ubiquitaires Résilients Efficaces et Sécurisés,Actif,TRUE,https://scholar.google.com/citations?user=qMYUliQAAAAJ,https://dblp.org/pid/91/7093,0000-0002-0768-2994,289,9
-13,cherid nassira,n_cherid@esi.dz,,,ESI,,,,,,,,,0000-0002-5684-737X,,
-14,dahamni fodil,f_dahamni@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/17/2133,0000-0002-8065-2599,,
-15,dakiche narimane,an_dakiche@esi.dz,,,ESI,,,,,,,,,0000-0003-3066-971X,,
-16,dellys hachemi nabil,h_dellys@esi.dz,,,ESI,Enseignat Chercheur, Maitre de Conférences B,,Systèmes Ubiquitaires Résilients Efficaces et Sécurisés,Actif,FALSE,,https://dblp.org/pid/124/7247,0000-0002-8104-1829,,
-17,faisal touka,t_faisal@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/255/4014,0009-0006-9734-5276,,
-18,ghomari abdessamed réda,a_ghomari@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Management des systémes d'information,Actif,TRUE,https://scholar.google.com/citations?user=hha1UuUAAAAJ,https://dblp.org/pid/98/7095,0000-0002-0683-9304,355,11
-19,elhachemi guerrout,e_guerrout@esi.dz,,Doctorat,ESI,Enseignat Chercheur,Directeur de Recherche,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=Dbvc8CwAAAAJ,,0000-0002-7976-1878,216,8
-21,haroun hayet,bh_haroun@esi.dz,,,ESI,,Maitre de Recherche B,,,Actif,FALSE,https://scholar.google.com/citations?user=qe1cbMAAAAAJ,,0009-0006-6901-439X,31,3
-22,hassini sabrina,s_hassini@esi.dz,,,ESI,,Maitre de Conférences B,,Hyperheuristiques pour l’optimisation combinatoire.,Actif,FALSE,https://scholar.google.com/citations?user=LG1jBMYAAAAJ,https://dblp.org/pid/204/0557,0000-0002-0466-7190,138,5
-20,nacer hamani,n_hamani@esi.dz,,Doctorat,ESI,Enseignat Chercheur,,,Management des systémes d'information,,FALSE,https://scholar.google.com/citations?user=Sx9QpVUAAAAJ,https://dblp.org/pid/92/1607,0000-0002-2470-3515,36,3
-23,kechid amine,a_kechid@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/178/1699,0000-0003-4726-599X,,
-26,adel kermi,a_kermi@esi.dz,,Doctorat,ESI,Enseignat Chercheur,Maitre de Recherche A,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=1UEZWYAAAAAJ,https://dblp.org/pid/119/2354,0000-0003-4926-101X,2624,6
-24,khelouat boualem,b_khelouat@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/251/6457,0000-0002-4718-7189,,
-25,khelifati si larabi,s_khelifati@esi.dz,,,ESI,,,,,,,https://scholar.google.com/citations?user=G-iDEugAAAAJ,https://dblp.org/pid/77/10106,0000-0002-7947-7885,36,3
-27,mouloud koudil,m_koudil@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Codesign,Actif,TRUE,https://scholar.google.com/citations?user=9Zbx-EYAAAAJ,https://dblp.org/pid/50/5791,0000-0001-9022-7943,1257,16
-28,ramdane mahiou,r_mahiou@esi.dz,,Doctorat,ESI,Enseignat Chercheur,Maitre de Recherche B,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=eFAj_SkAAAAJ,https://dblp.org/pid/71/8381,0000-0003-2168-3640,250,8
-29,fahima nader,f_nader@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Traitement et interpretation des images,Actif,TRUE,https://scholar.google.com/citations?user=XhP-NkYAAAAJ,https://dblp.org/pid/17/11042,0000-0002-8912-1815,506,10
-30,fatima benbouzid-si tayeb,f_sitayeb@esi.dz,,Docterat,ESI,Enseignat Chercheur,Directeur de Recherche,,Management des systémes d'information,Actif,TRUE,https://scholar.google.com/citations?user=ri2J--kAAAAJ,https://dblp.org/pid/25/6743,0000-0001-7032-8544,934,16
+chercheur_id,nom_complet,email,tel,diplome,etablissement_origine,qualite,grade_enseignement,grade_recherche,equipe,statut,chef_E,Lien Google Scholar,Lien DBLP,ORCID,Citations totales,Indice h,photo
+1,abdelmeziem,,,,,,,,,,,,,,,,
+2,abdellaoui sabrina,s_abdellaoui@esi.dz,,Doctorat,ESI,,,,,,,https://scholar.google.com/citations?user=EbCO7zUAAAAJ,,0009-0001-5179-634X,34,3,
+3,amrouche hakim,h_amrouche@esi.dz,,,ESI,,,,,,,https://scholar.google.com/citations?user=y5DKQy4AAAAJ,https://dblp.org/pid/23/6531,0009-0007-0540-8194,8,2,
+4,artabaz saliha,s_artabaz@esi.dz,,,ESI,Enseignat Chercheur,,,Systèmes Ubiquitaires Résilients Efficaces et Sécurisés,,FALSE,https://scholar.google.com/citations?user=R0oPubgAAAAJ,https://dblp.org/pid/160/6929,0000-0002-9673-1507,28,4,
+5,karima benatchba,k_benatchba@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Optimisation,Actif,TRUE,https://scholar.google.com/citations?user=7iGY4M0AAAAJ,https://dblp.org/pid/64/997,0000-0002-3302-7344,1427,14,
+6,malika bessedik,m_bessedik@esi.dz,,Doctorat,ESI,Enseignat Chercheur,,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=FTzfUeEAAAAJ,https://dblp.org/pid/02/5217,0000-0002-1007-9096,224,9,
+7,belahrache abderahmane,,,,,,,,,,,,,0009-0009-3324-8540,,,
+8,boukhedimi souhila,s_boukhedimi@esi.dz,,Docterat d'Etat,ESI,,,,,,,,,0000-0003-1728-1809,,,
+9,boukhadra adel,a_boukhadra@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/116/6640,0000-0001-9473-6729,,,
+10,nabila bousbia,n_bousbia@esi.dz,,Doctorat,ESI,Enseignat Chercheur,Maitre de Recherche A,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=_u5IOC4AAAAJ,https://dblp.org/pid/15/6951,0000-0001-6777-3567,407,10,
+11,boussaha ryma,r_boussaha@esi.dz,,,ESI,,,,Systèmes Ubiquitaires Résilients Efficaces et Sécurisés,,FALSE,https://scholar.google.com/citations?user=mg6cCloAAAAJ,https://dblp.org/pid/210/3947,0009-0006-6033-8806,43,3,
+12,rachid chalal,r_chalal@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Systèmes Ubiquitaires Résilients Efficaces et Sécurisés,Actif,TRUE,https://scholar.google.com/citations?user=qMYUliQAAAAJ,https://dblp.org/pid/91/7093,0000-0002-0768-2994,289,9,https://res.cloudinary.com/dv5ylazxm/image/upload/v1746198236/chalal_vfqwtf.png
+13,cherid nassira,n_cherid@esi.dz,,,ESI,,,,,,,,,0000-0002-5684-737X,,,
+14,dahamni fodil,f_dahamni@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/17/2133,0000-0002-8065-2599,,,
+15,dakiche narimane,an_dakiche@esi.dz,,,ESI,,,,,,,,,0000-0003-3066-971X,,,
+16,dellys hachemi nabil,h_dellys@esi.dz,,,ESI,Enseignat Chercheur, Maitre de Conférences B,,Systèmes Ubiquitaires Résilients Efficaces et Sécurisés,Actif,FALSE,,https://dblp.org/pid/124/7247,0000-0002-8104-1829,,,
+17,faisal touka,t_faisal@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/255/4014,0009-0006-9734-5276,,,
+18,ghomari abdessamed réda,a_ghomari@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Management des systémes d'information,Actif,TRUE,https://scholar.google.com/citations?user=hha1UuUAAAAJ,https://dblp.org/pid/98/7095,0000-0002-0683-9304,355,11,https://res.cloudinary.com/dv5ylazxm/image/upload/v1746198220/ghomari_heol5e.png
+19,elhachemi guerrout,e_guerrout@esi.dz,,Doctorat,ESI,Enseignat Chercheur,Directeur de Recherche,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=Dbvc8CwAAAAJ,,0000-0002-7976-1878,216,8,https://res.cloudinary.com/dv5ylazxm/image/upload/v1746198210/guerrout_tac9ox.png
+21,haroun hayet,bh_haroun@esi.dz,,,ESI,,Maitre de Recherche B,,,Actif,FALSE,https://scholar.google.com/citations?user=qe1cbMAAAAAJ,,0009-0006-6901-439X,31,3,
+22,hassini sabrina,s_hassini@esi.dz,,,ESI,,Maitre de Conférences B,,Hyperheuristiques pour l’optimisation combinatoire.,Actif,FALSE,https://scholar.google.com/citations?user=LG1jBMYAAAAJ,https://dblp.org/pid/204/0557,0000-0002-0466-7190,138,5,
+20,nacer hamani,n_hamani@esi.dz,,Doctorat,ESI,Enseignat Chercheur,,,Management des systémes d'information,,FALSE,https://scholar.google.com/citations?user=Sx9QpVUAAAAJ,https://dblp.org/pid/92/1607,0000-0002-2470-3515,36,3,https://res.cloudinary.com/dv5ylazxm/image/upload/v1746198196/hamani_e6nqqq.png
+23,kechid amine,a_kechid@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/178/1699,0000-0003-4726-599X,,,
+26,adel kermi,a_kermi@esi.dz,,Doctorat,ESI,Enseignat Chercheur,Maitre de Recherche A,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=1UEZWYAAAAAJ,https://dblp.org/pid/119/2354,0000-0003-4926-101X,2624,6,https://res.cloudinary.com/dv5ylazxm/image/upload/v1746196432/kermi_wifoim.jpg
+24,khelouat boualem,b_khelouat@esi.dz,,,ESI,,,,,,,,https://dblp.org/pid/251/6457,0000-0002-4718-7189,,,
+25,khelifati si larabi,s_khelifati@esi.dz,,,ESI,,,,,,,https://scholar.google.com/citations?user=G-iDEugAAAAJ,https://dblp.org/pid/77/10106,0000-0002-7947-7885,36,3,
+27,mouloud koudil,m_koudil@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Codesign,Actif,TRUE,https://scholar.google.com/citations?user=9Zbx-EYAAAAJ,https://dblp.org/pid/50/5791,0000-0001-9022-7943,1257,16,https://res.cloudinary.com/dv5ylazxm/image/upload/v1746196146/my-uploads/xsn0vkgmlouvcutjsgc3.jpg
+28,ramdane mahiou,r_mahiou@esi.dz,,Doctorat,ESI,Enseignat Chercheur,Maitre de Recherche B,,Traitement et interpretation des images,Actif,FALSE,https://scholar.google.com/citations?user=eFAj_SkAAAAJ,https://dblp.org/pid/71/8381,0000-0003-2168-3640,250,8,https://res.cloudinary.com/dv5ylazxm/image/upload/v1746198150/Mahiou_k83wnz.png
+29,fahima nader,f_nader@esi.dz,,Docterat d'Etat,ESI,Enseignat Chercheur,Directeur de Recherche,,Traitement et interpretation des images,Actif,TRUE,https://scholar.google.com/citations?user=XhP-NkYAAAAJ,https://dblp.org/pid/17/11042,0000-0002-8912-1815,506,10,
+30,fatima benbouzid-si tayeb,f_sitayeb@esi.dz,,Docterat,ESI,Enseignat Chercheur,Directeur de Recherche,,Management des systémes d'information,Actif,TRUE,https://scholar.google.com/citations?user=ri2J--kAAAAJ,https://dblp.org/pid/25/6743,0000-0001-7032-8544,934,16,https://res.cloudinary.com/dv5ylazxm/image/upload/v1746198183/Si_Tayeb_yeoakz.png

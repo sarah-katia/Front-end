@@ -1,0 +1,98 @@
+/* Ajouterjournak.css */
+
+/* Reset basics */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  /* Main container */
+  .layout-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f9fafb; /* bg-gray-50 */
+  }
+  
+  /* Sidebar styling */
+  .sidebar-container {
+    width: 244px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: white;
+  }
+  
+  /* Main content wrapper - takes up all space next to sidebar */
+  .main-wrapper {
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  @media (min-width: 1024px) {
+    .main-wrapper {
+      margin-left: 244px; /* Offset by sidebar width */
+      width: calc(100% - 244px);
+    }
+  }
+  
+  /* Top navigation */
+  .top-nav-container {
+    height: 60px; /* Fixed height as specified */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 20;
+    background-color: #f9fafb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (min-width: 1024px) {
+    .top-nav-container {
+      left: 244px; /* Aligns with sidebar */
+    }
+  }
+  
+  /* Main content area */
+  .main-content {
+    flex: 1;
+    width: 100%;
+    padding-top: 400px; /* Equal to top nav height */
+    min-height: calc(100vh - 60px);
+  }
+  
+  /* Content area inside main content */
+  .content-area {
+    width: 100%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
+    background-color: #f9fafb;
+  }
+  
+  @media (min-width: 1024px) {
+    .content-area {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  /* Cards */
+  .profile-card, .publication-card {
+    width: 100%;
+    max-width: 56rem; /* max-w-4xl */
+    background-color: #f9fafb;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+  }

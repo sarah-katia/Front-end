@@ -18,7 +18,7 @@ const Chercheur = sequelize.define("Chercheur", {
   Chef_Equipe: {type: DataTypes.BOOLEAN ,defaultValue:false},
   Lien_DBLP: {type: DataTypes.STRING, allowNull : true},
   Lien_GoogleScholar:{type: DataTypes.STRING, allowNull : true},
-  photo: DataTypes.STRING,
+  photo: {type: DataTypes.STRING,defaultValue:"https://res.cloudinary.com/dv5ylazxm/image/upload/v1746196561/Unknown_person_gffmfs.jpg"}
 });
 
 
