@@ -5,16 +5,16 @@
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); /* Un peu plus doux */
-    width: auto;
-    height: auto; /* Ne pas fixer à 500px */
-    max-height: 82vh;
+    width: 50rem;
+    height: 43rem; /* Ne pas fixer à 500px */
+    max-height: 92vh;
     overflow-y: hidden;
   }
   
   .filters-container1 h3 {
     font-family: "Poppins" ;
-    margin-bottom: 20px;
-    margin-top: -2px;
+   
+   
     color: #757575;
   }
   
@@ -73,7 +73,7 @@
   
   .apply-btn-container1 {
     text-align: right;
-    margin-top: 20px;
+ 
   }
   
   .apply-btn1 {

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import NavBar from "../nav/SidebarDi";
 import Topnav from "../nav/Topnav";
 import TabsHeader from "../gestionassi/Tabsheader";
@@ -9,89 +10,114 @@ import Filters from "../table/filtrepub";
 import styling from "../gestionassi/publication.module.css";
 import DeleteConfirmationCard from "../cartes/deletecard";
 
-const fakePublications = [
-  {
-    id: 1,
-    auteur: "Kermi adel",
-    titre: "Novel area-efficient and flexible architectures for optimal Ate pairing on FPGA",
-    date: "2024",
-    editeur: "Spring US",
-  },
-  {
-    id: 2,
-    auteur: "Kermi adel",
-    titre: "Novel area-efficient and flexible architectures for optimal Ate pairing on FPGA",
-    date: "2022",
-    editeur: "Spring US",
-  },
-  {
-    id: 3,
-    auteur: "Kermi adel",
-    titre: "Novel area-efficient and flexible architectures for optimal Ate pairing on FPGA",
-    date: "2025",
-    editeur: "Spring US",
-  },
-  {
-    id: 4,
-    auteur: "Kermi adel",
-    titre: "Novel area-efficient and flexible architectures for optimal Ate pairing on FPGA",
-    date: "2024",
-    editeur: "Spring US",
-  },
-  {
-    id: 5,
-    auteur: "Kermi adel",
-    titre: "Novel area-efficient and flexible architectures for optimal Ate pairing on FPGA",
-    date: "2023",
-    editeur: "Spring US",
-  },
-  {
-    id: 6,
-    auteur: "Kermi adel",
-    titre: "Novel area-efficient and flexible architectures for optimal Ate pairing on FPGA",
-    date: "2019",
-    editeur: "Spring US",
-  },
-];
-
 const Publications = () => {
-  const [publications, setPublications] = useState(fakePublications);
+  const [publications, setPublications] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [publicationASupprimer, setPublicationASupprimer] = useState(null);
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchPublications = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/publications/");
+        setPublications(response.data.publications || []);
+        setLoading(false);
+      } catch (err) {
+        console.error("Erreur lors du chargement des publications:", err);
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchPublications();
+  }, []);
+
   const handleSearch = (event) => setSearch(event.target.value);
 
-  const handleDelete = (id) => {
-    const publication = publications.find((p) => p.id === id);
-    setPublicationASupprimer(publication);
+  const handleDelete = async (id) => {
+    try {
+      const publication = publications.find((p) => p.publication_id === id);
+      setPublicationASupprimer(publication);
+    } catch (err) {
+      console.error("Erreur lors de la préparation de la suppression:", err);
+    }
   };
 
-  const confirmerSuppression = () => {
-    setPublications((prev) => prev.filter((p) => p.id !== publicationASupprimer.id));
-    setPublicationASupprimer(null);
+  const confirmerSuppression = async () => {
+    try {
+      await axios.delete(
+        `http://localhost:8000/publications/${publicationASupprimer.publication_id}/${publicationASupprimer.chercheur_id}`
+      );
+      setPublications((prev) =>
+        prev.filter((p) => p.publication_id !== publicationASupprimer.publication_id)
+      );
+      setPublicationASupprimer(null);
+    } catch (err) {
+      console.error("Erreur lors de la suppression:", err);
+      setPublicationASupprimer(null);
+    }
   };
 
   const annulerSuppression = () => setPublicationASupprimer(null);
 
   const filteredData = publications.filter((p) =>
-    p.titre.toLowerCase().includes(search.toLowerCase())
+    p.titre_publication?.toLowerCase().includes(search.toLowerCase())
   );
 
+  const handleViewDetails = (publication) => {
+    navigate(`/voirpluspub/${publication.publication_id}`, { 
+      state: { 
+        publication,
+        Sidebar: 'directrice' 
+      }
+    });
+  };
+  
   const columns = [
-    { name: "Auteur", selector: (row) => row.auteur, sortable: true, width: "160px" },
-    { name: "Titre", selector: (row) => row.titre, sortable: true, grow: 2, wrap: true },
-    { name: "Date", selector: (row) => row.date, sortable: true, width: "100px" },
-    { name: "Éditeur", selector: (row) => row.editeur, sortable: true, width: "120px" },
+    { 
+      name: "Auteur", 
+      selector: (row) => row.auteurs || "N/A", 
+      sortable: true, 
+      width: "160px" 
+    },
+    { 
+      name: "Titre", 
+      selector: (row) => row.titre_publication || "N/A", 
+      sortable: true, 
+      grow: 2, 
+      wrap: true 
+    },
+    { 
+      name: "Date", 
+      selector: (row) => row.annee || "N/A", 
+      sortable: true, 
+      width: "100px" 
+    },
+    { 
+      name: "Éditeur", 
+      selector: (row) => row.publisher || "N/A", 
+      sortable: true, 
+      width: "120px" 
+    },
     {
       name: "Plus",
       cell: (row) => (
         <div className={styling.actions}>
-          <button className={styling.viewBtn}>Voir plus</button>
-          <button className={styling.deleteBtn} onClick={() => handleDelete(row.id)}>
-           Supprimer
+          <button 
+            className={styling.viewBtn}
+            onClick={() => handleViewDetails(row)}
+          >
+            Voir plus
+          </button>
+          <button 
+            className={styling.deleteBtn} 
+            onClick={() => handleDelete(row.publication_id)}
+          >
+            Supprimer
           </button>
         </div>
       ),
@@ -99,15 +125,23 @@ const Publications = () => {
     },
   ];
 
+  if (loading) {
+    return <div className={styling.loading}>Chargement en cours...</div>;
+  }
+
+  if (error) {
+    return <div className={styling.error}>Erreur: {error}</div>;
+  }
+
   return (
     <>
       <NavBar />
       <Topnav />
-      <TabsHeader   tabs={[
-    { label: "Chercheurs", path: "/directrice/chercheurDi" },
-    { label: "Publications", path: "/directrice/publicationDi" },
-    { label: "Assistante", path: "/directrice/Assistante" },
-  ]} />
+      <TabsHeader tabs={[
+        { label: "Chercheurs", path: "/directrice/chercheurDi" },
+        { label: "Publications", path: "/directrice/publicationDi" },
+        { label: "Assistante", path: "/directrice/Assistante" },
+      ]} />
 
       <div className={styling.publicationsContainer}>
         <div className={styling.publicationsContent}>
@@ -121,7 +155,10 @@ const Publications = () => {
                 onChange={handleSearch}
               />
             </div>
-            <button className={styling.filterBtn} onClick={() => setShowFilters(true)}>
+            <button 
+              className={styling.filterBtn} 
+              onClick={() => setShowFilters(true)}
+            >
               Filtrer
             </button>
           </div>
@@ -131,8 +168,17 @@ const Publications = () => {
               columns={columns}
               data={filteredData}
               pagination
+              paginationPerPage={10}
+              paginationRowsPerPageOptions={[10, 25, 50]}
+              noDataComponent="Aucune publication trouvée"
               customStyles={{
-                table: { style: { backgroundColor: "#fafafa", minHeight: "750px" , minWidth: "900px"} },
+                table: { 
+                  style: { 
+                    backgroundColor: "#fafafa", 
+                    minHeight: "750px",
+                    minWidth: "900px" 
+                  } 
+                },
                 rows: {
                   style: {
                     minHeight: "48px",
@@ -156,16 +202,25 @@ const Publications = () => {
                   },
                 },
               }}
+              onRowClicked={(row) => handleViewDetails(row)} // Optionnel: clic sur toute la ligne
             />
           </div>
 
           {showFilters && (
             <div className={styling.filterOverlay}>
               <div className={styling.filterModal}>
-                <button className={styling.closeBtn} onClick={() => setShowFilters(false)}>
+                <button 
+                  className={styling.closeBtn} 
+                  onClick={() => setShowFilters(false)}
+                >
                   ✖
                 </button>
-                <Filters onApply={() => setShowFilters(false)} />
+                <Filters 
+                  onApply={(filters) => {
+                    console.log("Filtres appliqués:", filters);
+                    setShowFilters(false);
+                  }} 
+                />
               </div>
             </div>
           )}

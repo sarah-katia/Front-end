@@ -50,9 +50,42 @@ const Filtre = ({ onApply }) => {
     }
   };
 
+  // Affichage des valeurs sélectionnées pour debug
+  const renderSelectedFilters = () => {
+    const selectedFilters = [];
+    
+    if (filters.hIndexBase) 
+      selectedFilters.push(`H-index: ${filters.hIndexBase}`);
+    if (filters.hIndexMin || filters.hIndexMax)
+      selectedFilters.push(`H-index: ${filters.hIndexMin || '0'} - ${filters.hIndexMax || '∞'}`);
+    if (filters.etablissement) 
+      selectedFilters.push(`Établissement: ${filters.etablissement}`);
+    if (filters.qualite.length > 0) 
+      selectedFilters.push(`Qualité: ${filters.qualite.join(', ')}`);
+    if (filters.statut) 
+      selectedFilters.push(`Statut: ${filters.statut}`);
+    if (filters.equipe.length > 0) 
+      selectedFilters.push(`Équipe: ${filters.equipe.join(', ')}`);
+    if (filters.diplome) 
+      selectedFilters.push(`Diplôme: ${filters.diplome}`);
+    
+    if (selectedFilters.length === 0) return null;
+    
+    return (
+      <div className="selected-filters">
+        <h4>Filtres sélectionnés:</h4>
+        <ul>
+          {selectedFilters.map((filter, index) => (
+            <li key={index}>{filter}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div className="filters-container2">
-      <h3>Plus de filtre</h3>
+      <h3>Plus de filtres</h3>
       <div className="filters-grid1">
         {/* H-index avec Min, Max et Base */}
         <div className="filter-group1">
@@ -76,7 +109,7 @@ const Filtre = ({ onApply }) => {
             />
           </div>
           <div className="h-index-base">
-            <label>H-index</label>
+            <label>H-index exact</label>
             <input
               type="number"
               name="hIndexBase"
@@ -90,7 +123,7 @@ const Filtre = ({ onApply }) => {
 
         {/* Établissement d'origine */}
         <div className="filter-group1">
-          <label>Établissement d’origine</label>
+          <label>Établissement d'origine</label>
           <div>
             <input
               type="radio"
@@ -119,12 +152,14 @@ const Filtre = ({ onApply }) => {
           <div><input type="checkbox" name="qualite" value="Enseignant-Chercheur" onChange={handleChange} /> Enseignant-Chercheur</div>
           <div><input type="checkbox" name="qualite" value="Chercheur" onChange={handleChange} /> Chercheur</div>
           <div><input type="checkbox" name="qualite" value="Doctorant" onChange={handleChange} /> Doctorant</div>
+          <div><input type="checkbox" name="qualite" value="Professeur" onChange={handleChange} /> Professeur</div>
+          <div><input type="checkbox" name="qualite" value="Maitre_de_conference" onChange={handleChange} /> Maître de Conférence</div>
         </div>
 
         {/* Statut */}
         <div className="filter-group1">
           <label>Statut du chercheur</label>
-          {["Actif", "Non actif"].map((s) => (
+          {["Actif", "Inactif"].map((s) => (
             <div key={s}>
               <input
                 type="radio"
@@ -141,9 +176,15 @@ const Filtre = ({ onApply }) => {
         {/* Équipe */}
         <div className="filter-group1">
           <label>Équipe du laboratoire</label>
-          {["CoDesign", "EIAH", "IMAGE", "MSI", "OPI", "SURES"].map((team) => (
+          {["CoDesign", "EIAH", "IMAGE", "MSI", "OPI", "SURES", "TIIMA"].map((team) => (
             <div key={team}>
-              <input type="checkbox" name="equipe" value={team} onChange={handleChange} /> {team}
+              <input 
+                type="checkbox" 
+                name="equipe" 
+                value={team} 
+                checked={filters.equipe.includes(team)}
+                onChange={handleChange} 
+              /> {team}
             </div>
           ))}
         </div>
@@ -151,7 +192,7 @@ const Filtre = ({ onApply }) => {
         {/* Diplôme */}
         <div className="filter-group1">
           <label>Diplôme du chercheur</label>
-          {["Ing/Master", "Master", "Doctorat", "Doctorat d’état"].map((d) => (
+          {["Ing/Master", "Master", "Doctorat", "Doctorat d'état"].map((d) => (
             <div key={d}>
               <input
                 type="radio"
@@ -165,6 +206,9 @@ const Filtre = ({ onApply }) => {
           ))}
         </div>
       </div>
+
+      {/* Affichage des filtres sélectionnés */}
+      {renderSelectedFilters()}
 
       {/* Bouton Appliquer */}
       <div className="apply-btn-container1">

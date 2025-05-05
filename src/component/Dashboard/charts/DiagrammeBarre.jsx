@@ -21,7 +21,7 @@ function CustomTooltip({ active, payload, label }) {
   return null;
 }
 
-function DiagrammeBarre({ data, width = 450, height = 300 }) {
+function DiagrammeBarre({ title, data, width = 450, height = 300 }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2 style={{
@@ -32,7 +32,7 @@ function DiagrammeBarre({ data, width = 450, height = 300 }) {
         color: '#1976d2',
         textAlign: 'center'
       }}>
-        Chercheur avec le plus de publication en 2024
+        {title}
       </h2>
       <div style={{
         background: 'white',

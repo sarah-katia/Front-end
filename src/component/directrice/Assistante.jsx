@@ -1,82 +1,123 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
-import {  FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import NavBar from "../nav/SidebarDi";
 import Topnav from "../nav/Topnav";
 import TabsHeader from "../gestionassi/Tabsheader";
-import Filters from "../table/Filtre";
 import styling from "./assistante.module.css";
 
-const fakeData = [
-  { id: 1, photo: "https://via.placeholder.com/50", nom: "Bahri Assia", email: "Bahri@example.com", qualite: "professeur", equipe: "IOT" },
-  { id: 2, photo: "https://via.placeholder.com/50", nom: "Kermi Adel", email: "kermi.adel@example.com", qualite: "Professeur", equipe: "TIIMA" },
-  { id: 3, photo: "https://via.placeholder.com/50", nom: "Mouloud Koudil", email: "koudil.mouloud@example.com", qualite: "Professeur", equipe: "CoDesign" },
-  { id: 4, photo: "https://via.placeholder.com/50", nom: "Ahmed Bensalem", email: "bensalem.ahmed@example.com", qualite: "Chercheur", equipe: "IMAGE" },
-  { id: 5, photo: "../../assets/Koudil.png", nom: "Toufik Djellal", email: "sofiane.djelloul@example.com", qualite: "Doctorant", equipe: "OPI" },
-  { id: 6, photo: "https://via.placeholder.com/50", nom: "Imene Belkacem", email: "imene.belkacem@example.com", qualite: "Doctorante", equipe: "EIAH" },
-];
-
 const Assi = () => {
-  const [chercheurs, setChercheurs] = useState(fakeData);
+  const [assistants, setAssistants] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
 
   const navigate = useNavigate();
 
-  const handleSearch = (event) => setSearch(event.target.value);
+  useEffect(() => {
+    const fetchAssistants = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get("http://localhost:8000/directrice/assistants");
+        // Ajoute un champ nom_complet si non présent dans la réponse
+        const dataWithFullName = response.data.map(assistant => ({
+          ...assistant,
+          nom_complet: assistant.nom_complet || `${assistant.prenom || ''} ${assistant.nom || ''}`.trim()
+        }));
+        setAssistants(dataWithFullName);
+      } catch (error) {
+        console.error("Error fetching assistants:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchAssistants();
+  }, []);
 
-  const filteredData = chercheurs.filter((c) =>
-    c.nom.toLowerCase().includes(search.toLowerCase())
-  );
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const filteredData = assistants.filter(assistant => {
+    const searchTerm = search.toLowerCase();
+    return (
+      assistant.Mails.toLowerCase().includes(searchTerm) ||
+      (assistant.Tél && assistant.Tél.toLowerCase().includes(searchTerm)) ||
+      (assistant.nom_complet && assistant.nom_complet.toLowerCase().includes(searchTerm))
+    );
+  });
+
+  // Pagination logic
+  const totalRows = filteredData.length;
+  const indexOfLastItem = currentPage * perPage;
+  const indexOfFirstItem = indexOfLastItem - perPage;
+  const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
 
   const columns = [
     {
       name: "Photo",
-      selector: (row) => <img src={row.photo} alt="Profile" className={styling.profilePic} />,
-      width: "140px",
+      selector: (row) => (
+        <img 
+          src={row.photo || "https://via.placeholder.com/50"} 
+          alt="Profile" 
+          className={styling.profilePic} 
+        />
+      ),
+      width: "100px",
     },
     {
       name: "Nom complet",
-      selector: (row) => row.nom,
+      selector: (row) => row.nom_complet || "N/A",
       sortable: true,
-      width: "240px",
+      width: "150px",
     },
     {
       name: "Email",
       selector: (row) => (
-        <a href={`mailto:${row.email}`} className={styling.emailLink}>
-          {row.email}
+        <a href={`mailto:${row.Mails}`} className={styling.emailLink}>
+          {row.Mails}
         </a>
       ),
       sortable: true,
-      width: "280px",
+      width: "200px",
+    },
+    {
+      name: "Téléphone",
+      selector: (row) => row.Tél || "N/A",
+      sortable: true,
+      width: "160px",
     },
     {
       name: "Plus de détails",
       cell: (row) => (
         <div className={styling.actions}>
-          <button className={styling.viewBtn}>Voir Profil</button>
+          <button 
+            className={styling.viewBtn}
+            onClick={() => navigate(`/assistante/${row.id}`)}
+          >
+            Voir Profil
+          </button>
         </div>
       ),
-      width: "260px",
-      center: true,
+      center: "true",
     },
   ];
-
 
   return (
     <>
       <NavBar />
       <Topnav />
-      <TabsHeader   tabs={[
-    { label: "Chercheurs", path: "/directrice/chercheurDi" },
-    { label: "Publications", path: "/directrice/publicationDi" },
-    { label: "Assistante", path: "/directrice/Assistante" },
-  ]} />
+      <TabsHeader tabs={[
+        { label: "Chercheurs", path: "/directrice/chercheurDi" },
+        { label: "Publications", path: "/directrice/publicationDi" },
+        { label: "Assistante", path: "/directrice/Assistante" },
+      ]} />
 
-  
       <div className={styling.Container}>
         <div className={styling.Content}>
           <div className={styling.filtersHeader}>
@@ -84,12 +125,15 @@ const Assi = () => {
               <FaSearch />
               <input
                 type="text"
-                placeholder="Rechercher"
+                placeholder="Rechercher par nom, email ou téléphone"
                 value={search}
                 onChange={handleSearch}
               />
             </div>
-            <button className={styling.addBtn} onClick={() => navigate("/AjouterAssis")}>
+            <button 
+              className={styling.addBtn} 
+              onClick={() => navigate("/AjouterAssis")}
+            >
               + Ajouter une assistante
             </button>
           </div>
@@ -97,14 +141,22 @@ const Assi = () => {
           <div className={styling.tableContainer}>
             <DataTable
               columns={columns}
-              data={filteredData}
+              data={currentItems}
               pagination
+              paginationTotalRows={totalRows}
+              paginationPerPage={perPage}
+              paginationDefaultPage={currentPage}
+              onChangePage={page => setCurrentPage(page)}
+              onChangeRowsPerPage={rowsPerPage => setPerPage(rowsPerPage)}
+              paginationRowsPerPageOptions={[10, 25, 50]}
+              progressPending={loading}
+              noDataComponent="Aucune assistante trouvée"
               customStyles={{
                 table: {
                   style: {
                     width: "100%",
                     minHeight: "750px",
-                    minWidth: "920px",
+                    minWidth: "900px",
                     backgroundColor: "#fafafa",
                   },
                 },
@@ -132,23 +184,12 @@ const Assi = () => {
                     paddingLeft: "10px",
                     paddingRight: "10px",
                     whiteSpace: "nowrap",
+
                   },
                 },
               }}
             />
           </div>
-
-          {showFilters && (
-            <div className={styling.filterOverlay}>
-              <div className={styling.filterModal}>
-                <button className={styling.closeBtn} onClick={() => setShowFilters(false)}>
-                  ✖
-                </button>
-                <Filters onApply={() => setShowFilters(false)} />
-              </div>
-            </div>
-          )}
-
         </div>
       </div>
     </>

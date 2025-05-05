@@ -34,7 +34,6 @@ import Dashboard from './component/Dashboard/dashboard';
 import Generer from './component/Dashboard/generer';
 import Resultats from './component/Dashboard/statresults';
 import ProfilAdmin from './admine/ProfilAdmin';
-
 import VoirplusAssis from './component/carte_assistante/VoirplusAssis';
 import Topnav from './component/nav/Topnav';
 import ModifierAssis from './component/carte_assistante/ModifierAssis';
@@ -43,7 +42,15 @@ import ModifierAdmin from './admine/ModifierAdmin';
 import Voirplus from './admine/Voirplus';
 import ModifVoirplus from './admine/ModifVoirplus';
 import Hero from './LandingPage/Hero';
+import VoirplusPub from './component/page/VoirplusPub';
+import VoirpluspubV from './component/page/VoirpluspubV';
 
+import Publichercheur from './component/page/Publichercheur';
+
+import Ajouterjournak from './component/Mon profile/MesPubli';
+
+import Pluschercheur from './component/page/Pluschercheur';
+import PChercheurplus from './component/page/PChercheurplus';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -66,6 +73,7 @@ function App() {
     isTeamLeader: "Oui",
     institution: "ESI (Ecole Nationale Supérieure d'Informatique)",
     googleScholar: "https://scholar.google.com/citations?user=9Zbx-EYAAAAJ&hl=fr",
+    dblp:"https://dblp.org/pid/50/5791.html"
   };
 
   const [connectedUser, setConnectedUser] = useState(null);
@@ -87,6 +95,13 @@ function App() {
   return (
     <Router>
       <Routes>
+
+
+
+
+      <Route path="/on" element={<Ajouterjournak />} />
+
+
         <Route path="/" element={<Hero />} />
         <Route path="/Topnav" element={<Topnav user={connectedUser} />} />
         <Route path="/Flogin" element={<Flogin />} />
@@ -113,13 +128,31 @@ function App() {
         {/* Pages qui utilisent les infos de l'utilisateur connecté */}
         <Route path="/profilAss" element={<Prrofil chercheur={connectedUser} />} />
         <Route path="/PageProfile" element={<ProfilePage chercheur={connectedUser} />} />
+
+        <Route path="/component/modifier/*" element={<ModifierPage chercheur={chercheurActif} />} />
+
+
+
+
+
         <Route path="/component/modifier/*" element={<ModifierPage chercheur={connectedUser} />} />
+
 
         {/* Visiteurs */}
         <Route path="/Page_recherche1" element={<Page_recherche1 />} />
         <Route path="/Page_recherche2" element={<Page_recherche2 />} />
         <Route path="/Page_visiteur1" element={<Page_visiteur1 />} />
         <Route path="/Page_visiteur2" element={<Page_visiteur2 />} />
+        <Route path="/Voirpluspub" element={<VoirplusPub />} />
+        <Route path="/voirpluspub/:id" element={<VoirplusPub />} />
+        <Route path="/voirpluspubV/:id" element={<VoirpluspubV />} />
+        <Route path="/Publichercheur" element={<Publichercheur />} />
+        <Route path="/Pluschercheur" element={<Pluschercheur />} />
+        <Route path="/Plus" element={<PChercheurplus />} />
+
+
+
+
 
         <Route path="/ChercheurA" element={<ChercheurA />} />
 

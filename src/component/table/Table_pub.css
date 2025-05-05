@@ -1,4 +1,4 @@
-.publications-container {
+.publications-container2 {
     width: 100%;
     padding: 10px; 
     margin-top: 2rem;
@@ -6,7 +6,7 @@
     min-height: 43rem; 
   display: flex; 
   flex-direction: column;
-  justify-content: space-between;
+  
   min-width: 66rem;
   }
   
@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: space-between;
    
-   margin-bottom: 1rem;
+   margin-bottom: 3rem;
   }
   
   .search-bar2 {
@@ -55,7 +55,7 @@
   .btn-voir-plus {
     color: white;
    transition: background-color 0.3s;
-    width: 70%;
+    width: 8rem;
    margin-top: 0.5rem;
    margin-bottom: 0.5rem;
     padding: 0.7rem 0.6rem;
@@ -323,8 +323,7 @@
     padding: 20px;
     border-radius: 10px;
     width: 80%;
-    max-width: 600px;
-    max-height: 80%;
+    max-width: 880px;
     overflow-y: auto;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
@@ -356,6 +355,12 @@
   
   .chercheurs-container {
     position: relative; /* Pour que le filtre overlay soit bien positionné par rapport à la page */
+  }
+
+  .active-filters-title{
+    margin-left: 19rem;
+    margin-bottom: 2rem;
+
   }
   
   /* Responsive adjustments */

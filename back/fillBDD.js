@@ -104,7 +104,7 @@ const transformers = {
     Orcid:data.ORCID,
     Lien_GoogleScholar:data['Lien Google Scholar'] || null ,
     Lien_DBLP:data['Lien DBLP'] || null,
-    photo: data.photo || null
+    photo: data.photo 
   }),
 
   Publication: (data) => ({

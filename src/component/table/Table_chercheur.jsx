@@ -17,6 +17,7 @@ const Table_chercheur = () => {
   const [filterEquipe, setFilterEquipe] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [advancedFilters, setAdvancedFilters] = useState({});
+  const [activeFilters, setActiveFilters] = useState([]); // Pour afficher les filtres actifs
 
   // Vérifier les API disponibles au chargement
   useEffect(() => {
@@ -33,8 +34,8 @@ const Table_chercheur = () => {
     try {
       // Liste des routes potentielles à tester, ajout de la route sans 's'
       const potentialRoutes = [
-        "http://localhost:3000/chercheur",         // <-- Cette route sans 's' en premier
-    
+        "http://localhost:8000/chercheur",         // <-- Cette route sans 's' en premier
+
       ];
       
       for (const route of potentialRoutes) {
@@ -62,7 +63,7 @@ const Table_chercheur = () => {
       const offset = (currentPage - 1) * perPage;
       
       // Utiliser la route détectée automatiquement ou la route par défaut sans 's'
-      const baseRoute = window.workingApiRoute || "http://localhost:3000/chercheur";
+      const baseRoute = window.workingApiRoute || "http://localhost:8000/chercheur";
       const searchRoute = `${baseRoute}/search`;
       
       console.log("Tentative de récupération des chercheurs avec la route:", baseRoute);
@@ -72,17 +73,18 @@ const Table_chercheur = () => {
       // Si une recherche est en cours, essayer d'utiliser l'endpoint de recherche
       if (search || filterQualite || filterEquipe || Object.keys(advancedFilters).length > 0) {
         try {
-          console.log("Utilisation de la route de recherche:", searchRoute);
-          response = await axios.get(searchRoute, {
-            params: {
-              nom_complet: search || undefined,
-              Qualité: filterQualite || undefined,
-              Equipe: filterEquipe || undefined,
-              limit: perPage,
-              offset,
-              ...advancedFilters
-            }
-          });
+          // Construire les paramètres de requête
+          const params = {
+            nom_complet: search || undefined,
+            Qualité: filterQualite || undefined,
+            Equipe: filterEquipe || undefined,
+            limit: perPage,
+            offset,
+            ...advancedFilters
+          };
+
+          console.log("Utilisation de la route de recherche avec params:", params);
+          response = await axios.get(searchRoute, { params });
         } catch (searchError) {
           console.log("Route de recherche indisponible, repli sur la route principale");
           // Si la route de recherche échoue, repli sur la route principale avec paramètres
@@ -144,15 +146,94 @@ const Table_chercheur = () => {
   const handleFilterQualite = (event) => {
     setFilterQualite(event.target.value);
     setCurrentPage(1);
+    
+    // Mettre à jour les filtres actifs
+    updateActiveFilters('qualite', event.target.value);
   };
 
   const handleFilterEquipe = (event) => {
     setFilterEquipe(event.target.value);
     setCurrentPage(1);
+    
+    // Mettre à jour les filtres actifs
+    updateActiveFilters('equipe', event.target.value);
   };
 
+  // Fonction pour mettre à jour l'affichage des filtres actifs
+  const updateActiveFilters = (type, value) => {
+    if (value) {
+      // Ajouter ou mettre à jour le filtre
+      setActiveFilters(current => {
+        const filtered = current.filter(f => f.type !== type);
+        return [...filtered, { type, value }];
+      });
+    } else {
+      // Supprimer le filtre si la valeur est vide
+      setActiveFilters(current => current.filter(f => f.type !== type));
+    }
+  };
+
+  // Fonction modifiée pour mapper les filtres du composant Filtre
+  // vers les paramètres attendus par l'API
   const applyAdvancedFilters = (filters) => {
-    setAdvancedFilters(filters);
+    // Transformation des filtres pour correspondre aux noms de paramètres attendus par l'API
+    const apiFilters = {};
+    const newActiveFilters = [];
+    
+    // Gestion du H-index (exact, min, max)
+    if (filters.hIndexBase && filters.hIndexBase !== "") {
+      apiFilters.Hindex_exact = filters.hIndexBase;
+      newActiveFilters.push({ type: 'h-index', value: `Exact: ${filters.hIndexBase}` });
+    } else {
+      if (filters.hIndexMin && filters.hIndexMin !== "") {
+        apiFilters.Hindex_min = filters.hIndexMin;
+        if (filters.hIndexMax && filters.hIndexMax !== "") {
+          newActiveFilters.push({ type: 'h-index', value: `${filters.hIndexMin} - ${filters.hIndexMax}` });
+        } else {
+          newActiveFilters.push({ type: 'h-index', value: `Min: ${filters.hIndexMin}` });
+        }
+      }
+      if (filters.hIndexMax && filters.hIndexMax !== "") {
+        apiFilters.Hindex_max = filters.hIndexMax;
+        if (!filters.hIndexMin || filters.hIndexMin === "") {
+          newActiveFilters.push({ type: 'h-index', value: `Max: ${filters.hIndexMax}` });
+        }
+      }
+    }
+    
+    // Gestion de l'établissement d'origine
+    if (filters.etablissement && filters.etablissement.length > 0) {
+      apiFilters.Etablissement_origine = filters.etablissement.join(',');
+      newActiveFilters.push({ type: 'etablissement', value: filters.etablissement.join(', ') });
+    }
+    
+    // Gestion de la qualité
+    if (filters.qualite && filters.qualite.length > 0) {
+      apiFilters.Qualité = filters.qualite.join(',');
+      newActiveFilters.push({ type: 'qualite', value: filters.qualite.join(', ') });
+    }
+    
+    // Gestion du statut
+    if (filters.statut && filters.statut.length > 0) {
+      apiFilters.Statut = filters.statut.join(',');
+      newActiveFilters.push({ type: 'statut', value: filters.statut.join(', ') });
+    }
+    
+    // Gestion de l'équipe
+    if (filters.equipe && filters.equipe.length > 0) {
+      apiFilters.Equipe = filters.equipe.join(',');
+      newActiveFilters.push({ type: 'equipe', value: filters.equipe.join(', ') });
+    }
+    
+    // Gestion du diplôme
+    if (filters.diplome && filters.diplome.length > 0) {
+      apiFilters.Diplôme = filters.diplome.join(',');
+      newActiveFilters.push({ type: 'diplome', value: filters.diplome.join(', ') });
+    }
+    
+    console.log("Filtres avancés transformés:", apiFilters);
+    setAdvancedFilters(apiFilters);
+    setActiveFilters(newActiveFilters);
     setCurrentPage(1);
     setShowFilters(false);
   };
@@ -226,6 +307,7 @@ const Table_chercheur = () => {
               <option value="Maitre_assistant">Maitre assistant</option>
               <option value="Maitre_assistant_A">Maitre assistant A</option>
               <option value="Maitre_assistant_B">Maitre assistant B</option>
+              <option value="Enseignant-Chercheur">Enseignant-Chercheur</option>
             </select>
             <select value={filterEquipe} onChange={handleFilterEquipe}>
               <option value="">Équipe</option>
@@ -235,11 +317,31 @@ const Table_chercheur = () => {
               <option value="OPI">OPI</option>
               <option value="EIAH">EIAH</option>
               <option value="SURES">SURES</option>
+              <option value="MSI">MSI</option>
             </select>
             <button onClick={() => setShowFilters(true)}>
               <FaFilter className="filtree" /> Plus de filtres
             </button>
           </div>
+
+          {/* Affichage des filtres actifs */}
+          {activeFilters.length > 0 && (
+            <div className="active-filters-container">
+              <div className="active-filters">
+                <span className="active-filters-title">Filtres actifs: </span>
+                {activeFilters.map((filter, index) => (
+                  <span key={index} className="active-filter-pill">
+                    {filter.type === 'h-index' ? 'H-index' : 
+                     filter.type === 'etablissement' ? 'Établissement' : 
+                     filter.type === 'qualite' ? 'Qualité' : 
+                     filter.type === 'statut' ? 'Statut' : 
+                     filter.type === 'equipe' ? 'Équipe' : 
+                     filter.type === 'diplome' ? 'Diplôme' : filter.type}: {filter.value}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="chercheurs-content">
             <DataTable

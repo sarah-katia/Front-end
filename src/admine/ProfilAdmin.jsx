@@ -25,7 +25,7 @@ export default function ProfilAdmin() {
           return;
         }
         
-        const response = await fetch('http://localhost:3000/me', {
+        const response = await fetch('http://localhost:8000/me', {
           headers: {
             'Authorization': `Bearer ${token}`
           }

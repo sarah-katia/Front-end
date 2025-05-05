@@ -17,35 +17,25 @@ const StatiqueIntervalle = () => {
       alert("Veuillez choisir un critère avant de continuer.");
       return;
     }
-  
-    if (critere.includes("date")) {
-      // 1) Validation des années
-      if (!anneeDebut || !anneeFin) {
-        alert("Veuillez remplir les deux années.");
-        return;
-      }
-      if (anneeDebut.getFullYear() > anneeFin.getFullYear()) {
-        alert("L'année de début doit être antérieure ou égale à l'année de fin.");
-        return;
-      }
-  
-      // 2) Navigation pour le critère date
-      navigate("/statresults", {
-        state: {
-          critere,
-          dateDebut: anneeDebut.getFullYear(),
-          dateFin: anneeFin.getFullYear(),
-        },
-      });
-    } else {
-      // Critère sans date → on navigue directement
-      navigate("/statresults", {
-        state: { critere },
-      });
-    }
-  };
-  
 
+    if (!anneeDebut || !anneeFin) {
+      alert("Veuillez remplir les deux années.");
+      return;
+    }
+    if (anneeDebut.getFullYear() > anneeFin.getFullYear()) {
+      alert("L'année de début doit être antérieure ou égale à l'année de fin.");
+      return;
+    }
+
+    // Navigation avec critère + intervalle de date
+    navigate("/statresults", {
+      state: {
+        critere,
+        dateDebut: anneeDebut.getFullYear(),
+        dateFin: anneeFin.getFullYear(),
+      },
+    });
+  };
 
   return (
     <div className={styles.page}>
@@ -56,53 +46,51 @@ const StatiqueIntervalle = () => {
           <h2>Veuillez choisir un critère:</h2>
 
           <div className={styles.formSection}>
-
-          <label>
+            <label>
               Critère :
               <select value={critere} onChange={(e) => setCritere(e.target.value)}>
                 <option value="">-- Choisir un critère --</option>
-                <option value="nombre de publication par equipe">nombre de publication par equipe</option>
-                <option value="nombre de publication par date">nombre de publication par date</option>
+                <option value="Nombre de publication par equipe">Nombre de publication par equipe</option>
+                <option value="Nombre de publication par date">Nombre de publication par date</option>
+                <option value="Taux de croissance des pubs entre chaque deux ans">Taux de croissance des pubs entre chaque deux ans</option>
+                <option value="Meilleur classement des pubs selon les quatres sites">Meilleur classement des pubs selon les quatres sites</option>
+                <option value="Nombre de chercheur par grade de recherche">Nombre de chercheur par grade de recherche</option>
+                <option value="Nombre de chercheur par equipe">Nombre de chercheur par equipe</option>
+                <option value="Chercheur avec le meilleur H-index">Chercheur avec le meilleur H-index</option>
               </select>
             </label>
 
+            <label>
+              Année de début :
+              <DatePicker
+                selected={anneeDebut}
+                onChange={(date) => setAnneeDebut(date)}
+                showYearPicker
+                dateFormat="yyyy"
+                placeholderText="Choisir une année"
+                className={styles.customInput}
+                popperPlacement="bottom-end"
+              />
+            </label>
 
-            {critere.includes("date") && (
-              <>
-                <label>
-  Année de début :
-  <DatePicker
-    selected={anneeDebut}
-    onChange={(date) => setAnneeDebut(date)}
-    showYearPicker
-    dateFormat="yyyy"
-    placeholderText="Choisir une année"
-    className={styles.customInput}
-    popperPlacement="bottom-end"
-  />
-</label>
-
-<label>
-  Année de fin :
-  <DatePicker
-    selected={anneeFin}
-    onChange={(date) => setAnneeFin(date)}
-    showYearPicker
-    dateFormat="yyyy"
-    placeholderText="Choisir une année"
-    className={styles.customInput}
-    popperPlacement="bottom-end"
-  />
-</label>
-
-              </>
-            )}
+            <label>
+              Année de fin :
+              <DatePicker
+                selected={anneeFin}
+                onChange={(date) => setAnneeFin(date)}
+                showYearPicker
+                dateFormat="yyyy"
+                placeholderText="Choisir une année"
+                className={styles.customInput}
+                popperPlacement="bottom-end"
+              />
+            </label>
           </div>
 
           <div className={styles.buttonContainer}>
-          <button className={styles.submitBtn} onClick={handleSubmit} disabled={!critere}> 
-            suivant --{'>'}
-          </button>
+            <button className={styles.submitBtn} onClick={handleSubmit} disabled={!critere}>
+              suivant --{'>'}
+            </button>
           </div>
         </div>
       </div>
